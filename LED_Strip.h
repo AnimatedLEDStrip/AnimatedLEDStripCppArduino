@@ -45,7 +45,7 @@ public:
 		fadeBlue(),									// Runs a fade blue animation (fades blue in a pixel from specified intensity to another specified intensity over the specified amount of time) -- Based on code from FRC 3130
 		fadeAll(),									// Runs a fade all animation (fades all pixels from specified intensities to other specified intensities over the specified amount of time) -- Based on code from FRC 3130
 		wave(),										// Runs a single wave animation (runs through different colors for each pixel) -- Based on code from FRC 3130
-		blind(),									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
+		blind();									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
 		;
 
 	int

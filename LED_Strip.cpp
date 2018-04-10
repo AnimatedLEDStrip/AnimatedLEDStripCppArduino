@@ -102,6 +102,8 @@ int LEDStrip::getPixelBlue( int pixelIn ) { return (Adafruit_NeoPixel::getPixelC
 
 void LEDStrip::chase( int spacing, direction chaseDirection, ColorContainer colorValues ) {
 
+	ColorContainer Black;
+
 	if (chaseDirection == forward) {
 
 		for (int q = 0; q < spacing; q++) {

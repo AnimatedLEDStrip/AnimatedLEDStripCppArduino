@@ -35,7 +35,7 @@ public:
 };
 
 // The following default colors are based on the colors recognized by default in HTML
-
+/*
 ColorContainer AliceBlue		{ 0xF0F8FF };	// 0xF0F8FF
 ColorContainer AntiqueWhite		{ 0xFAEBD7 };	// 0xFAEBD7
 ColorContainer Aqua				{ 0x00FFFF };	// 0x00FFFF
@@ -66,7 +66,7 @@ ColorContainer DarkGreen		{ 0x006400 };	// 0x006400
 ColorContainer DarkKhaki		{ 0xBDB76B };	// 0xBDB76B
 ColorContainer DarkMagenta		{ 0x8B008B };	// 0x8B008B
 ColorContainer DarkOliveGreen	{ 0x556B2F };	// 0x556B2F
-
+*/
 
 
 #endif // _COLOR_CONTAINER_H_

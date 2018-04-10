@@ -4,29 +4,35 @@
 #include "Adafruit_NeoPixel.h"
 #include "Color_Container.h"
 
-// TODO: Turn into actual Doxygen documentation
-/* 	Enum direction that is used to determine if the strip chase animation runs 'forward' or 'backward'
-	forward With direction of power/signal flow
-	backward Against direction of power/signal flow */
+using namespace std;
 
-enum direction {forward, backward};
 
-// TODO: Turn into actual Doxygen documentation
+/**	Enum direction that is used to determine if the animation runs 'forward' or 'backward' */
+
+enum direction { 
+
+	forward,	/**< With direction of power/signal flow */
+	backward	/**< Against direction of power/signal flow */
+
+};
+
+
 /*  Class LEDStrip that is used to represent an Adafruit NeoPixel LED strip
-	extends Adafruit_NeoPixel class */
+	@extends Adafruit_NeoPixel */
 
 class LEDStrip : public Adafruit_NeoPixel {
 
-	int pixelCount;	/**< Number of pixels in strip - set in constructor */
+	int pixelCount;									/**< Number of pixels in strip - set in constructor */
 
 public:
+
 	/** LEDStrip constructor 
 		Creates an Adafruit_NeoPixel object during construction
 		Saves numLEDs to pixelCount
 		@param numLEDs The number of LEDs in the strip
 		@param PIN The pin being used to communicate with the LED strip */
 
-	LEDStrip(int numLEDs, int PIN) : Adafruit_NeoPixel(numLEDs, PIN) { pixelCount = numLEDs; };
+	LEDStrip( int numLEDs, int PIN ) : Adafruit_NeoPixel( numLEDs, PIN ) { pixelCount = numLEDs; };
 													
 													// TODO: Add Copy Constructor and Destructor
 

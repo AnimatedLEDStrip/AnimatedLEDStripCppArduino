@@ -1,6 +1,9 @@
 #include "LED_Strip.h"
 //#include <cinttypes>
 
+using namespace std;
+
+
 /**	Set Method for the LEDStrip class
 	Sets the color of a single pixel to the color stored in a ColorContainer object
 	@param pixel The index of the pixel to be changed

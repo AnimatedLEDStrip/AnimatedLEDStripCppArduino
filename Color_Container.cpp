@@ -5,7 +5,7 @@ using namespace std;
 
 
 // The following default colors are based on the colors recognized by default in HTML
-// May need to add #ifndef #define statements to fix multiple definition error
+// TODO: Add remaining colors and change all to const ColorContainer
 
 const ColorContainer AliceBlue		{ 0xF0F8FF };	// 0xF0F8FF
 const ColorContainer AntiqueWhite	{ 0xFAEBD7 };	// 0xFAEBD7
@@ -64,13 +64,13 @@ ColorContainer::ColorContainer( long hexIn ) {
 	@param gIn The value to be set to g
 	@param bIn The value to be set to b */
 
-ColorContainer::ColorContainer(int rIn, int gIn, int bIn) { r = rIn; g = gIn; b = bIn; }
+ColorContainer::ColorContainer( int rIn, int gIn, int bIn ) { r = rIn; g = gIn; b = bIn; }
 
 
 /**	Set Method for the r variable in the ColorContainer class (if intensity over 255, set to 255; if intensity below 0, set to 0)
 	@param intensity The value to save to r */
 
-void ColorContainer::setr(int intensity) {
+void ColorContainer::setr( int intensity ) {
 
 	if (intensity < 0) r = 0;
 	if (intensity > 255) r = 255;
@@ -82,7 +82,7 @@ void ColorContainer::setr(int intensity) {
 /**	Set Method for the g variable in the ColorContainer class (if intensity over 255, set to 255; if intensity below 0, set to 0)
 	@param intensity The value to save to g */
 
-void ColorContainer::setg(int intensity) {
+void ColorContainer::setg( int intensity ) {
 
 	if (intensity < 0) g = 0;
 	if (intensity > 255) g = 255;
@@ -94,7 +94,7 @@ void ColorContainer::setg(int intensity) {
 /**	Set Method for the b variable in the ColorContainer class (if intensity over 255, set to 255; if intensity below 0, set to 0)
 	@param intensity The value to save to b */
 
-void ColorContainer::setb(int intensity) {
+void ColorContainer::setb( int intensity ) {
 
 	if (intensity < 0) b = 0;
 	if (intensity > 255) b = 255;
@@ -108,7 +108,7 @@ void ColorContainer::setb(int intensity) {
 	@param gIntensity The value to save to g
 	@param bIntensity The value to save to b */
 
-void ColorContainer::setrgb(int rIntensity, int gIntensity, int bIntensity) {
+void ColorContainer::setrgb( int rIntensity, int gIntensity, int bIntensity ) {
 
 	if (rIntensity < 0) r = 0;
 	if (rIntensity > 255) r = 255;

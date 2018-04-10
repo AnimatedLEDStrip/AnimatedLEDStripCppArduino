@@ -7,17 +7,18 @@
 using namespace std;
 
 
-// TODO: Turn into actual Doxygen documentation
-/* 	Enum direction that is used to determine if the strip chase animation runs 'forward' or 'backward'
-	forward With direction of power/signal flow
-	backward Against direction of power/signal flow */
+/**	Enum direction that is used to determine if the animation runs 'forward' or 'backward' */
 
-enum direction { forward, backward };
+enum direction { 
+
+	forward,	/**< With direction of power/signal flow */
+	backward	/**< Against direction of power/signal flow */
+
+};
 
 
-// TODO: Turn into actual Doxygen documentation
 /*  Class LEDStrip that is used to represent an Adafruit NeoPixel LED strip
-	extends Adafruit_NeoPixel class */
+	@extends Adafruit_NeoPixel */
 
 class LEDStrip : public Adafruit_NeoPixel {
 

@@ -11,8 +11,11 @@ using namespace std;
 
 void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
-	Adafruit_NeoPixel::setPixelColor( pixel, colorValues.getr(), colorValues.getg(), colorValues.getb() );
-
+	//Adafruit_NeoPixel::setPixelColor( pixel, colorValues.getr(), colorValues.getg(), colorValues.getb() );
+	ledArray[pixel] = CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() );
+	Serial.print( "LED ");
+	Serial.print( pixel );
+	Serial.print( " set\n" );
 	return;
 
 }
@@ -42,8 +45,10 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ){
 
 void LEDStrip::setStripColor( ColorContainer colorValues ) {
 
-	for (int i = 0; i < getPixelCount(); i++)
-		Adafruit_NeoPixel::setPixelColor( i, colorValues.getr(), colorValues.getg(), colorValues.getb() );
+	//for (int i = 0; i < getPixelCount(); i++)
+		//Adafruit_NeoPixel::setPixelColor( i, colorValues.getr(), colorValues.getg(), colorValues.getb() );
+
+	fill_solid( ledArray, getPixelCount(), CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() ) );
 
 	return;
 
@@ -79,7 +84,7 @@ int LEDStrip::getPixelCount() { return pixelCount; }
 	@param pixelIn The specified pixel
 	@return The red value of the specified pixel */
 
-int LEDStrip::getPixelRed( int pixelIn ) { return Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x0000FF; }
+int LEDStrip::getPixelRed( int pixelIn ) { return 0; }//return Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x0000FF; }
 
 
 /**	Get Method for the green value in an Adafruit_NeoPixel pixel
@@ -87,7 +92,7 @@ int LEDStrip::getPixelRed( int pixelIn ) { return Adafruit_NeoPixel::getPixelCol
 	@param pixelIn The specified pixel
 	@return The green value of the specified pixel */
 
-int LEDStrip::getPixelGreen( int pixelIn ) { return (Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x00FF00) >> 8; }
+int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }//(Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x00FF00) >> 8; }
 
 
 /**	Get Method for the blue value in an Adafruit_NeoPixel pixel
@@ -95,7 +100,7 @@ int LEDStrip::getPixelGreen( int pixelIn ) { return (Adafruit_NeoPixel::getPixel
 	@param pixelIn The specified pixel
 	@return The blue value of the specified pixel */
 
-int LEDStrip::getPixelBlue( int pixelIn ) { return (Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0xFF0000) >> 16; }
+int LEDStrip::getPixelBlue( int pixelIn ) { return 0; }// (Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0xFF0000) >> 16; }
 
 
 /**	Method to run a chase animation

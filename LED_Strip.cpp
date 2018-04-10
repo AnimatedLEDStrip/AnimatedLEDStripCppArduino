@@ -13,9 +13,6 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
 	//Adafruit_NeoPixel::setPixelColor( pixel, colorValues.getr(), colorValues.getg(), colorValues.getb() );
 	ledArray[pixel] = CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() );
-	Serial.print( "LED ");
-	Serial.print( pixel );
-	Serial.print( " set\n" );
 	return;
 
 }

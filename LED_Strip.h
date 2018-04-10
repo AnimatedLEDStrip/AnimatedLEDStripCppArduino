@@ -5,21 +5,25 @@
 #include "FastLED\FastLED.h"
 #include "Color_Container.h"
 #define PIN 2
-// TODO: Turn into actual Doxygen documentation
-/* 	Enum direction that is used to determine if the strip chase animation runs 'forward' or 'backward'
-	forward With direction of power/signal flow
-	backward Against direction of power/signal flow */
 
-enum direction {forward, backward};
 
-// TODO: Turn into actual Doxygen documentation
-/*  Class LEDStrip that is used to represent an Adafruit NeoPixel LED strip
-	extends Adafruit_NeoPixel class */
+/**	Enum direction that is used to determine if the strip chase animation runs 'forward' or 'backward' */
+
+enum direction {
+
+	forward,	/**< With direction of power/signal flow */
+	backward	/**< Against direction of power/signal flow */
+
+};
+
+
+/**	Class LEDStrip that is used to represent a NeoPixel LED strip
+	@extends CFastLED */
 
 class LEDStrip : public CFastLED {
 
-	int pixelCount;	/**< Number of pixels in strip - set in constructor */
-	CRGB* ledArray;
+	int pixelCount;									/**< Number of pixels in strip - set in constructor */
+	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
 
 public:
 	/** LEDStrip constructor 
@@ -47,8 +51,11 @@ public:
 		fadeBlue(),									// Runs a fade blue animation (fades blue in a pixel from specified intensity to another specified intensity over the specified amount of time) -- Based on code from FRC 3130
 		fadeAll(),									// Runs a fade all animation (fades all pixels from specified intensities to other specified intensities over the specified amount of time) -- Based on code from FRC 3130
 		wave(),										// Runs a single wave animation (runs through different colors for each pixel) -- Based on code from FRC 3130
-		blind();									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
-		;
+		blind(),									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
+		pixelRun(),									// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to chase but with only one pixel)
+		multiPixelRun();							// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing - basically chase (chase may be replaced by this))
+
+													// Also look through the FastLED library to see what else is possible
 
 	int
 		getPixelCount(),							// Returns pixelCount

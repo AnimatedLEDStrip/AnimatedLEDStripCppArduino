@@ -54,7 +54,10 @@ public:
 		blind(),									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
 		pixelRun(),									// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to chase but with only one pixel)
 		multiPixelRun(),							// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing - basically chase (chase may be replaced by this))
-		smoothChase();								// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
+		smoothChase( const TProgmemRGBPalette16&, uint8_t ),		// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
+		fillLEDsFromPalette( const TProgmemRGBPalette16&, uint8_t, TBlendType, uint8_t );
+													// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
+													
 													// Also look through the FastLED library to see what else is possible
 
 	int

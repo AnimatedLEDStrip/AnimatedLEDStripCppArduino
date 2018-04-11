@@ -17,6 +17,67 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
 }
 
+void LEDStrip::fadeRed() {}
+
+
+/**	Fills a LED strip with colors from a specified RGB color palette
+	@param palette The RGB palette to be used 
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
+
+		ledArray[i] = ColorFromPalette( palette , startIndex, brightness, blend );	// Set pixel to specified colors
+		startIndex += 3;															// Move to next set of colors
+
+	}
+
+	return;																			// Return
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	@param palette The RGB palette to be used
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::smoothChase( const TProgmemRGBPalette16& palette, uint8_t brightness = 255 ) {
+
+	for (uint8_t startIndex = 0; startIndex < 255; startIndex++) {				// Run through one cycle
+
+		fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+
+		show();																	// Send color data to LEDs
+
+	}
+
+	return;																		// Return
+
+}
+
+void LEDStrip::multiPixelRun() {}
+
+void LEDStrip::pixelRun() {}
+
+void LEDStrip::blind() {}
+
+void LEDStrip::wave() {}
+
+void LEDStrip::fadeAll() {}
+
+void LEDStrip::fadeBlue() {}
+
+void LEDStrip::fadeGreen() {}
+
+void LEDStrip::alternate() {}
+
+void LEDStrip::flicker() {}
+
+void LEDStrip::ripple() {}
+
 
 /**	Set Method for the LEDStrip class
 	Sets the color of a single pixel to the color stored in a ColorContainer object

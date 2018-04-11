@@ -1,7 +1,6 @@
 #ifndef _LED_STRIP_H_
 #define _LED_STRIP_H_
 
-//#include "Adafruit_NeoPixel.h"
 #include "FastLED\FastLED.h"
 #include "Color_Container.h"
 #define PIN 2
@@ -32,7 +31,7 @@ public:
 		@param numLEDs The number of LEDs in the strip
 		@param PIN The pin being used to communicate with the LED strip */
 
-	LEDStrip( int numLEDs ) { pixelCount = numLEDs; ledArray = new CRGB[numLEDs]; FastLED.addLeds<NEOPIXEL, PIN>( ledArray, numLEDs ); };
+	LEDStrip( int numLEDs ) { pixelCount = numLEDs; ledArray = new CRGB[numLEDs]; FastLED.addLeds<NEOPIXEL, PIN>( ledArray, numLEDs ); }; // TODO: Figure out how to take a pin as a parameter
 													
 													// TODO: Add Copy Constructor and Destructor
 

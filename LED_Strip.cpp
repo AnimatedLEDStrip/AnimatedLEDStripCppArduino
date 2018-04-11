@@ -11,7 +11,6 @@ using namespace std;
 
 void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
-	//Adafruit_NeoPixel::setPixelColor( pixel, colorValues.getr(), colorValues.getg(), colorValues.getb() );
 	ledArray[pixel] = CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() );
 	return;
 
@@ -103,9 +102,6 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ){
 
 void LEDStrip::setStripColor( ColorContainer colorValues ) {
 
-	//for (int i = 0; i < getPixelCount(); i++)
-		//Adafruit_NeoPixel::setPixelColor( i, colorValues.getr(), colorValues.getg(), colorValues.getb() );
-
 	fill_solid( ledArray, getPixelCount(), CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() ) );
 
 	return;
@@ -142,7 +138,7 @@ int LEDStrip::getPixelCount() { return pixelCount; }
 	@param pixelIn The specified pixel
 	@return The red value of the specified pixel */
 
-int LEDStrip::getPixelRed( int pixelIn ) { return 0; }//return Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x0000FF; }
+int LEDStrip::getPixelRed( int pixelIn ) { return 0; }
 
 
 /**	Get Method for the green value in an Adafruit_NeoPixel pixel
@@ -150,7 +146,7 @@ int LEDStrip::getPixelRed( int pixelIn ) { return 0; }//return Adafruit_NeoPixel
 	@param pixelIn The specified pixel
 	@return The green value of the specified pixel */
 
-int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }//(Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0x00FF00) >> 8; }
+int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }
 
 
 /**	Get Method for the blue value in an Adafruit_NeoPixel pixel
@@ -158,7 +154,7 @@ int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }//(Adafruit_NeoPixel::ge
 	@param pixelIn The specified pixel
 	@return The blue value of the specified pixel */
 
-int LEDStrip::getPixelBlue( int pixelIn ) { return 0; }// (Adafruit_NeoPixel::getPixelColor( pixelIn ) & 0xFF0000) >> 16; }
+int LEDStrip::getPixelBlue( int pixelIn ) { return 0; }
 
 
 /**	Method to run a chase animation
@@ -234,109 +230,7 @@ void LEDStrip::chase( int spacing, direction chaseDirection, int rIn, int gIn, i
 	ColorContainer temp( rIn, gIn, bIn );
 
 	chase( spacing, chaseDirection, temp );
-	/*
-	ColorContainer black;
-
-	if (chaseDirection == forward) {
-
-		for (int q = 0; q < spacing; q++) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), rIn, gIn, bIn );
-
-			}
-
-			show();
-			delay(50);
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), black );
-
-			}
-
-		}
-
-	}
-
-	if (chaseDirection == backward) {
-
-		for (int q = spacing - 1; q >= 0; q--) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), rIn, gIn, bIn );
-
-			}
-
-			show();
-			delay(50);
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), black );
-
-			}
-
-		}
-
-	}
-	*/
 
 	return;
 
 }
-
-/*
-void LEDStrip::specialChase( int spacing, direction chaseDirection, ColorContainer colorValues ) {
-
-	ColorContainer black;
-
-	if (chaseDirection = forward) {
-
-		for (int q = 0; q < spacing; q++) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
-
-			}
-
-			show();
-			delay( 50 );
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), black );
-
-			}
-
-		}
-
-	}
-
-	if (chaseDirection = backward) {
-
-		for (int q = spacing - 1; q >= 0; q--) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
-
-			}
-
-			show();
-			delay( 50 );
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), black );
-
-			}
-
-		}
-
-	}
-
-}*/

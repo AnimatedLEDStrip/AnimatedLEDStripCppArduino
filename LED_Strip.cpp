@@ -57,7 +57,84 @@ void LEDStrip::smoothChase( const TProgmemRGBPalette16& palette, uint8_t brightn
 
 }
 
-void LEDStrip::multiPixelRun() {}
+
+/**	Method to run a multiPixelRun animation
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param colorValues A ColorContainer containing the desired color */
+
+void LEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ) {
+
+	ColorContainer Black;
+
+	if (chaseDirection == forward) {
+
+		for (int q = 0; q < spacing; q++) {
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+
+			}
+
+			show();
+			delay( 50 );
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), Black );
+
+			}
+
+		}
+
+	}
+
+	if (chaseDirection == backward) {
+
+		for (int q = spacing - 1; q >= 0; q--) {
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+
+			}
+
+			show();
+			delay( 50 );
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), Black );
+
+			}
+
+		}
+
+	}
+
+	return;
+
+}
+
+/**	Method to run a multiPixelRun animation
+	Calls chase(int, direction, ColorContainer) with inputted parameters
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param rIn The value for the red LED
+	@param gIn The value for the green LED
+	@param bIn The value for the blue LED */
+
+void LEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ) {
+
+	ColorContainer temp( rIn, gIn, bIn );
+
+	multiPixelRun( spacing, chaseDirection, temp );
+
+	return;
+
+}
+
 
 void LEDStrip::pixelRun() {}
 
@@ -157,7 +234,8 @@ int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }
 int LEDStrip::getPixelBlue( int pixelIn ) { return 0; }
 
 
-/**	Method to run a chase animation
+/**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead
+	Method to run a chase animation
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection A direction (forward or backward) of type direction
 	@param colorValues A ColorContainer containing the desired color */
@@ -217,7 +295,8 @@ void LEDStrip::chase( int spacing, direction chaseDirection, ColorContainer colo
 }
 
 
-/**	Method to run a chase animation
+/**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn) instead
+	Method to run a chase animation
 	Calls chase(int, direction, ColorContainer) with inputted parameters
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection A direction (forward or backward) of type direction

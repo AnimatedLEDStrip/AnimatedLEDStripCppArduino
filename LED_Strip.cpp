@@ -41,15 +41,30 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 
 /** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	@param palette The RGB palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void LEDStrip::smoothChase( const TProgmemRGBPalette16& palette, uint8_t brightness = 255 ) {
+void LEDStrip::smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	for (uint8_t startIndex = 0; startIndex < 255; startIndex++) {				// Run through one cycle
+	if (movementDirection == forward) {
 
-		fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+		for (uint8_t startIndex = 255; startIndex > 0; startIndex--) {				// Run through one cycle
 
-		show();																	// Send color data to LEDs
+			fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+
+			show();																	// Send color data to LEDs
+
+		}
+
+	} else if (movementDirection == backward) {
+
+		for (uint8_t startIndex = 0; startIndex < 255; startIndex++) {				// Run through one cycle
+
+			fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+
+			show();																	// Send color data to LEDs
+
+		}
 
 	}
 

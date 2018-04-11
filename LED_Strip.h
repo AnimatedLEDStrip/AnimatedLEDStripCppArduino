@@ -23,7 +23,7 @@ enum direction {
 class LEDStrip : public CFastLED {
 
 	int pixelCount;									/**< Number of pixels in strip - set in constructor */
-	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
+public:	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
 
 public:
 	/** LEDStrip constructor 
@@ -53,8 +53,8 @@ public:
 		wave(),										// Runs a single wave animation (runs through different colors for each pixel) -- Based on code from FRC 3130
 		blind(),									// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
 		pixelRun(),									// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to chase but with only one pixel)
-		multiPixelRun();							// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing - basically chase (chase may be replaced by this))
-
+		multiPixelRun(),							// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing - basically chase (chase may be replaced by this))
+		smoothChase();								// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
 													// Also look through the FastLED library to see what else is possible
 
 	int

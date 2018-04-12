@@ -22,7 +22,7 @@ enum direction {
 class LEDStrip : public CFastLED {
 
 	int pixelCount;									/**< Number of pixels in strip - set in constructor */
-public:	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
+	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
 
 public:
 	/** LEDStrip constructor 

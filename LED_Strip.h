@@ -32,7 +32,8 @@ public:
 		@param PIN The pin being used to communicate with the LED strip */
 
 	LEDStrip( int numLEDs ) { pixelCount = numLEDs; ledArray = new CRGB[numLEDs]; FastLED.addLeds<NEOPIXEL, PIN>( ledArray, numLEDs ); }; // TODO: Figure out how to take a pin as a parameter
-													
+	LEDStrip( const LEDStrip& );
+	~LEDStrip() {};
 																							// TODO: Add Copy Constructor and Destructor
 
 	void
@@ -69,7 +70,7 @@ public:
 		getPixelColor( int );						// Returns a ColorContainer with the red, green and blue intensities of the pixel
 
 													// TODO: Add assignment operator method
-													// TODO: Add index operator method
+	CRGB & operator[]( int indexIn ) { return ledArray[indexIn]; }							// Index Operator method
 
 };
 

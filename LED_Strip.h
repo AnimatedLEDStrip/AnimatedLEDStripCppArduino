@@ -1,7 +1,7 @@
 #ifndef _LED_STRIP_H_
 #define _LED_STRIP_H_
 
-#include "FastLED\FastLED.h"
+#include "FastLED/FastLED.h"
 #include "Color_Container.h"
 #define PIN 2
 

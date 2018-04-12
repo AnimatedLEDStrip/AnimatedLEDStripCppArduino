@@ -272,3 +272,5 @@ paket-files/
 __pycache__/
 *.pyc
 >>>>>>> 2e45a6c0397771d6c67c4792f991df508fcdfd26
+/Makefile
+/PixelColorTest.cpp

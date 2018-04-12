@@ -171,7 +171,7 @@ void LEDStrip::ripple() {}
 
 
 /**	Set Method for the LEDStrip class
-	Sets the color of a single pixel to the color stored in a ColorContainer object
+	Sets the color of a single pixel to the specified colors
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED
 	@param gIn The value for the green LED
@@ -202,7 +202,7 @@ void LEDStrip::setStripColor( ColorContainer colorValues ) {
 
 
 /**	Set Method for the LEDStrip class
-	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
+	Sets the color of all pixels in a strip to the specified colors
 	@param rIn The value for the red LED
 	@param gIn The value for the green LED
 	@param bIn The value for the blue LED */

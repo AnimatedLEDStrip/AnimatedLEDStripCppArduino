@@ -31,6 +31,9 @@ public:
 		getg(),							// Returns the g value of a ColorContainer object
 		getb();							// Returns the b value of a ColorContainer object
 
+	long
+		getColorHex();					// Returns the r, g and b values as a 6-digit hexadecimal number
+
 };
 
 

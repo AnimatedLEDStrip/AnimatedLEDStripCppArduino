@@ -298,7 +298,7 @@ int LEDStrip::getPixelCount() { return pixelCount; }
 	@param pixelIn The specified pixel
 	@return The red value of the specified pixel */
 
-int LEDStrip::getPixelRed( int pixelIn ) { return 0; }
+int LEDStrip::getPixelRed( int pixelIn ) { return ledArray[pixelIn].r; }
 
 
 /**	Get Method for the green value in an Adafruit_NeoPixel pixel
@@ -306,7 +306,7 @@ int LEDStrip::getPixelRed( int pixelIn ) { return 0; }
 	@param pixelIn The specified pixel
 	@return The green value of the specified pixel */
 
-int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }
+int LEDStrip::getPixelGreen( int pixelIn ) { return ledArray[pixelIn].g; }
 
 
 /**	Get Method for the blue value in an Adafruit_NeoPixel pixel
@@ -314,7 +314,7 @@ int LEDStrip::getPixelGreen( int pixelIn ) { return 0; }
 	@param pixelIn The specified pixel
 	@return The blue value of the specified pixel */
 
-int LEDStrip::getPixelBlue( int pixelIn ) { return 0; }
+int LEDStrip::getPixelBlue( int pixelIn ) { return ledArray[pixelIn].b; }
 
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead

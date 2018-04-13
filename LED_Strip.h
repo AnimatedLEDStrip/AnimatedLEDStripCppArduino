@@ -3,7 +3,7 @@
 
 #include "FastLED/FastLED.h"
 #include "Color_Container.h"
-#define PIN 2
+#include "Pin_Defs.h"
 
 
 /**	Enum direction that is used to determine if the strip chase animation runs 'forward' or 'backward' */
@@ -31,7 +31,7 @@ public:
 		@param numLEDs The number of LEDs in the strip
 		@param PIN The pin being used to communicate with the LED strip */
 
-	LEDStrip( int numLEDs ) { pixelCount = numLEDs; ledArray = new CRGB[numLEDs]; FastLED.addLeds<NEOPIXEL, PIN>( ledArray, numLEDs ); }; // TODO: Figure out how to take a pin as a parameter
+	LEDStrip( int, int ); // TODO: Figure out how to take a pin as a parameter
 	LEDStrip( const LEDStrip& );
 	~LEDStrip() {};
 																							// TODO: Add Copy Constructor and Destructor
@@ -68,6 +68,9 @@ public:
 
 	ColorContainer
 		getPixelColor( int );						// Returns a ColorContainer with the red, green and blue intensities of the pixel
+
+	CRGB
+		* getLEDArray() { return ledArray; }
 
 													// TODO: Add assignment operator method
 	CRGB & operator[]( int indexIn ) { return ledArray[indexIn]; }							// Index Operator method

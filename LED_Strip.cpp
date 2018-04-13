@@ -3,21 +3,27 @@
 
 using namespace std;
 
+
+/** Constructor for the LEDStrip Class
+	Because of the Arduino's requirement that pin numbers be defined at compile, if-else-if statements are used to permit passing of a pin as a parameter from the .ino file
+	@param numLEDs Number of LEDs in the strip
+	@param pin The pin connected to the strip */
+
 LEDStrip::LEDStrip( int numLEDs, int pin ) {
 
-	pixelCount = numLEDs;
-	ledArray = new CRGB[numLEDs];
+	pixelCount = numLEDs;															// Save numLEDs to pixelCount
+	ledArray = new CRGB[numLEDs];													// Allocate new array of CRGB (pixels)
 	
-	if (pin == 0) FastLED.addLeds<NEOPIXEL, PIN0>( ledArray, numLEDs );
-	else if (pin == 1) FastLED.addLeds<NEOPIXEL, PIN1>( ledArray, numLEDs );
-	else if (pin == 2) FastLED.addLeds<NEOPIXEL, PIN2>( ledArray, numLEDs );
-	else if (pin == 3) FastLED.addLeds<NEOPIXEL, PIN3>( ledArray, numLEDs );
-	else if (pin == 4) FastLED.addLeds<NEOPIXEL, PIN4>( ledArray, numLEDs );
-	else if (pin == 5) FastLED.addLeds<NEOPIXEL, PIN5>( ledArray, numLEDs );
-	else if (pin == 6) FastLED.addLeds<NEOPIXEL, PIN6>( ledArray, numLEDs );
-	else if (pin == 7) FastLED.addLeds<NEOPIXEL, PIN7>( ledArray, numLEDs );
-	else if (pin == 8) FastLED.addLeds<NEOPIXEL, PIN8>( ledArray, numLEDs );
-	else if (pin == 9) FastLED.addLeds<NEOPIXEL, PIN9>( ledArray, numLEDs );
+	if		(pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>	( ledArray, numLEDs );		// If pin == #, use PIN#
+	else if (pin == 1)	FastLED.addLeds<NEOPIXEL, PIN1>	( ledArray, numLEDs );
+	else if (pin == 2)	FastLED.addLeds<NEOPIXEL, PIN2>	( ledArray, numLEDs );
+	else if (pin == 3)	FastLED.addLeds<NEOPIXEL, PIN3>	( ledArray, numLEDs );
+	else if (pin == 4)	FastLED.addLeds<NEOPIXEL, PIN4>	( ledArray, numLEDs );
+	else if (pin == 5)	FastLED.addLeds<NEOPIXEL, PIN5>	( ledArray, numLEDs );
+	else if (pin == 6)	FastLED.addLeds<NEOPIXEL, PIN6>	( ledArray, numLEDs );
+	else if (pin == 7)	FastLED.addLeds<NEOPIXEL, PIN7>	( ledArray, numLEDs );
+	else if (pin == 8)	FastLED.addLeds<NEOPIXEL, PIN8>	( ledArray, numLEDs );
+	else if (pin == 9)	FastLED.addLeds<NEOPIXEL, PIN9>	( ledArray, numLEDs );
 	else if (pin == 10) FastLED.addLeds<NEOPIXEL, PIN10>( ledArray, numLEDs );
 	else if (pin == 11) FastLED.addLeds<NEOPIXEL, PIN11>( ledArray, numLEDs );
 	else if (pin == 12) FastLED.addLeds<NEOPIXEL, PIN12>( ledArray, numLEDs );
@@ -64,6 +70,7 @@ LEDStrip::LEDStrip( int numLEDs, int pin ) {
 	else if (pin == 53) FastLED.addLeds<NEOPIXEL, PIN53>( ledArray, numLEDs );
 
 }
+
 
 /**	Set Method for the LEDStrip class
 	Sets the color of a single pixel to the color stored in a ColorContainer object

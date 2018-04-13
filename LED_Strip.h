@@ -25,11 +25,6 @@ class LEDStrip : public CFastLED {
 	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
 
 public:
-	/** LEDStrip constructor 
-		Creates an Adafruit_NeoPixel object during construction
-		Saves numLEDs to pixelCount
-		@param numLEDs The number of LEDs in the strip
-		@param PIN The pin being used to communicate with the LED strip */
 
 	LEDStrip( int, int ); // TODO: Figure out how to take a pin as a parameter
 	LEDStrip( const LEDStrip& );

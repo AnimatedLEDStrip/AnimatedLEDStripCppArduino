@@ -26,7 +26,7 @@ class LEDStrip : public CFastLED {
 
 public:
 
-	LEDStrip( int, int ); // TODO: Figure out how to take a pin as a parameter
+	LEDStrip( int, int );
 	LEDStrip( const LEDStrip& );
 	~LEDStrip() {};
 																							// TODO: Add Copy Constructor and Destructor

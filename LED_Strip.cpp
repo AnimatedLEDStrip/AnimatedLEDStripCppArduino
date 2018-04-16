@@ -84,11 +84,57 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
 }
 
-void LEDStrip::fadeRed() {}
+
+/**	Set Method for the LEDStrip class
+	Sets the color of a single pixel to the specified colors
+	@param pixel The index of the pixel to be changed
+	@param rIn The value for the red LED
+	@param gIn The value for the green LED
+	@param bIn The value for the blue LED */
+
+void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
+
+	ColorContainer temp( rIn, gIn, bIn );
+
+	setPixelColor( pixel, temp );
+
+	return;
+
+}
+
+
+/**	Set Method for the LEDStrip class
+	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
+	@param colorValues The ColorContainer containing the desired color */
+
+void LEDStrip::setStripColor( ColorContainer colorValues ) {
+
+	fill_solid( ledArray, getPixelCount(), CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() ) );
+
+	return;
+
+}
+
+
+/**	Set Method for the LEDStrip class
+	Sets the color of all pixels in a strip to the specified colors
+	@param rIn The value for the red LED
+	@param gIn The value for the green LED
+	@param bIn The value for the blue LED */
+
+void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
+
+	ColorContainer temp( rIn, gIn, bIn );
+
+	setStripColor( temp );
+
+	return;
+
+}
 
 
 /**	Fills a LED strip with colors from a specified RGB color palette
-	@param palette The RGB palette to be used 
+	@param palette The RGB palette to be used
 	@param startIndex The offset in the color palette (used to make the animation 'move')
 	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
 	@param brightness The brightness of the LEDs (default 255) */
@@ -97,7 +143,7 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 
 	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
 
-		ledArray[i] = ColorFromPalette( palette , startIndex, brightness, blend );	// Set pixel to specified colors
+		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
 		startIndex += 3;															// Move to next set of colors
 
 	}
@@ -105,6 +151,37 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 	return;																			// Return
 
 }
+
+
+/**	Get Method for the pixelCount variable in the LEDStrip class
+	Returns the number of pixels in a strip
+	@return pixelCount */
+
+int LEDStrip::getPixelCount() { return pixelCount; }
+
+
+/**	Get Method for the red value in an Adafruit_NeoPixel pixel
+	Returns the red value of the specified pixel
+	@param pixelIn The specified pixel
+	@return The red value of the specified pixel */
+
+int LEDStrip::getPixelRed( int pixelIn ) { return ledArray[pixelIn].r; }
+
+
+/**	Get Method for the green value in an Adafruit_NeoPixel pixel
+	Returns the green value of the specified pixel
+	@param pixelIn The specified pixel
+	@return The green value of the specified pixel */
+
+int LEDStrip::getPixelGreen( int pixelIn ) { return ledArray[pixelIn].g; }
+
+
+/**	Get Method for the blue value in an Adafruit_NeoPixel pixel
+	Returns the blue value of the specified pixel
+	@param pixelIn The specified pixel
+	@return The blue value of the specified pixel */
+
+int LEDStrip::getPixelBlue( int pixelIn ) { return ledArray[pixelIn].b; }
 
 
 /** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
@@ -217,104 +294,6 @@ void LEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn, in
 	return;
 
 }
-
-
-void LEDStrip::pixelRun() {}
-
-void LEDStrip::blind() {}
-
-void LEDStrip::wave() {}
-
-void LEDStrip::fadeAll() {}
-
-void LEDStrip::fadeBlue() {}
-
-void LEDStrip::fadeGreen() {}
-
-void LEDStrip::alternate() {}
-
-void LEDStrip::flicker() {}
-
-void LEDStrip::ripple() {}
-
-
-/**	Set Method for the LEDStrip class
-	Sets the color of a single pixel to the specified colors
-	@param pixel The index of the pixel to be changed
-	@param rIn The value for the red LED
-	@param gIn The value for the green LED
-	@param bIn The value for the blue LED */
-
-void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ){
-
-	ColorContainer temp( rIn, gIn, bIn );
-
-	setPixelColor( pixel, temp );
-
-	return;
-
-}
-
-
-/**	Set Method for the LEDStrip class
-	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
-	@param colorValues The ColorContainer containing the desired color */
-
-void LEDStrip::setStripColor( ColorContainer colorValues ) {
-
-	fill_solid( ledArray, getPixelCount(), CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() ) );
-
-	return;
-
-}
-
-
-/**	Set Method for the LEDStrip class
-	Sets the color of all pixels in a strip to the specified colors
-	@param rIn The value for the red LED
-	@param gIn The value for the green LED
-	@param bIn The value for the blue LED */
-
-void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
-
-	ColorContainer temp( rIn, gIn, bIn );
-
-	setStripColor( temp );
-
-	return;
-
-}
-
-
-/**	Get Method for the pixelCount variable in the LEDStrip class
-	Returns the number of pixels in a strip
-	@return pixelCount */
-
-int LEDStrip::getPixelCount() { return pixelCount; }
-
-
-/**	Get Method for the red value in an Adafruit_NeoPixel pixel
-	Returns the red value of the specified pixel
-	@param pixelIn The specified pixel
-	@return The red value of the specified pixel */
-
-int LEDStrip::getPixelRed( int pixelIn ) { return ledArray[pixelIn].r; }
-
-
-/**	Get Method for the green value in an Adafruit_NeoPixel pixel
-	Returns the green value of the specified pixel
-	@param pixelIn The specified pixel
-	@return The green value of the specified pixel */
-
-int LEDStrip::getPixelGreen( int pixelIn ) { return ledArray[pixelIn].g; }
-
-
-/**	Get Method for the blue value in an Adafruit_NeoPixel pixel
-	Returns the blue value of the specified pixel
-	@param pixelIn The specified pixel
-	@return The blue value of the specified pixel */
-
-int LEDStrip::getPixelBlue( int pixelIn ) { return ledArray[pixelIn].b; }
 
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead

@@ -22,7 +22,7 @@ enum direction {
 class LEDStrip : public CFastLED {
 
 	int pixelCount;									/**< Number of pixels in strip - set in constructor */
-	CRGB* ledArray;									/**< Pointer to the array of structures holding the pixel values */
+	CRGB * ledArray;									/**< Pointer to the array of structures holding the pixel values */
 
 public:
 
@@ -56,7 +56,9 @@ public:
 		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness ),	// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
 		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
-													
+	
+	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
+
 																							// Also look through the FastLED library to see what else is possible
 
 	int

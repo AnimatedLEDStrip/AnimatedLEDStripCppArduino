@@ -141,6 +141,25 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
+	/*for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
+
+		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
+		startIndex += 3;															// Move to next set of colors
+
+	}
+	*/
+
+	fillLEDsFromPalette<TProgmemRGBPalette16>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+
+template<class paletteType>
+void LEDStrip::fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ) {
+
 	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
 
 		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
@@ -151,6 +170,8 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 	return;																			// Return
 
 }
+
+
 
 
 /**	Get Method for the pixelCount variable in the LEDStrip class

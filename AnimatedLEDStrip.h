@@ -8,6 +8,7 @@ class AnimatedLEDStrip : public LEDStrip {
 
 
 public:
+	//AnimatedLEDStrip();
 	AnimatedLEDStrip( int numLEDs, int pin ) : LEDStrip( numLEDs, pin ) {}
 	~AnimatedLEDStrip() {};
 

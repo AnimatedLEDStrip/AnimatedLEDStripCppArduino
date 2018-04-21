@@ -1,14 +1,14 @@
 #include "AnimatedLEDStrip.h"
 
-//AnimatedLEDStrip::AnimatedLEDStrip() {}
 
 /** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
-@param palette The RGB palette to be used
-@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
-@param brightness The brightness of the LEDs (default 255) */
+	@param palette The palette to be used (can be CRGBPalette16, CRGBPalette32, CRGBPalette256, CHSVPalette16, CHSVPalette32, CHSVPalette256, TProgmemRGBPalette16, TProgmemRGBPalette32, TProgmemHSVPalette16 or TProgmemHSVPalette32)
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness = 255 ) {
-
+template<class paletteType>
+void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movementDirection, uint8_t brightness ) {
+	
 	if (movementDirection == forward) {
 
 		for (uint8_t startIndex = 255; startIndex > 0; startIndex--) {				// Run through one cycle
@@ -36,10 +36,25 @@ void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, directi
 }
 
 
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<TProgmemRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The TProgmemRGBPalette16 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<TProgmemRGBPalette16>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
 /**	Method to run a multiPixelRun animation
-@param spacing The number of LEDs until the next LED to be lit is reached
-@param chaseDirection A direction (forward or backward) of type direction
-@param colorValues A ColorContainer containing the desired color */
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param colorValues A ColorContainer containing the desired color */
 
 void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ) {
 
@@ -95,13 +110,14 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 }
 
+
 /**	Method to run a multiPixelRun animation
-Calls chase(int, direction, ColorContainer) with inputted parameters
-@param spacing The number of LEDs until the next LED to be lit is reached
-@param chaseDirection A direction (forward or backward) of type direction
-@param rIn The value for the red LED
-@param gIn The value for the green LED
-@param bIn The value for the blue LED */
+	Calls chase(int, direction, ColorContainer) with inputted parameters
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param rIn The value for the red LED
+	@param gIn The value for the green LED
+	@param bIn The value for the blue LED */
 
 void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ) {
 
@@ -115,10 +131,10 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead
-Method to run a chase animation
-@param spacing The number of LEDs until the next LED to be lit is reached
-@param chaseDirection A direction (forward or backward) of type direction
-@param colorValues A ColorContainer containing the desired color */
+	Method to run a chase animation
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param colorValues A ColorContainer containing the desired color */
 
 void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, ColorContainer colorValues ) {
 
@@ -176,13 +192,13 @@ void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, ColorContai
 
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn) instead
-Method to run a chase animation
-Calls chase(int, direction, ColorContainer) with inputted parameters
-@param spacing The number of LEDs until the next LED to be lit is reached
-@param chaseDirection A direction (forward or backward) of type direction
-@param rIn The value for the red LED
-@param gIn The value for the green LED
-@param bIn The value for the blue LED */
+	Method to run a chase animation
+	Calls chase(int, direction, ColorContainer) with inputted parameters
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction
+	@param rIn The value for the red LED
+	@param gIn The value for the green LED
+	@param bIn The value for the blue LED */
 
 void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ) {
 

@@ -36,25 +36,6 @@ public:
 		setPixelColor( int pixel, int rIn, int gIn, int bIn ),	// Calls setPixelColor(int, ColorContainer) with a ColorContainer created from the inputted rgb values
 		setStripColor( ColorContainer colorValues ),	// Sets the color of the whole strip to the color stored in a ColorContainer object
 		setStripColor( int rIn, int gIn, int bIn ),	// Calls setStripColor(ColorContainer) with a ColorContainer created from the inputted rgb values
-		chase( int, direction, ColorContainer ),	// Deprecated - use multiPixelRun( int, direction, ColorContainer )
-		chase( int, direction, int, int, int ),	// Deprecated - use multiPixelRun( int, direction, int, int, int )
-		ripple(),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
-		flicker(),	// Runs a single flicker animation (strip is at a color/brightness and random LEDs are set to a different color/brightness for a very short time before returning to the strip's color)
-		alternate(),	// Runs a single alternate animation (alternates between two colors at the specified rate (amount of time between change)) -- Based on code from FRC 3130
-		fadePixelRed( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade red animation (fades red in a pixel from specified intensity to another specified intensity) -- Based on code from FRC 3130
-		fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade green animation (fades green in a pixel from specified intensity to another specified intensity) -- Based on code from FRC 3130
-		fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade blue animation (fades blue in a pixel from specified intensity to another specified intensity) -- Based on code from FRC 3130
-		fadePixelAll( int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ),	// Runs a fade all animation (fades all pixels from specified intensities to other specified intensities) -- Based on code from FRC 3130
-		fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ),	
-		fadeStripGreen( int startIntensity, int endIntensity, bool revertAtCompletion = false ),	
-		fadeStripBlue( int startIntensity, int endIntensity, bool revertAtCompletion = false ),	
-		fadeStripAll( int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ),	
-		wave(),	// Runs a single wave animation (runs through different colors for each pixel) -- Based on code from FRC 3130
-		blind(),	// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
-		pixelRun(),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to chase but with only one pixel)
-		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
-		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
-		smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness ),	// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
 		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
 	
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );

@@ -31,10 +31,22 @@ public:
 		blind(),	// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
 		pixelRun(),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to chase but with only one pixel)
 		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
-		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
-		smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness );	// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
+		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn );	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 
 	template<class paletteType> void smoothChase( const paletteType& palette, direction movementDirection, uint8_t brightness );
+
+	void		// Runs a single smoothChase animation (Uses the ColorFromPalette feature of FastLED)
+		smoothChase( const CRGBPalette16 & palette,			direction movementDirection, uint8_t brightness = 255 ), 
+		smoothChase( const CRGBPalette32 & palette,			direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const CRGBPalette256 & palette,		direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const TProgmemRGBPalette16 & palette,	direction movementDirection, uint8_t brightness = 255 ),	
+		smoothChase( const TProgmemRGBPalette32 & palette,	direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const CHSVPalette16 & palette,			direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const CHSVPalette32 & palette,			direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const CHSVPalette256 & palette,		direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const TProgmemHSVPalette16 & palette, 	direction movementDirection, uint8_t brightness = 255 ),
+		smoothChase( const TProgmemHSVPalette32 & palette,	direction movementDirection, uint8_t brightness = 255 );
+
 
 };
 

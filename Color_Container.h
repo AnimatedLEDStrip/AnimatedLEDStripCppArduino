@@ -9,30 +9,31 @@ using namespace std;
 class ColorContainer {
 
 	int
-		r,								/**< Variable to store the red value for the LED */
-		g,								/**< Variable to store the green value for the LED */
-		b;								/**< Variable to store the blue value for the LED */
+		r,											/**< Variable to store the red value for the LED */
+		g,											/**< Variable to store the green value for the LED */
+		b;											/**< Variable to store the blue value for the LED */
 
 public:
-	ColorContainer();					// Default Constructor for ColorContainer (sets r, g, b to 0)
-	ColorContainer( long );				// Constructor for ColorContainer (sets r, g, b based on number recieved (usually 6-digit hexadecimal))
-	ColorContainer( int, int, int );	// Constructor for ColorContainer (sets r, g, b to parameters received)
-										// TODO: Create Copy Constructor and Destructor
+	ColorContainer();								// Default Constructor for ColorContainer (sets r, g, b to 0)
+	ColorContainer( long hexIn );					// Constructor for ColorContainer (sets r, g, b based on number recieved (usually 6-digit hexadecimal))
+	ColorContainer( int rIn, int gIn, int bIn );	// Constructor for ColorContainer (sets r, g, b to parameters received)
+													// TODO: Create Copy Constructor and Destructor
+													// TODO: Create Constructor with a CRGB as the argument
 
 	void
-		setr( int ),					// Sets the r value of a ColorContainer object
-		setg( int ),					// Sets the g value of a ColorContainer object
-		setb( int ),					// Sets the b value of a ColorContainer object
-		setrgb( int, int, int ),		// Sets the r, g and b values of a ColorContainer object
-		blackout();						// Sets the r, g and b values of a ColorContainer object to 0
+		setr( int ),								// Sets the r value of a ColorContainer object
+		setg( int ),								// Sets the g value of a ColorContainer object
+		setb( int ),								// Sets the b value of a ColorContainer object
+		setrgb( int rIn, int gIn, int bIn ),		// Sets the r, g and b values of a ColorContainer object
+		blackout();									// Sets the r, g and b values of a ColorContainer object to 0
 
 	int 
-		getr(),							// Returns the r value of a ColorContainer object
-		getg(),							// Returns the g value of a ColorContainer object
-		getb();							// Returns the b value of a ColorContainer object
+		getr(),										// Returns the r value of a ColorContainer object
+		getg(),										// Returns the g value of a ColorContainer object
+		getb();										// Returns the b value of a ColorContainer object
 
 	long
-		getColorHex();					// Returns the r, g and b values as a 6-digit hexadecimal number
+		getColorHex();								// Returns the r, g and b values as a 6-digit hexadecimal number
 
 };
 

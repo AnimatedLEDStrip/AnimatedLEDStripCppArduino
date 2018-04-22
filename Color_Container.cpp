@@ -73,15 +73,11 @@ void ColorContainer::setb( int intensity ) {
 
 void ColorContainer::setrgb( int rIntensity, int gIntensity, int bIntensity ) {
 
-	if (rIntensity < 0) r = 0;
-	if (rIntensity > 255) r = 255;
-	if (rIntensity >= 0 and rIntensity <= 255) r = rIntensity;
-	if (gIntensity < 0) g = 0;
-	if (gIntensity > 255) g = 255;
-	if (gIntensity >= 0 and gIntensity <= 255) g = gIntensity;
-	if (bIntensity < 0) b = 0;
-	if (bIntensity > 255) b = 255;
-	if (bIntensity >= 0 and bIntensity <= 255) b = bIntensity;
+	setr( rIntensity );
+	setg( gIntensity );
+	setb( bIntensity );
+
+	return;
 
 }
 

@@ -129,6 +129,62 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 
 }
 
+void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues) {
+
+	if (chaseDirection == forward) {
+
+		for (int q = 0; q < spacing; q++) {
+		  
+		  setStripColor(altColorValues);
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+
+			}
+
+			show();
+			delay( 50 );
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), Black );
+
+			}
+
+		}
+
+	}
+
+	if (chaseDirection == backward) {
+
+		for (int q = spacing - 1; q >= 0; q--) {
+
+		  setStripColor(altColorValues);
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+
+			}
+
+			show();
+			delay( 50 );
+
+			for (int i = 0; i < getPixelCount(); i += spacing) {
+
+				setPixelColor( i + (-(q - (spacing - 1))), Black );
+
+			}
+
+		}
+
+	}
+
+	return;
+
+}
+
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead
 	Method to run a chase animation

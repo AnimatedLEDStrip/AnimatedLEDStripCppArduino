@@ -30,6 +30,7 @@ public:
 		pixelRun(),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to multiPixelRun() but with only one pixel)
 		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with	multiple LEDs at a specified spacing)
+	  multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues),
 		chase( int, direction, ColorContainer ),	// Deprecated - use multiPixelRun( int, direction, ColorContainer )
 		chase( int, direction, int, int, int );	// Deprecated - use multiPixelRun( int, direction, int, int, int )
 

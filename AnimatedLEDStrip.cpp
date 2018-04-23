@@ -8,7 +8,7 @@
 
 template<class paletteType>
 void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movementDirection, uint8_t brightness ) {
-	
+
 	if (movementDirection == forward) {
 
 		for (uint8_t startIndex = 255; startIndex > 0; startIndex--) {				// Run through one cycle
@@ -129,13 +129,13 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 
 }
 
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues) {
+void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues ) {
 
 	if (chaseDirection == forward) {
 
 		for (int q = 0; q < spacing; q++) {
-		  
-		  setStripColor(altColorValues);
+
+			setStripColor( altColorValues );
 
 			for (int i = 0; i < getPixelCount(); i += spacing) {
 
@@ -160,7 +160,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 		for (int q = spacing - 1; q >= 0; q--) {
 
-		  setStripColor(altColorValues);
+			setStripColor( altColorValues );
 
 			for (int i = 0; i < getPixelCount(); i += spacing) {
 

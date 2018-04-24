@@ -29,6 +29,14 @@ ColorContainer::ColorContainer( long hexIn ) {
 
 ColorContainer::ColorContainer( int rIn, int gIn, int bIn ) { r = rIn; g = gIn; b = bIn; }
 
+ColorContainer::ColorContainer( const CRGB & CRGBIn ) {
+
+	r = CRGBIn.r;
+	g = CRGBIn.g;
+	b = CRGBIn.b;
+
+}
+
 
 /**	Set Method for the r variable in the ColorContainer class (if intensity over 255, set to 255; if intensity below 0, set to 0)
 	@param intensity The value to save to r */

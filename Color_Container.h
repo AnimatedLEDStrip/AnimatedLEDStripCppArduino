@@ -3,6 +3,7 @@
 
 using namespace std;
 
+#include "FastLED\FastLED.h"
 
 /** ColorContainer class - holds three color values (r,g,b) used for a LED strip LED */
 
@@ -17,8 +18,7 @@ public:
 	ColorContainer();								// Default Constructor for ColorContainer (sets r, g, b to 0)
 	ColorContainer( long hexIn );					// Constructor for ColorContainer (sets r, g, b based on number recieved (usually 6-digit hexadecimal))
 	ColorContainer( int rIn, int gIn, int bIn );	// Constructor for ColorContainer (sets r, g, b to parameters received)
-													// TODO: Create Copy Constructor and Destructor
-													// TODO: Create Constructor with a CRGB as the argument
+	ColorContainer( const CRGB & CRGBIn );			// TODO: Create Constructor with a CRGB as the argument
 
 
 	void

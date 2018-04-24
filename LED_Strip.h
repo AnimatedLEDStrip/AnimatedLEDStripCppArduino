@@ -23,31 +23,32 @@ class LEDStrip : public CFastLED {
 
 	int pixelCount;									/**< Number of pixels in strip - set in constructor */
 	CRGB * ledArray;									/**< Pointer to the array of structures holding the pixel values */
+	int pin;
 
 public:
 
-	LEDStrip( int numLEDs, int pin );
+	LEDStrip( int numLEDs, int pinIn );
 	LEDStrip( const LEDStrip& );
-	~LEDStrip() {};
-	LEDStrip& operator=(const LEDStrip&);
-																							// TODO: Add Copy Constructor and Destructor
+	~LEDStrip();
+	LEDStrip& operator=( const LEDStrip& );
+	// TODO: Add Copy Constructor and Destructor
 
 	void
 		setPixelColor( int pixel, ColorContainer colorValues ),	// Sets the color of one pixel to the color stored in a ColorContainer object
 		setPixelColor( int pixel, int rIn, int gIn, int bIn ),	// Calls setPixelColor(int, ColorContainer) with a ColorContainer created from the inputted rgb values
-	  setPixelRed(int pixel, int rIn),
-	  setPixelGreen(int pixel,nint gIn),
-	  setPixelBlue(int pixel, int bIn),
+		setPixelRed( int pixel, int rIn ),
+		setPixelGreen( int pixel, int gIn ),
+		setPixelBlue( int pixel, int bIn ),
 		setStripColor( ColorContainer colorValues ),	// Sets the color of the whole strip to the color stored in a ColorContainer object
 		setStripColor( int rIn, int gIn, int bIn ),	// Calls setStripColor(ColorContainer) with a ColorContainer created from the inputted rgb values
-	  setStripRed(int rIn),
-	  setStripGreen(int gIn),
-	  setStripBlue(int bIn),
+		setStripRed( int rIn ),
+		setStripGreen( int gIn ),
+		setStripBlue( int bIn ),
 		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
 
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 
-																							// Also look through the FastLED library to see what else is possible
+	// Also look through the FastLED library to see what else is possible
 
 	int
 		getPixelCount(),	// Returns pixelCount
@@ -60,7 +61,7 @@ public:
 
 	CRGB * getLEDArray() { return ledArray; }
 
-													// TODO: Add assignment operator method
+	// TODO: Add assignment operator method
 	CRGB & operator[]( int indexIn ) { return ledArray[indexIn]; }	// Index Operator method
 
 };

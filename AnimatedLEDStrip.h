@@ -47,12 +47,9 @@ public:
 		smoothChase( const CRGBPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ),
 		smoothChase( const CRGBPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ),
 		smoothChase( const TProgmemRGBPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ),
-		//smoothChase( const TProgmemRGBPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ),
 		smoothChase( const CHSVPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ),
 		smoothChase( const CHSVPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ),
 		smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 );
-		//smoothChase( const TProgmemHSVPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ),
-		//smoothChase( const TProgmemHSVPalette32 & palette, direction movementDirection, uint8_t brightness = 255 );
 
 
 };

@@ -148,7 +148,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 			for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
+				setPixelColor( i + (-(q - (spacing - 1))), altColorValues );
 
 			}
 
@@ -173,7 +173,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 			for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
+				setPixelColor( i + (-(q - (spacing - 1))), altColorValues );
 
 			}
 
@@ -182,6 +182,161 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 	}
 
 	return;
+
+}
+
+
+void AnimatedLEDStrip::fadePixelRed( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+	fadeDirection fade;
+
+	if (startIntensity > endIntensity) fade = fadeDown;
+	if (startIntensity < endIntensity) fade = fadeUp;
+	if (startIntensity == endIntensity) return;
+
+	int originalRed = getPixelRed( pixel );
+	int originalGreen = getPixelGreen( pixel );				// TODO: Make a setPixelRed() method so this is not needed
+	int originalBlue = getPixelBlue( pixel );
+
+	switch (fade) {
+	case fadeUp:
+		for (int i = startIntensity; i <= endIntensity; i++) {
+
+			setPixelColor( pixel, i, originalGreen, originalBlue );
+			show();
+
+		}
+
+		break;
+
+	case fadeDown:
+		for (int i = startIntensity; i >= endIntensity; i--) {
+
+			setPixelColor( pixel, i, originalGreen, originalBlue );
+			show();
+
+		}
+
+		break;
+
+	}
+
+	if (revertAtCompletion) setPixelColor( pixel, originalRed, originalGreen, originalBlue );
+
+}
+
+
+void AnimatedLEDStrip::fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+	fadeDirection fade;
+
+	if (startIntensity > endIntensity) fade = fadeDown;
+	if (startIntensity < endIntensity) fade = fadeUp;
+	if (startIntensity == endIntensity) return;
+
+	int originalRed = getPixelRed( pixel );
+	int originalGreen = getPixelGreen( pixel );				// TODO: Make a setPixelRed() method so this is not needed
+	int originalBlue = getPixelBlue( pixel );
+
+	switch (fade) {
+	case fadeUp:
+		for (int i = startIntensity; i <= endIntensity; i++) {
+
+			setPixelColor( pixel, originalRed, i, originalBlue );
+			show();
+
+		}
+
+		break;
+
+	case fadeDown:
+		for (int i = startIntensity; i >= endIntensity; i--) {
+
+			setPixelColor( pixel, originalRed, i, originalBlue );
+			show();
+
+		}
+
+		break;
+
+	}
+
+	if (revertAtCompletion) setPixelColor( pixel, originalRed, originalGreen, originalBlue );
+
+}
+
+
+void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+	fadeDirection fade;
+
+	if (startIntensity > endIntensity) fade = fadeDown;
+	if (startIntensity < endIntensity) fade = fadeUp;
+	if (startIntensity == endIntensity) return;
+
+	int originalRed = getPixelRed( pixel );
+	int originalGreen = getPixelGreen( pixel );				// TODO: Make a setPixelRed() method so this is not needed
+	int originalBlue = getPixelBlue( pixel );
+
+	switch (fade) {
+	case fadeUp:
+		for (int i = startIntensity; i <= endIntensity; i++) {
+
+			setPixelColor( pixel, originalRed, originalGreen, i );
+			show();
+
+		}
+
+		break;
+
+	case fadeDown:
+		for (int i = startIntensity; i >= endIntensity; i--) {
+
+			setPixelColor( pixel, originalRed, originalGreen, i );
+			show();
+
+		}
+
+		break;
+
+	}
+
+	if (revertAtCompletion) setPixelColor( pixel, originalRed, originalGreen, originalBlue );
+
+}
+
+
+void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ) {
+
+
+
+}
+
+
+void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+
+
+}
+
+
+void AnimatedLEDStrip::fadeStripGreen( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+
+
+}
+
+
+void AnimatedLEDStrip::fadeStripBlue( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+
+
+
+}
+
+
+void AnimatedLEDStrip::fadeStripAll( int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ) {
+
+
 
 }
 

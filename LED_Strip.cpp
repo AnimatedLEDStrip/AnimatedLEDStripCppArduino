@@ -73,11 +73,10 @@ LEDStrip::LEDStrip( int numLEDs, int pin ) {
 
 LEDStrip::LEDStrip(const LEDStrip& StripIn){
 
-	numLEDs = StripIn.numLEDs;
+	pixelCount = StripIn.pixelCount;
 	pin = StripIn.pin;
-
-	pixelCount = numLEDs;															// Save numLEDs to pixelCount
-	ledArray = new CRGB[numLEDs];													// Allocate new array of CRGB (pixels)
+														// Save numLEDs to pixelCount
+	ledArray = new CRGB[pixelCount];													// Allocate new array of CRGB (pixels)
 
 	if		(pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>	( ledArray, numLEDs );		// If pin == #, use PIN#
 	else if (pin == 1)	FastLED.addLeds<NEOPIXEL, PIN1>	( ledArray, numLEDs );
@@ -144,10 +143,10 @@ LEDStrip::~LEDStrip(){
 LEDStrip& LEDStrip::operator=(const LEDStrip& StripIn){
 
 		delete[] ledArray;
-		numLEDs = StripIn.numLEDs;
+		pixelCount = StripIn.pixelCount;
 		pin = StripIn.pin;
-		pixelCount = numLEDs;															// Save numLEDs to pixelCount
-		ledArray = new CRGB[numLEDs];													// Allocate new array of CRGB (pixels)
+															// Save numLEDs to pixelCount
+		ledArray = new CRGB[pixelCount];													// Allocate new array of CRGB (pixels)
 
 		if		(pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>	( ledArray, numLEDs );		// If pin == #, use PIN#
 		else if (pin == 1)	FastLED.addLeds<NEOPIXEL, PIN1>	( ledArray, numLEDs );
@@ -205,7 +204,7 @@ LEDStrip& LEDStrip::operator=(const LEDStrip& StripIn){
 		else if (pin == 53) FastLED.addLeds<NEOPIXEL, PIN53>( ledArray, numLEDs );
 
 		return *this;
-		
+
 }
 
 /**	Set Method for the LEDStrip class

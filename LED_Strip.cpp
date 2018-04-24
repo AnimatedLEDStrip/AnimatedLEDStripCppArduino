@@ -73,11 +73,10 @@ LEDStrip::LEDStrip( int numLEDs, int pin ) {
 
 LEDStrip::LEDStrip(const LEDStrip& StripIn){
 
-	numLEDs = StripIn.numLEDs;
+	pixelCount = StripIn.pixelCount;
 	pin = StripIn.pin;
-
-	pixelCount = numLEDs;															// Save numLEDs to pixelCount
-	ledArray = new CRGB[numLEDs];													// Allocate new array of CRGB (pixels)
+														// Save numLEDs to pixelCount
+	ledArray = new CRGB[pixelCount];													// Allocate new array of CRGB (pixels)
 
 	if		(pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>	( ledArray, numLEDs );		// If pin == #, use PIN#
 	else if (pin == 1)	FastLED.addLeds<NEOPIXEL, PIN1>	( ledArray, numLEDs );
@@ -141,6 +140,72 @@ LEDStrip::~LEDStrip(){
 	delete[] ledArray;
 }
 
+LEDStrip& LEDStrip::operator=(const LEDStrip& StripIn){
+
+		delete[] ledArray;
+		pixelCount = StripIn.pixelCount;
+		pin = StripIn.pin;
+															// Save numLEDs to pixelCount
+		ledArray = new CRGB[pixelCount];													// Allocate new array of CRGB (pixels)
+
+		if		(pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>	( ledArray, numLEDs );		// If pin == #, use PIN#
+		else if (pin == 1)	FastLED.addLeds<NEOPIXEL, PIN1>	( ledArray, numLEDs );
+		else if (pin == 2)	FastLED.addLeds<NEOPIXEL, PIN2>	( ledArray, numLEDs );
+		else if (pin == 3)	FastLED.addLeds<NEOPIXEL, PIN3>	( ledArray, numLEDs );
+		else if (pin == 4)	FastLED.addLeds<NEOPIXEL, PIN4>	( ledArray, numLEDs );
+		else if (pin == 5)	FastLED.addLeds<NEOPIXEL, PIN5>	( ledArray, numLEDs );
+		else if (pin == 6)	FastLED.addLeds<NEOPIXEL, PIN6>	( ledArray, numLEDs );
+		else if (pin == 7)	FastLED.addLeds<NEOPIXEL, PIN7>	( ledArray, numLEDs );
+		else if (pin == 8)	FastLED.addLeds<NEOPIXEL, PIN8>	( ledArray, numLEDs );
+		else if (pin == 9)	FastLED.addLeds<NEOPIXEL, PIN9>	( ledArray, numLEDs );
+		else if (pin == 10) FastLED.addLeds<NEOPIXEL, PIN10>( ledArray, numLEDs );
+		else if (pin == 11) FastLED.addLeds<NEOPIXEL, PIN11>( ledArray, numLEDs );
+		else if (pin == 12) FastLED.addLeds<NEOPIXEL, PIN12>( ledArray, numLEDs );
+		else if (pin == 13) FastLED.addLeds<NEOPIXEL, PIN13>( ledArray, numLEDs );
+		else if (pin == 14) FastLED.addLeds<NEOPIXEL, PIN14>( ledArray, numLEDs );
+		else if (pin == 15) FastLED.addLeds<NEOPIXEL, PIN15>( ledArray, numLEDs );
+		else if (pin == 16) FastLED.addLeds<NEOPIXEL, PIN16>( ledArray, numLEDs );
+		else if (pin == 17) FastLED.addLeds<NEOPIXEL, PIN17>( ledArray, numLEDs );
+		else if (pin == 18) FastLED.addLeds<NEOPIXEL, PIN18>( ledArray, numLEDs );
+		else if (pin == 19) FastLED.addLeds<NEOPIXEL, PIN19>( ledArray, numLEDs );
+		else if (pin == 20) FastLED.addLeds<NEOPIXEL, PIN20>( ledArray, numLEDs );
+		else if (pin == 21) FastLED.addLeds<NEOPIXEL, PIN21>( ledArray, numLEDs );
+		else if (pin == 22) FastLED.addLeds<NEOPIXEL, PIN22>( ledArray, numLEDs );
+		else if (pin == 23) FastLED.addLeds<NEOPIXEL, PIN23>( ledArray, numLEDs );
+		else if (pin == 24) FastLED.addLeds<NEOPIXEL, PIN24>( ledArray, numLEDs );
+		else if (pin == 25) FastLED.addLeds<NEOPIXEL, PIN25>( ledArray, numLEDs );
+		else if (pin == 26) FastLED.addLeds<NEOPIXEL, PIN26>( ledArray, numLEDs );
+		else if (pin == 27) FastLED.addLeds<NEOPIXEL, PIN27>( ledArray, numLEDs );
+		else if (pin == 28) FastLED.addLeds<NEOPIXEL, PIN28>( ledArray, numLEDs );
+		else if (pin == 29) FastLED.addLeds<NEOPIXEL, PIN29>( ledArray, numLEDs );
+		else if (pin == 30) FastLED.addLeds<NEOPIXEL, PIN30>( ledArray, numLEDs );
+		else if (pin == 31) FastLED.addLeds<NEOPIXEL, PIN31>( ledArray, numLEDs );
+		else if (pin == 32) FastLED.addLeds<NEOPIXEL, PIN32>( ledArray, numLEDs );
+		else if (pin == 33) FastLED.addLeds<NEOPIXEL, PIN33>( ledArray, numLEDs );
+		else if (pin == 34) FastLED.addLeds<NEOPIXEL, PIN34>( ledArray, numLEDs );
+		else if (pin == 35) FastLED.addLeds<NEOPIXEL, PIN35>( ledArray, numLEDs );
+		else if (pin == 36) FastLED.addLeds<NEOPIXEL, PIN36>( ledArray, numLEDs );
+		else if (pin == 37) FastLED.addLeds<NEOPIXEL, PIN37>( ledArray, numLEDs );
+		else if (pin == 38) FastLED.addLeds<NEOPIXEL, PIN38>( ledArray, numLEDs );
+		else if (pin == 39) FastLED.addLeds<NEOPIXEL, PIN39>( ledArray, numLEDs );
+		else if (pin == 40) FastLED.addLeds<NEOPIXEL, PIN40>( ledArray, numLEDs );
+		else if (pin == 41) FastLED.addLeds<NEOPIXEL, PIN41>( ledArray, numLEDs );
+		else if (pin == 42) FastLED.addLeds<NEOPIXEL, PIN42>( ledArray, numLEDs );
+		else if (pin == 43) FastLED.addLeds<NEOPIXEL, PIN43>( ledArray, numLEDs );
+		else if (pin == 44) FastLED.addLeds<NEOPIXEL, PIN44>( ledArray, numLEDs );
+		else if (pin == 45) FastLED.addLeds<NEOPIXEL, PIN45>( ledArray, numLEDs );
+		else if (pin == 46) FastLED.addLeds<NEOPIXEL, PIN46>( ledArray, numLEDs );
+		else if (pin == 47) FastLED.addLeds<NEOPIXEL, PIN47>( ledArray, numLEDs );
+		else if (pin == 48) FastLED.addLeds<NEOPIXEL, PIN48>( ledArray, numLEDs );
+		else if (pin == 49) FastLED.addLeds<NEOPIXEL, PIN49>( ledArray, numLEDs );
+		else if (pin == 50) FastLED.addLeds<NEOPIXEL, PIN50>( ledArray, numLEDs );
+		else if (pin == 51) FastLED.addLeds<NEOPIXEL, PIN51>( ledArray, numLEDs );
+		else if (pin == 52) FastLED.addLeds<NEOPIXEL, PIN52>( ledArray, numLEDs );
+		else if (pin == 53) FastLED.addLeds<NEOPIXEL, PIN53>( ledArray, numLEDs );
+
+		return *this;
+
+}
 
 /**	Set Method for the LEDStrip class
 	Sets the color of a single pixel to the color stored in a ColorContainer object
@@ -172,6 +237,38 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
 
 }
 
+/**     Set Method for the LEDStrip class
+	Sets the value of the red value of a single pixel to the specified value
+	@param pixel The index of the pixel to be changed
+	@param rIn The value for the red LED */
+
+void LEDStrip::setPixelRed( int pixel, int rIn){
+
+  ledArray[pixel].red = rIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the value of the green value of a single pixel to the specified value
+        @param pixel The index of the pixel to be changed
+        @param gIn The value for the green LED */
+
+void LEDStrip::setPixelGreen( int pixel, int gIn){
+
+  ledArray[pixel].green = gIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the value of the blue value of a single pixel to the specified value
+        @param pixel The index of the pixel to be changed
+        @param bIn The value for the blue LED */
+
+void LEDStrip::setPixelBlue( int pixel, int bIn){
+  
+  ledArray[pixel].blue = bIn;
+  return;
+}
 
 /**	Set Method for the LEDStrip class
 	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
@@ -202,6 +299,35 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 }
 
+/**     Set Method for the LEDStrip class
+        Sets the color of all red values in a strip to the color stored in an int
+        @param rIn*/
+
+void LEDStrip::setStripRed( int rIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].red = rIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the color of all green values in a strip to the color stored in an int
+        @param gIn*/
+
+void LEDStrip::setStripGreen( int gIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].green = gIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the color of all blue values in a strip to the color stored in an int
+        @param bIn*/
+
+void LEDStrip::setStripBlue( int bIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].blue = bIn;
+  return;
+}
 
 /**	Fills a LED strip with colors from a specified RGB color palette
 	@param palette The RGB palette to be used

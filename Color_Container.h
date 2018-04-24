@@ -20,6 +20,7 @@ public:
 													// TODO: Create Copy Constructor and Destructor
 													// TODO: Create Constructor with a CRGB as the argument
 
+
 	void
 		setr( int ),								// Sets the r value of a ColorContainer object
 		setg( int ),								// Sets the g value of a ColorContainer object
@@ -27,7 +28,7 @@ public:
 		setrgb( int rIn, int gIn, int bIn ),		// Sets the r, g and b values of a ColorContainer object
 		blackout();									// Sets the r, g and b values of a ColorContainer object to 0
 
-	int 
+	int
 		getr(),										// Returns the r value of a ColorContainer object
 		getg(),										// Returns the g value of a ColorContainer object
 		getb();										// Returns the b value of a ColorContainer object

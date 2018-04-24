@@ -108,13 +108,13 @@ int ColorContainer::getb() { return b; }
 long ColorContainer::getColorHex() {
 
 	long temp;
-	
+
 	temp = r;
 	temp <<= 8;
 	temp |= g;
 	temp <<= 8;
 	temp |= b;
-	
+
 	return temp;
 
 }

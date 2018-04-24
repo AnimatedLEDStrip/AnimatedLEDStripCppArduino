@@ -56,7 +56,7 @@ public:
 		getPixelBlue( int pixelIn );	// Returns intensity of blue in the specified pixel
 
 	ColorContainer
-		getPixelColor( int );	// Returns a ColorContainer with the red, green and blue intensities of the pixel
+		getPixelColor( int pixelIn );	// Returns a ColorContainer with the red, green and blue intensities of the pixel
 
 	CRGB * getLEDArray() { return ledArray; }
 

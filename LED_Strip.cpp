@@ -250,6 +250,10 @@ void LEDStrip::fillLEDsFromPalette( const paletteType& palette, uint8_t startInd
 
 int LEDStrip::getPixelCount() { return pixelCount; }
 
+ColorContainer LEDStrip::getPixelColor( int pixelIn ) {
+	return ColorContainer( ledArray[pixelIn].r, ledArray[pixelIn].g, ledArray[pixelIn].b );
+}
+
 
 /**	Get Method for the red value in an Adafruit_NeoPixel pixel
 	Returns the red value of the specified pixel

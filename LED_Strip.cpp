@@ -102,6 +102,38 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
 
 }
 
+/**     Set Method for the LEDStrip class
+	Sets the value of the red value of a single pixel to the specified value
+	@param pixel The index of the pixel to be changed
+	@param rIn The value for the red LED */
+
+void LEDStrip::setPixelRed( int pixel, int rIn){
+
+  ledArray[pixel].red = rIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the value of the green value of a single pixel to the specified value
+        @param pixel The index of the pixel to be changed
+        @param gIn The value for the green LED */
+
+void LEDStrip::setPixelGreen( int pixel, int gIn){
+
+  ledArray[pixel].green = gIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the value of the blue value of a single pixel to the specified value
+        @param pixel The index of the pixel to be changed
+        @param bIn The value for the blue LED */
+
+void LEDStrip::setPixelBlue( int pixel, int bIn){
+  
+  ledArray[pixel].blue = bIn;
+  return;
+}
 
 /**	Set Method for the LEDStrip class
 	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
@@ -132,6 +164,35 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 }
 
+/**     Set Method for the LEDStrip class
+        Sets the color of all red values in a strip to the color stored in an int
+        @param rIn*/
+
+void LEDStrip::setStripRed( int rIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].red = rIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the color of all green values in a strip to the color stored in an int
+        @param gIn*/
+
+void LEDStrip::setStripGreen( int gIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].green = gIn;
+  return;
+}
+
+/**     Set Method for the LEDStrip class
+        Sets the color of all blue values in a strip to the color stored in an int
+        @param bIn*/
+
+void LEDStrip::setStripBlue( int bIn ) {
+
+  for( int i = 0; i < getPixelCount(); i++) leds[i].blue = bIn;
+  return;
+}
 
 /**	Fills a LED strip with colors from a specified RGB color palette
 	@param palette The RGB palette to be used

@@ -29,6 +29,7 @@ public:
 	LEDStrip( int numLEDs, int pin );
 	LEDStrip( const LEDStrip& );
 	~LEDStrip() {};
+	LEDStrip& operator=(const LEDStrip&);
 																							// TODO: Add Copy Constructor and Destructor
 
 	void
@@ -37,7 +38,7 @@ public:
 		setStripColor( ColorContainer colorValues ),	// Sets the color of the whole strip to the color stored in a ColorContainer object
 		setStripColor( int rIn, int gIn, int bIn ),	// Calls setStripColor(ColorContainer) with a ColorContainer created from the inputted rgb values
 		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
-	
+
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 
 																							// Also look through the FastLED library to see what else is possible

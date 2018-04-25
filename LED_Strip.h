@@ -31,7 +31,6 @@ public:
 	LEDStrip( const LEDStrip& );
 	~LEDStrip();
 	LEDStrip& operator=( const LEDStrip& );
-	// TODO: Add Copy Constructor and Destructor
 
 	void
 		setPixelColor( int pixel, ColorContainer colorValues ),	// Sets the color of one pixel to the color stored in a ColorContainer object
@@ -44,7 +43,7 @@ public:
 		setStripRed( int rIn ),
 		setStripGreen( int gIn ),
 		setStripBlue( int bIn ),
-		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
+		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code -- works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
 
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 
@@ -61,7 +60,6 @@ public:
 
 	CRGB * getLEDArray() { return ledArray; }
 
-	// TODO: Add assignment operator method
 	CRGB & operator[]( int indexIn ) { return ledArray[indexIn]; }	// Index Operator method
 
 };

@@ -51,6 +51,96 @@ void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, directi
 }
 
 
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CRGBPalette16 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CRGBPalette16>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CRGBPalette32>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CRGBPalette32 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CRGBPalette32>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CRGBPalette256>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CRGBPalette256 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CRGBPalette256>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CHSVPalette16>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CHSVPalette16 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CHSVPalette16>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CHSVPalette32>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CHSVPalette32 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CHSVPalette32>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
+/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Calls smoothChase<CHSVPalette256>(paletteType, direction, uint8_t) with inputted parameters
+	@param palette The CHSVPalette256 palette to be used
+	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
+	@param brightness The brightness of the LEDs (default 255) */
+
+void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+
+	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );
+
+	return;
+
+}
+
+
 /**	Method to run a multiPixelRun animation
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection A direction (forward or backward) of type direction
@@ -351,7 +441,7 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 		}
 
 		if (!blueComplete) {
-		
+
 			if (getPixelBlue( pixel ) < endBlueIntensity) {
 
 				setPixelBlue( pixel, getPixelBlue( pixel ) + 1 );
@@ -365,7 +455,7 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 				blueComplete = true;
 
 			}
-		
+
 		}
 
 		show();

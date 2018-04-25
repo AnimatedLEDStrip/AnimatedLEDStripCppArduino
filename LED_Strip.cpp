@@ -213,7 +213,7 @@ LEDStrip& LEDStrip::operator=( const LEDStrip& stripIn ) {
 }
 
 /**	Set Method for the LEDStrip class
-	Sets the color of a single pixel to the color stored in a ColorContainer object
+	Sets the r, g, b values of all pixels in a strip to the color stored in a ColorContainer object
 	@param pixel The index of the pixel to be changed
 	@param colorValues The ColorContainer containing the desired color */
 
@@ -226,7 +226,7 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
 
 /**	Set Method for the LEDStrip class
-	Sets the color of a single pixel to the specified colors
+	Sets the r, g, b values of a single pixel to the specified intensities
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED
 	@param gIn The value for the green LED
@@ -242,8 +242,9 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
 
 }
 
-/**     Set Method for the LEDStrip class
-	Sets the value of the red value of a single pixel to the specified value
+
+/** Set Method for the LEDStrip class
+	Sets the red value of a single pixel to the specified intensity
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED */
 
@@ -253,10 +254,11 @@ void LEDStrip::setPixelRed( int pixel, int rIn ) {
 	return;
 }
 
-/**     Set Method for the LEDStrip class
-		Sets the value of the green value of a single pixel to the specified value
-		@param pixel The index of the pixel to be changed
-		@param gIn The value for the green LED */
+
+/** Set Method for the LEDStrip class
+	Sets the green value of a single pixel to the specified intensity
+	@param pixel The index of the pixel to be changed
+	@param gIn The value for the green LED */
 
 void LEDStrip::setPixelGreen( int pixel, int gIn ) {
 
@@ -264,10 +266,11 @@ void LEDStrip::setPixelGreen( int pixel, int gIn ) {
 	return;
 }
 
-/**     Set Method for the LEDStrip class
-		Sets the value of the blue value of a single pixel to the specified value
-		@param pixel The index of the pixel to be changed
-		@param bIn The value for the blue LED */
+
+/** Set Method for the LEDStrip class
+	Sets the blue value of a single pixel to the specified intensity
+	@param pixel The index of the pixel to be changed
+	@param bIn The value for the blue LED */
 
 void LEDStrip::setPixelBlue( int pixel, int bIn ) {
 
@@ -275,8 +278,9 @@ void LEDStrip::setPixelBlue( int pixel, int bIn ) {
 	return;
 }
 
+
 /**	Set Method for the LEDStrip class
-	Sets the color of all pixels in a strip to the color stored in a ColorContainer object
+	Sets the r, g, b values of all pixels in a strip to the color stored in a ColorContainer object
 	@param colorValues The ColorContainer containing the desired color */
 
 void LEDStrip::setStripColor( ColorContainer colorValues ) {
@@ -289,7 +293,7 @@ void LEDStrip::setStripColor( ColorContainer colorValues ) {
 
 
 /**	Set Method for the LEDStrip class
-	Sets the color of all pixels in a strip to the specified colors
+	Sets the r, g, b values of all pixels in a strip to the specified intensities
 	@param rIn The value for the red LED
 	@param gIn The value for the green LED
 	@param bIn The value for the blue LED */
@@ -304,9 +308,10 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 }
 
-/**     Set Method for the LEDStrip class
-		Sets the color of all red values in a strip to the color stored in an int
-		@param rIn*/
+
+/** Set Method for the LEDStrip class
+	Sets all red values in a strip to the specified intensity
+	@param rIn The value for the red LEDs */
 
 void LEDStrip::setStripRed( int rIn ) {
 
@@ -314,9 +319,9 @@ void LEDStrip::setStripRed( int rIn ) {
 	return;
 }
 
-/**     Set Method for the LEDStrip class
-		Sets the color of all green values in a strip to the color stored in an int
-		@param gIn*/
+/** Set Method for the LEDStrip class
+	Sets all green values in a strip to the specified intensity
+	@param gIn The value for the green LEDs */
 
 void LEDStrip::setStripGreen( int gIn ) {
 
@@ -341,14 +346,6 @@ void LEDStrip::setStripBlue( int bIn ) {
 	@param brightness The brightness of the LEDs (default 255) */
 
 void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	/*for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
-
-		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
-		startIndex += 3;															// Move to next set of colors
-
-	}
-	*/
 
 	fillLEDsFromPalette<TProgmemRGBPalette16>( palette, startIndex, blend, brightness );
 

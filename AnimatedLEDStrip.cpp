@@ -60,7 +60,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 	ColorContainer Black;
 
-	if (chaseDirection == forward) {
+	if (chaseDirection == backward) {
 
 		for (int q = 0; q < spacing; q++) {
 
@@ -83,7 +83,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 	}
 
-	if (chaseDirection == backward) {
+	if (chaseDirection == forward) {
 
 		for (int q = spacing - 1; q >= 0; q--) {
 
@@ -131,7 +131,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 
 void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues ) {
 
-	if (chaseDirection == forward) {
+	if (chaseDirection == backward) {
 
 		for (int q = 0; q < spacing; q++) {
 
@@ -156,7 +156,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 
 	}
 
-	if (chaseDirection == backward) {
+	if (chaseDirection == forward) {
 
 		for (int q = spacing - 1; q >= 0; q--) {
 
@@ -322,6 +322,9 @@ void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool 
 		for (int i = startIntensity; i <= endIntensity; i++) {
 
 			setStripRed( i );
+			Serial.print( "Incrementing " );
+			Serial.print( i );
+			Serial.print( "\n" );
 			show();
 
 		}
@@ -332,6 +335,9 @@ void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool 
 		for (int i = startIntensity; i >= endIntensity; i--) {
 
 			setStripRed( i );
+			Serial.print( "Incrementing " );
+			Serial.print( i );
+			Serial.print( "\n" );
 			show();
 
 		}

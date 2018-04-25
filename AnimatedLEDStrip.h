@@ -22,7 +22,7 @@ public:
 	void
 		ripple(),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
 		flicker(),	// Runs a single flicker animation (strip is at a color/brightness and random LEDs are set to a different color/brightness for a very short time before returning to the strip's color)
-		alternate(),	// Runs a single alternate animation (alternates between two colors at the specified rate (amount of time between change)) -- Based on code from FRC 3130
+		alternate(),	// Runs a single alternate animation (alternates between two colors at the specified rate (amount of time between change))
 		fadePixelRed( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade red animation (fades red in a pixel from specified intensity to another specified intensity)
 		fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade green animation (fades green in a pixel from specified intensity to another specified intensity)
 		fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade blue animation (fades blue in a pixel from specified intensity to another specified intensity)

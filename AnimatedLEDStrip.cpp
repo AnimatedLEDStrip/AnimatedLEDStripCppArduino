@@ -314,46 +314,58 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 
 	while (!redComplete || !greenComplete || !blueComplete) {
 
-		if (getPixelRed( pixel ) < endRedIntensity) {
+		if (!blueComplete) {
 
-			setPixelRed( pixel, getPixelRed( pixel ) + 1 );
+			if (getPixelRed( pixel ) < endRedIntensity) {
 
-		} else if (getPixelRed( pixel ) > endRedIntensity) {
+				setPixelRed( pixel, getPixelRed( pixel ) + 1 );
 
-			setPixelRed( pixel, getPixelRed( pixel ) - 1 );
+			} else if (getPixelRed( pixel ) > endRedIntensity) {
 
-		} else {
+				setPixelRed( pixel, getPixelRed( pixel ) - 1 );
 
-			redComplete = true;
+			} else {
 
-		}
+				redComplete = true;
 
-		if (getPixelGreen( pixel ) < endGreenIntensity) {
-
-			setPixelGreen( pixel, getPixelGreen( pixel ) + 1 );
-
-		} else if (getPixelGreen( pixel ) > endGreenIntensity) {
-
-			setPixelGreen( pixel, getPixelGreen( pixel ) - 1 );
-
-		} else {
-
-			greenComplete = true;
+			}
 
 		}
 
-		if (getPixelBlue( pixel ) < endBlueIntensity) {
+		if (!greenComplete) {
 
-			setPixelBlue( pixel, getPixelBlue( pixel ) + 1 );
+			if (getPixelGreen( pixel ) < endGreenIntensity) {
 
-		} else if (getPixelBlue( pixel ) > endRedIntensity) {
+				setPixelGreen( pixel, getPixelGreen( pixel ) + 1 );
 
-			setPixelBlue( pixel, getPixelBlue( pixel ) - 1 );
+			} else if (getPixelGreen( pixel ) > endGreenIntensity) {
 
-		} else {
+				setPixelGreen( pixel, getPixelGreen( pixel ) - 1 );
 
-			blueComplete = true;
+			} else {
 
+				greenComplete = true;
+
+			}
+
+		}
+
+		if (!blueComplete) {
+		
+			if (getPixelBlue( pixel ) < endBlueIntensity) {
+
+				setPixelBlue( pixel, getPixelBlue( pixel ) + 1 );
+
+			} else if (getPixelBlue( pixel ) > endRedIntensity) {
+
+				setPixelBlue( pixel, getPixelBlue( pixel ) - 1 );
+
+			} else {
+
+				blueComplete = true;
+
+			}
+		
 		}
 
 		show();

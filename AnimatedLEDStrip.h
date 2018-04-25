@@ -34,9 +34,8 @@ public:
 		wave(),	// Runs a single wave animation (runs through different colors for each pixel) -- Based on code from FRC 3130
 		blind(),	// Runs a single blind animation (quickly alternates between full and off) -- Based on code from FRC 3130
 		pixelRun(),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to a different color - similar to multiPixelRun() but with only one pixel)
-		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
-		multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with	multiple LEDs at a specified spacing)
-		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues ),
+		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ), // Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
+		multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ),	// Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		chase( int, direction, ColorContainer ),	// Deprecated - use multiPixelRun( int, direction, ColorContainer )
 		chase( int, direction, int, int, int );	// Deprecated - use multiPixelRun( int, direction, int, int, int )
 

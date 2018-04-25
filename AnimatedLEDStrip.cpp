@@ -142,66 +142,6 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 
 
 /**	Method to run a multiPixelRun animation
-	@param spacing The number of LEDs until the next LED to be lit is reached
-	@param chaseDirection A direction (forward or backward) of type direction
-	@param colorValues A ColorContainer containing the desired color */
-
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues ) {
-
-	ColorContainer Black;
-
-	if (chaseDirection == backward) {
-
-		for (int q = 0; q < spacing; q++) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
-
-			}
-
-			show();
-			delay( 50 );
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
-
-			}
-
-		}
-
-	}
-
-	if (chaseDirection == forward) {
-
-		for (int q = spacing - 1; q >= 0; q--) {
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
-
-			}
-
-			show();
-			delay( 50 );
-
-			for (int i = 0; i < getPixelCount(); i += spacing) {
-
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
-
-			}
-
-		}
-
-	}
-
-	return;
-
-}
-
-
-/**	Method to run a multiPixelRun animation
 	Calls chase(int, direction, ColorContainer) with inputted parameters
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection A direction (forward or backward) of type direction
@@ -209,17 +149,18 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 	@param gIn The value for the green LED
 	@param bIn The value for the blue LED */
 
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ) {
+void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ) {
 
-	ColorContainer temp( rIn, gIn, bIn );
+	ColorContainer temp1( rIn1, gIn1, bIn1 );
+	ColorContainer temp2( rIn2, gIn2, bIn2 );
 
-	multiPixelRun( spacing, chaseDirection, temp );
+	multiPixelRun( spacing, chaseDirection, temp1, temp2 );
 
 	return;
 
 }
 
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues ) {
+void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
 
 	if (chaseDirection == backward) {
 

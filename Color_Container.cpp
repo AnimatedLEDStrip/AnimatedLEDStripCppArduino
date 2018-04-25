@@ -89,6 +89,18 @@ void ColorContainer::setrgb( int rIntensity, int gIntensity, int bIntensity ) {
 
 }
 
+/**	Set Method for the r, g and b variables in the ColorContainer class using long hexadecimal input
+	@param hexIn The value containing r, g, and b values */
+
+void ColorContainer::setrgb(long hexIn){
+
+  r = (hexIn & 0xFF0000) >> 16;
+  g = (hexIn & 0x00FF00) >> 8;
+  b = (hexIn & 0x0000FF);
+
+  return;
+}
+
 
 /**	Special Set Method for the ColorContainer class; sets r, g, b to 0 */
 

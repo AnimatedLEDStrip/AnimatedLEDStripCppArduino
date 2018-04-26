@@ -35,12 +35,12 @@ void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movem
 
 }
 
-void AnimatedLEDStrip::alternate(ColorContainer colorValues1, ColorContainer colorValues2, int delay){
-  setStripColor(colorValues1);
-  delay(delay);
-  setStripColor(colorValues2);
-  delay(delay);
-  return;
+void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {
+	setStripColor( colorValues1 );
+	delay( delayTime );
+	setStripColor( colorValues2 );
+	delay( delayTime );
+	return;
 }
 
 
@@ -145,6 +145,33 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );
 
 	return;
+
+}
+
+
+void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection ) {
+
+	if (wipeDirection == backward) {
+
+		for (int i = 0; i < getPixelCount(); i++) {
+
+			setPixelColor( i, colorValues );
+			show();
+
+		}
+
+	}
+
+	if (wipeDirection == forward) {
+
+		for (int i = getPixelCount() - 1; i >= 0; i--) {
+
+			setPixelColor( i, colorValues );
+			show();
+
+		}
+
+	}
 
 }
 

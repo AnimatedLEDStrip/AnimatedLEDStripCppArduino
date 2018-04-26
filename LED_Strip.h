@@ -43,9 +43,22 @@ public:
 		setStripRed( int rIn ),
 		setStripGreen( int gIn ),
 		setStripBlue( int bIn ),
-		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code -- works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
-
+		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ),	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code -- works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
+		fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CRGBPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CRGBPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CHSVPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CHSVPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const CHSVPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		setStripColorFromPalette( const TProgmemRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 )
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
+	template<class paletteType> void setStripColorFromPalette( const paletteType& palette, TBlendType blend, unit_t brightness);
 
 	// Also look through the FastLED library to see what else is possible
 

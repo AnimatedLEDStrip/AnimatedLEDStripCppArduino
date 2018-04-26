@@ -369,6 +369,134 @@ void LEDStrip::fillLEDsFromPalette( const paletteType& palette, uint8_t startInd
 
 }
 
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CRGBPalette16>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CRGBPalette32>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CRGBPalette256>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CHSVPalette16>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CHSVPalette32>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	fillLEDsFromPalette<CHSVPalette256>( palette, startIndex, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+template<class paletteType>
+void LEDStrip::setStripColorFromPalette( const paletteType& palette, TBlendType blend, unit_t brightness){
+
+	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
+
+		ledArray[i] = ColorFromPalette( palette, 0 , brightness, blend );	// Set pixel to specified colors
+		startIndex += 3;															// Move to next set of colors
+
+	}
+}
+
+void LEDStrip::setStripColorFromPalette( const CRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CRGBPalette16>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const CRGBPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CRGBPalette32>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const CRGBPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CRGBPalette256>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const CHSVPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CHSVPalette16>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const CHSVPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CHSVPalette32>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const CHSVPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<CHSVPalette256>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
+void LEDStrip::setStripColorFromPalette( const TProgmemRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
+
+	setStripColorFromPalette<TProgmemRGBPalette16>( palette, blend, brightness );
+
+	return;																			// Return
+
+
+}
+
 
 
 

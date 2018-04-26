@@ -44,6 +44,8 @@ void AnimatedLEDStrip::alternate(ColorContainer colorValues1, ColorContainer col
 }
 
 
+
+
 /** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<TProgmemRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The TProgmemRGBPalette16 palette to be used

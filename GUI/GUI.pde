@@ -47,13 +47,13 @@ dataValues data;
 int currentSelectingColor = 1;
 
 void setup() {
-  size(3000, 2000);
+  size(2000, 1500);
 
   data = new dataValues();
 
   cp5 = new ControlP5(this);  
 
-  cf1 = new ControlFont(createFont("Roboto-Regular.ttf", 48, true), 48);
+  cf1 = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.032), true), int(height * 0.032));
 
   List animations = Arrays.asList(
     "Alternate", 
@@ -72,10 +72,10 @@ void setup() {
   List colors = Arrays.asList( "Color 1", "Color 2" );
 
   cp5.addScrollableList("animationSelection")
-    .setPosition(100, 100)
-    .setSize(800, 1500)
-    .setBarHeight(100)
-    .setItemHeight(100)
+    .setPosition(width * 0.033, height * 0.05)
+    .setSize(int(width * 0.267), int(height * 0.75))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
     .addItems(animations)
     .setFont(cf1)
     .setOpen(false)
@@ -83,23 +83,23 @@ void setup() {
 
 
   cp5.addScrollableList("colorSelection")
-    .setPosition(1000, 100)
-    .setSize(800, 400)
-    .setBarHeight(100)
-    .setItemHeight(100)
+    .setPosition(width * 0.333, height * 0.05)
+    .setSize(int(width * 0.267), int(height * 0.2))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
     .addItems(colors)
     .setFont(cf1)
     .setOpen(false)
     ;
 
   cp5.addButton("Print")
-    .setPosition(1500, 1750)
-    .setSize(400, 100)
+    .setPosition(width * 0.5, height * 0.875)
+    .setSize(int(width * 0.2), int(height * 0.05))
     .setFont(cf1)
     ;
 
 
-  cp5.addColorWheel("Choose Color", 1500, 400, 800).setFont(cf1);
+  cp5.addColorWheel("Choose Color", int(width * 0.5), int (height * 0.2), int(width * 0.2)).setFont(cf1);
 }
 
 void draw() {
@@ -107,11 +107,10 @@ void draw() {
 
   if (currentSelectingColor == 1) {
 
-    data.color1 = cp5.get(ColorWheel.class, "Choose Color").r();
+    data.color1 = cp5.get(ColorWheel.class, "Choose Color").getRGB();
   } else if (currentSelectingColor == 2) {
 
-    data.color2 = cp5.get(ColorWheel.class, "Choose Color").r();
-
+    data.color2 = cp5.get(ColorWheel.class, "Choose Color").getRGB();
   }
 }
 
@@ -128,9 +127,8 @@ void colorSelection (int n) {
 
 
 void Print () {
- 
+
   println(data.currentAnimation + "  " + hex(data.color1 & 0xFFFFFF) + "  " + hex(data.color2 & 0xFFFFFF));
-  
 }
 
 
@@ -148,13 +146,13 @@ void animationSelection(int n) {
     data.currentAnimation = animation.Fade_Pixel_Blue;
   } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel All") {
     data.currentAnimation = animation.Fade_Pixel_All;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Red") {
+  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Strip Red") {
     data.currentAnimation = animation.Fade_Strip_Red;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Green") {
+  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Strip Green") {
     data.currentAnimation = animation.Fade_Strip_Green;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Blue") {
+  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Strip Blue") {
     data.currentAnimation = animation.Fade_Strip_Blue;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel All") {
+  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Strip All") {
     data.currentAnimation = animation.Fade_Strip_All;
   } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Multi-Pixel Run") {
     data.currentAnimation = animation.Multi_Pixel_Run;

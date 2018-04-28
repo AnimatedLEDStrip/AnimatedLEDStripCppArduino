@@ -56,9 +56,9 @@ public:
 		setStripColorFromPalette( const CHSVPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		setStripColorFromPalette( const CHSVPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		setStripColorFromPalette( const CHSVPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
-		setStripColorFromPalette( const TProgmemRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 )
+		setStripColorFromPalette( const TProgmemRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 );
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
-	template<class paletteType> void setStripColorFromPalette( const paletteType& palette, TBlendType blend, unit_t brightness);
+	template<class paletteType> void setStripColorFromPalette( const paletteType& palette, TBlendType blend, uint8_t brightness );
 
 	// Also look through the FastLED library to see what else is possible
 

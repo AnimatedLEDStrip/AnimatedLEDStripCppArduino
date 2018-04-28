@@ -424,11 +424,13 @@ void LEDStrip::fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t start
 }
 
 template<class paletteType>
-void LEDStrip::setStripColorFromPalette( const paletteType& palette, TBlendType blend, unit_t brightness){
+void LEDStrip::setStripColorFromPalette( const paletteType& palette, TBlendType blend, uint8_t brightness){
+
+	int startIndex = 0;
 
 	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
 
-		ledArray[i] = ColorFromPalette( palette, 0 , brightness, blend );	// Set pixel to specified colors
+		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
 		startIndex += 3;															// Move to next set of colors
 
 	}

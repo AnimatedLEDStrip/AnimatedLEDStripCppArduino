@@ -56,6 +56,8 @@ List animations = Arrays.asList(
 
 List colors = Arrays.asList( "Color 1", "Color 2" );
 
+List tabNames = Arrays.asList( "Solid Color", "Animation" );
+
 
 ControlP5 cp5;
 ControlFont cf1;
@@ -63,22 +65,29 @@ dataValues data;
 ScrollableList animationList;
 ScrollableList colorList;
 ColorWheel colorWheel1;
+ColorWheel colorWheel2;
 Button submitButton1;
+Button submitButton2;
 ButtonBar tabSelection;
 int currentSelectingColor = 1;
-int currentTab = 1;
+int currentTab = -1;
+int labelColor = color(0, 0, 0);
 
 void settings() {
 
-  String widthIn = JOptionPane.showInputDialog("Enter Width");
+  //String widthIn = JOptionPane.showInputDialog("Enter Width");
 
-  String heightIn = JOptionPane.showInputDialog("Enter Height");
+  //String heightIn = JOptionPane.showInputDialog("Enter Height");
 
-  size(int(widthIn), int(heightIn));
+  //size(int(widthIn), int(heightIn));
+
+  fullScreen();
 }
 
 
 void setup() {
+
+
 
   data = new dataValues();
 
@@ -88,13 +97,72 @@ void setup() {
 
   tabSelection = cp5.addButtonBar("tabSelectionBar")
     .setPosition(0, 0)
-    .setSize(width, int(height * 0.05));
+    .setSize(width, int(height * 0.05))
+    .addItems(tabNames)
+    .setFont(cf1)
+    .setColorValueLabel(labelColor)
+    .setDefaultValue(1.0)
+    .setColorBackground(color(255, 0, 0));
 
-  createTab1();
+  //createTab1();
+
+  animationList = cp5.addScrollableList("animationSelection")
+    .setPosition(0, height * 0.1)
+    .setSize(int(width * 0.267), int(height * 0.75))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
+    .addItems(animations)
+    .setFont(cf1)
+    .setOpen(false)
+    .setLabel("Choose Animation")
+    .setColorValueLabel(labelColor)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false);
+
+
+  colorList = cp5.addScrollableList("colorSelection")
+    .setPosition(width - (width * 0.2), height * 0.1)
+    .setSize(int(width * 0.2), int(height * 0.2))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
+    .addItems(colors)
+    .setFont(cf1)
+    .setOpen(false)
+    .setColorValueLabel(labelColor)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false)
+    ;
+
+  submitButton1 = cp5.addButton("Print")
+    .setPosition(width * 0.5, height * 0.875)
+    .setSize(int(width * 0.2), int(height * 0.05))
+    .setFont(cf1)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false)
+    ;
+
+  submitButton2 = cp5.addButton("PrintSolid")
+    .setPosition(width * 0.5, height * 0.875)
+    .setSize(int(width * 0.2), int(height * 0.05))
+    .setFont(cf1)
+    .setColorValueLabel(labelColor)
+    .setLock(true)
+    .setVisible(false)
+    ;
+
+  colorWheel1 = cp5.addColorWheel("Choose Color 1", int(width * 0.5), int(height * 0.2), int(width * 0.2)).setFont(cf1).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  colorWheel2 = cp5.addColorWheel("Choose Color", int(width * 0.375), int(height * 0.15), int(width * 0.375)).setFont(cf1).setColorLabel(labelColor).setLock(true).setVisible(false);
 }
 
 void draw() {
-  background(100);
+  background(255);
 
   if (currentTab == 1) {
     if (currentSelectingColor == 1) {
@@ -104,52 +172,39 @@ void draw() {
 
       data.color2 = colorWheel1.getRGB();
     }
+  } else if (currentTab == 0) {
+    data.color1 = colorWheel2.getRGB();
   }
 }
 
 
 void createTab1() {
-
-  animationList = cp5.addScrollableList("animationSelection")
-    .setPosition(width * 0.033, height * 0.05)
-    .setSize(int(width * 0.267), int(height * 0.75))
-    .setBarHeight(int(height * 0.05))
-    .setItemHeight(int(height * 0.05))
-    .addItems(animations)
-    .setFont(cf1)
-    .setOpen(false)
-    .setLabel("Choose Animation");
-
-
-  colorList = cp5.addScrollableList("colorSelection")
-    .setPosition(width * 0.333, height * 0.05)
-    .setSize(int(width * 0.267), int(height * 0.2))
-    .setBarHeight(int(height * 0.05))
-    .setItemHeight(int(height * 0.05))
-    .addItems(colors)
-    .setFont(cf1)
-    .setOpen(false)
-    ;
-
-  submitButton1 = cp5.addButton("Print")
-    .setPosition(width * 0.5, height * 0.875)
-    .setSize(int(width * 0.2), int(height * 0.05))
-    .setFont(cf1)
-    ;
-
-
-  colorWheel1 = cp5.addColorWheel("Choose Color", int(width * 0.5), int (height * 0.2), int(width * 0.2)).setFont(cf1);
+  animationList.setLock(false).setVisible(true);
+  colorList.setLock(false).setVisible(true);
+  submitButton1.setLock(false).setVisible(true);
+  colorWheel1.setLock(false).setVisible(true);
 }
 
 void destroyTab1() {
 
-  animationList.remove();
-  colorList.remove();
-  submitButton1.remove();
-  colorWheel1.remove();
+  animationList.setLock(true).setVisible(false);
+  colorList.setLock(true).setVisible(false);
+  submitButton1.setLock(true).setVisible(false);
+  colorWheel1.setLock(true).setVisible(false);
+}
+
+void createTab0() {
+
+  colorWheel2.setLock(false).setVisible(true);
+  submitButton2.setLock(false).setVisible(true);
 }
 
 
+void destroyTab0() {
+
+  colorWheel2.setLock(true).setVisible(false);
+  submitButton2.setLock(true).setVisible(false);
+}
 
 void colorSelection (int n) {
 
@@ -170,6 +225,24 @@ void Print () {
 
 
 void tabSelectionBar(int n) {
+
+  if (n == 0) {
+    if (currentTab == 1) {
+      destroyTab1(); 
+      createTab0();
+    } else if (currentTab == -1) {
+      createTab0();
+    }
+    currentTab = 0;
+  } else if (n == 1) {
+    if (currentTab == 0) {
+      destroyTab0();
+      createTab1();
+    } else if (currentTab == -1) {
+      createTab1();
+    }
+    currentTab = 1;
+  }
 }
 
 

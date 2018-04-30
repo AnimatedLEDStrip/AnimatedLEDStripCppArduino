@@ -60,15 +60,19 @@ List tabNames = Arrays.asList( "Solid Color", "Animation" );
 
 
 ControlP5 cp5;
-ControlFont cf1;
+ControlFont largeFont;
+ControlFont mediumFont;
 dataValues data;
 ScrollableList animationList;
 ScrollableList colorList;
 ColorWheel colorWheel1;
 ColorWheel colorWheel2;
+ColorWheel animationColorWheelLeft;
+ColorWheel animationColorWheelRight;
 Button submitButton1;
 Button submitButton2;
 ButtonBar tabSelection;
+Textfield animationTimeField;
 int currentSelectingColor = 1;
 int currentTab = -1;
 int labelColor = color(0, 0, 0);
@@ -93,13 +97,15 @@ void setup() {
 
   cp5 = new ControlP5(this);  
 
-  cf1 = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.032), true), int(height * 0.032));
+  largeFont = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.032), true), int(height * 0.032));
+
+  mediumFont = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.02), true), int(height * 0.02));
 
   tabSelection = cp5.addButtonBar("tabSelectionBar")
     .setPosition(0, 0)
     .setSize(width, int(height * 0.05))
     .addItems(tabNames)
-    .setFont(cf1)
+    .setFont(largeFont)
     .setColorValueLabel(labelColor)
     .setDefaultValue(1.0)
     .setColorBackground(color(255, 0, 0));
@@ -112,7 +118,7 @@ void setup() {
     .setBarHeight(int(height * 0.05))
     .setItemHeight(int(height * 0.05))
     .addItems(animations)
-    .setFont(cf1)
+    .setFont(largeFont)
     .setOpen(false)
     .setLabel("Choose Animation")
     .setColorValueLabel(labelColor)
@@ -128,7 +134,7 @@ void setup() {
     .setBarHeight(int(height * 0.05))
     .setItemHeight(int(height * 0.05))
     .addItems(colors)
-    .setFont(cf1)
+    .setFont(largeFont)
     .setOpen(false)
     .setColorValueLabel(labelColor)
     .setColorLabel(labelColor)
@@ -140,7 +146,7 @@ void setup() {
   submitButton1 = cp5.addButton("Print")
     .setPosition(width * 0.5, height * 0.875)
     .setSize(int(width * 0.2), int(height * 0.05))
-    .setFont(cf1)
+    .setFont(largeFont)
     .setColorLabel(labelColor)
     .setColorBackground(color(255, 0, 0))
     .setLock(true)
@@ -150,15 +156,30 @@ void setup() {
   submitButton2 = cp5.addButton("PrintSolid")
     .setPosition(width * 0.5, height * 0.875)
     .setSize(int(width * 0.2), int(height * 0.05))
-    .setFont(cf1)
+    .setFont(largeFont)
     .setColorValueLabel(labelColor)
     .setLock(true)
     .setVisible(false)
     ;
 
-  colorWheel1 = cp5.addColorWheel("Choose Color 1", int(width * 0.5), int(height * 0.2), int(width * 0.2)).setFont(cf1).setColorLabel(labelColor).setLock(true).setVisible(false);
 
-  colorWheel2 = cp5.addColorWheel("Choose Color", int(width * 0.375), int(height * 0.15), int(width * 0.375)).setFont(cf1).setColorLabel(labelColor).setLock(true).setVisible(false);
+  animationTimeField = cp5.addTextfield("Duration")
+    .setPosition(int(width * 0.6), int(height * 0.1))
+    .setSize(int(width * 0.075), int(height * 0.075))
+    .setFont(mediumFont)
+    .setColorLabel(labelColor)
+    .setLock(true)
+    .setVisible(false);
+    
+    animationTimeField.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP_OUTSIDE).setPaddingX(0);
+
+  colorWheel1 = cp5.addColorWheel("Choose Color A", int(width * 0.5), int(height * 0.2), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  colorWheel2 = cp5.addColorWheel("Choose Color", int(width * 0.375), int(height * 0.15), int(width * 0.375)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  animationColorWheelLeft = cp5.addColorWheel("Choose Main Color", int(width * 0.35), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 }
 
 void draw() {
@@ -180,10 +201,96 @@ void draw() {
 
 void createTab1() {
   animationList.setLock(false).setVisible(true);
-  colorList.setLock(false).setVisible(true);
+  //colorList.setLock(false).setVisible(true);
   submitButton1.setLock(false).setVisible(true);
-  colorWheel1.setLock(false).setVisible(true);
+  //colorWheel1.setLock(false).setVisible(true);
 }
+
+
+void createAlternateTab() {
+
+  animationColorWheelLeft.setLock(false).setVisible(true);
+  animationColorWheelRight.setLock(false).setVisible(true);
+  animationTimeField.setLock(false).setVisible(true);
+}
+
+
+void createFadePixelRedTab() {
+  
+  
+  
+}
+
+
+void createFadePixelGreenTab() {
+  
+  
+  
+}
+
+
+void createFadePixelBlueTab() {
+  
+  
+  
+}
+
+
+void createFadePixelAllTab() {
+  
+  
+  
+}
+
+
+void createFadeStripRedTab() {
+  
+  
+  
+}
+
+
+void createFadeStripGreenTab() {
+  
+  
+  
+}
+
+
+void createFadeStripBlueTab() {
+  
+  
+  
+}
+
+
+void createFadeStripAllTab() {
+  
+  
+  
+}
+
+
+void createMultiPixelRunTab() {
+  
+ 
+  
+}
+
+
+void createSmoothChaseTab() {
+  
+  
+  
+}
+
+
+void createWipeTab() {
+  
+  
+  
+}
+
 
 void destroyTab1() {
 
@@ -252,6 +359,7 @@ void animationSelection(int n) {
 
   if (animationList.getItem(n).get("name") == "Alternate") {
     data.currentAnimation = animation.Alternate;
+    createAlternateTab();
   } else if (animationList.getItem(n).get("name") == "Fade Pixel Red") {
     data.currentAnimation = animation.Fade_Pixel_Red;
   } else if (animationList.getItem(n).get("name") == "Fade Pixel Green") {

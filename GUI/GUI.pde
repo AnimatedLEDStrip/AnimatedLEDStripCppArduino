@@ -107,7 +107,6 @@ void setup() {
     .addItems(tabNames)
     .setFont(largeFont)
     .setColorValueLabel(labelColor)
-    .setDefaultValue(1.0)
     .setColorBackground(color(255, 0, 0));
 
   //createTab1();
@@ -180,6 +179,7 @@ void setup() {
   animationColorWheelLeft = cp5.addColorWheel("Choose Main Color", int(width * 0.35), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
   animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
 }
 
 void draw() {

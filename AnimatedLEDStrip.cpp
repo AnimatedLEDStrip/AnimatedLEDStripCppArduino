@@ -1,7 +1,7 @@
 #include "AnimatedLEDStrip.h"
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	@param palette The palette to be used (can be CRGBPalette16, CRGBPalette32, CRGBPalette256, CHSVPalette16, CHSVPalette32, CHSVPalette256, TProgmemRGBPalette16, TProgmemRGBPalette32, TProgmemHSVPalette16 or TProgmemHSVPalette32)
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
 	@param brightness The brightness of the LEDs (default 255) */
@@ -35,7 +35,13 @@ void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movem
 
 }
 
-void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {
+
+/** Method to run an Alternate animation
+	@param colorValues1 The first color to be displayed
+	@param colorValues2 The second color to be displayed
+	@param delayTime The time (in milliseconds) that each color is displayed for */
+
+void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {	// TODO: Test
 	setStripColor( colorValues1 );
 	delay( delayTime );
 	setStripColor( colorValues2 );
@@ -44,7 +50,7 @@ void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer co
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<TProgmemRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The TProgmemRGBPalette16 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -59,7 +65,7 @@ void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, directi
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CRGBPalette16 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -74,7 +80,7 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction mov
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CRGBPalette32>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CRGBPalette32 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -89,7 +95,7 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction mov
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CRGBPalette256>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CRGBPalette256 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -104,7 +110,7 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction mo
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a HSV color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CHSVPalette16>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CHSVPalette16 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -119,7 +125,7 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction mov
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a HSV color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CHSVPalette32>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CHSVPalette32 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -134,7 +140,7 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction mov
 }
 
 
-/** Runs a chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+/** Method to run a Smooth Chase animation using a HSV color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<CHSVPalette256>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The CHSVPalette256 palette to be used
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
@@ -148,6 +154,11 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 
 }
 
+
+/** Method to run a Wipe animation
+	Changes the strip to the specified color, but one pixel at a time. Looks and works similar to a Pixel Run animation.
+	@param colorValues The color that the strip will be at the end of the animation
+	@param wipeDirection Specifies if the direction should run 'forwards' or 'backwards' */
 
 void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection ) {
 
@@ -176,8 +187,96 @@ void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection
 }
 
 
-/**	Method to run a multiPixelRun animation
-	Calls chase(int, direction, ColorContainer) with inputted parameters
+/** Method to run a Pixel Run animation
+	@param movementDirection A direction (forward or backward) of type direction
+	@param colorValues The color of the 'running' pixel
+	@param altColorValues The color of the remaining pixels */
+
+void AnimatedLEDStrip::pixelRun( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
+
+	setStripColor( altColorValues );
+
+	if (chaseDirection == forward) {
+
+		for (int q = 0; q < getPixelCount(); q++) {
+
+			setPixelColor( q, colorValues );
+
+			delay( 50 );
+
+			setPixelColor( q, altColorValues );
+
+		}
+
+	}
+
+	if (chaseDirection == backward) {
+
+		for (int q = spacing - 1; q >= 0; q--) {
+
+			setPixelColor( q, colorValues );
+
+			delay( 50 );
+
+			setPixelColor( q, altColorValues );
+
+		}
+
+	}
+
+	return;
+
+}
+
+
+void AnimatedLEDStrip::pixelRunWithTrail( ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {	// TODO: Test
+
+	setStripColor( altColorValues );
+
+
+	if (chaseDirection == forward) {
+
+		for (int q = 0; q < getPixelCount(); q++) {
+
+			for (int i = 0; i < getPixelCount(); i++) {
+
+				ledArray[i].blend( ledArray[i], altColorValues, 30 );
+
+			}
+
+			setPixelColor( q, colorValues );
+
+			delay( 50 );
+
+		}
+
+	}
+
+	if (chaseDirection == backward) {
+
+		for (int q = spacing - 1; q >= 0; q--) {
+
+			for (int i = 0; i < getPixelCount(); i++) {
+
+				ledArray[i].blend( ledArray[i], altColorValues, 30 );
+
+			}
+
+			setPixelColor( q, colorValues );
+
+			delay( 50 );
+
+		}
+
+	}
+
+	return;
+
+}
+
+
+/**	Method to run a Multi-Pixel Run animation
+	Calls multiPixelRun(int, direction, ColorContainer) with inputted parameters
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection A direction (forward or backward) of type direction
 	@param rIn The value for the red LED
@@ -194,6 +293,14 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 	return;
 
 }
+
+
+/**	Method to run a Multi-Pixel Run animation
+	Calls multiPixelRun(int, direction, ColorContainer) with inputted parameters
+	@param spacing The number of LEDs until the next LED to be lit is reached
+	@param chaseDirection A direction (forward or backward) of type direction 
+	@param colorValues The color of the 'running' pixels
+	@param altColorValues The color of the remaining pixels */
 
 void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
 
@@ -252,6 +359,12 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 }
 
 
+/** Method to fade a pixel's red value from one intensity to another
+	@param pixel The pixel that will be changed
+	@param startIntensity The intensity that the pixel will begin at
+	@param endIntensity The intensity that the pixel will end at
+	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
+
 void AnimatedLEDStrip::fadePixelRed( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
 
 	fadeDirection fade;
@@ -289,6 +402,12 @@ void AnimatedLEDStrip::fadePixelRed( int pixel, int startIntensity, int endInten
 
 }
 
+
+/** Method to fade a pixel's green value from one intensity to another
+	@param pixel The pixel that will be changed
+	@param startIntensity The intensity that the pixel will begin at
+	@param endIntensity The intensity that the pixel will end at
+	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
 void AnimatedLEDStrip::fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
 
@@ -328,6 +447,12 @@ void AnimatedLEDStrip::fadePixelGreen( int pixel, int startIntensity, int endInt
 }
 
 
+/** Method to fade a pixel's blue value from one intensity to another
+	@param pixel The pixel that will be changed
+	@param startIntensity The intensity that the pixel will begin at
+	@param endIntensity The intensity that the pixel will end at
+	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
+
 void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
 
 	fadeDirection fade;
@@ -365,6 +490,16 @@ void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endInte
 
 }
 
+
+/** Method to fade a pixel's red, green and blue values from one set of intensities to another
+	@param pixel The pixel that will be changed
+	@param startRedIntensity The intensity that the pixel's red value will begin at
+	@param startGreenIntensity The intensity that the pixel's green value will begin at
+	@param startBlueIntensity The intensity that the pixel's blue value will begin at
+	@param endRedIntensity The intensity that the pixel's red value will end at
+	@param endGreenIntensity The intensity that the pixel's green value will end at
+	@param endBlueIntensity The intensity that the pixel's blue value will end at
+	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
 void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ) {
 
@@ -445,7 +580,7 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 }
 
 
-void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {	// TODO: Test
 
 	fadeDirection fade;
 

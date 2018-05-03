@@ -1,7 +1,26 @@
 #include "AnimatedLEDStrip.h"
 
 
+/** Method to run an Alternate animation
+	@param colorValues1 The first color to be displayed
+	@param colorValues2 The second color to be displayed
+	@param delayTime The time (in milliseconds) that each color is displayed for */
+
+void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {	// TODO: Test
+
+	setStripColor( colorValues1 );	// Set strip to colorValues1
+	delay( delayTime );				// Delay for delayTime milliseconds
+
+	setStripColor( colorValues2 );	// Set strip to colorValues2
+	delay( delayTime );				// Delay for delayTime milliseconds
+
+	return;							// Return
+
+}
+
+
 /** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
+	Main smoothChase method
 	@param palette The palette to be used (can be CRGBPalette16, CRGBPalette32, CRGBPalette256, CHSVPalette16, CHSVPalette32, CHSVPalette256, TProgmemRGBPalette16, TProgmemRGBPalette32, TProgmemHSVPalette16 or TProgmemHSVPalette32)
 	@param movementDirection Specifies if the animation should run 'forwards' or 'backwards'
 	@param brightness The brightness of the LEDs (default 255) */
@@ -36,20 +55,6 @@ void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movem
 }
 
 
-/** Method to run an Alternate animation
-	@param colorValues1 The first color to be displayed
-	@param colorValues2 The second color to be displayed
-	@param delayTime The time (in milliseconds) that each color is displayed for */
-
-void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {	// TODO: Test
-	setStripColor( colorValues1 );
-	delay( delayTime );
-	setStripColor( colorValues2 );
-	delay( delayTime );
-	return;
-}
-
-
 /** Method to run a Smooth Chase animation using a RGB color palette that blends the colors to make smooth transitions between them
 	Calls smoothChase<TProgmemRGBPalette16>(paletteType, direction, uint8_t) with inputted parameters
 	@param palette The TProgmemRGBPalette16 palette to be used
@@ -58,9 +63,9 @@ void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer co
 
 void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<TProgmemRGBPalette16>( palette, movementDirection, brightness );
+	smoothChase<TProgmemRGBPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																			// Return
 
 }
 
@@ -73,9 +78,9 @@ void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, directi
 
 void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CRGBPalette16>( palette, movementDirection, brightness );
+	smoothChase<CRGBPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -88,9 +93,9 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction mov
 
 void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CRGBPalette32>( palette, movementDirection, brightness );
+	smoothChase<CRGBPalette32>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -103,9 +108,9 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction mov
 
 void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CRGBPalette256>( palette, movementDirection, brightness );
+	smoothChase<CRGBPalette256>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -118,9 +123,9 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction mo
 
 void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CHSVPalette16>( palette, movementDirection, brightness );
+	smoothChase<CHSVPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -133,9 +138,9 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction mov
 
 void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CHSVPalette32>( palette, movementDirection, brightness );
+	smoothChase<CHSVPalette32>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -148,9 +153,9 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction mov
 
 void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
 
-	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );
+	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );	// Call main smoothChase method
 
-	return;
+	return;																	// Return
 
 }
 
@@ -158,31 +163,42 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 /** Method to run a Wipe animation
 	Changes the strip to the specified color, but one pixel at a time. Looks and works similar to a Pixel Run animation.
 	@param colorValues The color that the strip will be at the end of the animation
-	@param wipeDirection Specifies if the direction should run 'forwards' or 'backwards' */
+	@param wipeDirection Specifies if the animation should run 'forwards' or 'backwards' */
 
 void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection ) {
 
-	if (wipeDirection == backward) {
-
-		for (int i = 0; i < getPixelCount(); i++) {
-
-			setPixelColor( i, colorValues );
-			show();
-
-		}
-
-	}
-
 	if (wipeDirection == forward) {
 
-		for (int i = getPixelCount() - 1; i >= 0; i--) {
+		for (int i = getPixelCount() - 1; i >= 0; i--) {	// Run through the length of the strip
 
-			setPixelColor( i, colorValues );
-			show();
+			setPixelColor( i, colorValues );				// Set pixel color to colorValues
+			show();											// Send color data to LEDs
 
 		}
 
 	}
+
+	if (wipeDirection == backward) {
+
+		for (int i = 0; i < getPixelCount(); i++) {		// Run through the length of the strip
+
+			setPixelColor( i, colorValues );			// Set pixel color to colorValues
+			show();										// Sendc color data to LEDs
+
+		}
+
+	}
+
+}
+
+
+void AnimatedLEDStrip::wipe( int rIn, int gIn, int bIn, direction wipeDirection ) {
+
+	ColorContainer temp = ColorContainer( rIn, gIn, bIn );
+
+	wipe( temp, wipeDirection );
+
+	return;
 
 }
 
@@ -643,6 +659,9 @@ void AnimatedLEDStrip::fadeStripAll( int startRedIntensity, int startGreenIntens
 
 
 }
+
+
+void AnimatedLEDStrip::ripple( int startPixel, ColorContainer colorValues ) {}
 
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead

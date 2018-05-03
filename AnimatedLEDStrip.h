@@ -13,12 +13,19 @@ enum fadeDirection {
 
 class AnimatedLEDStrip : public LEDStrip {
 
-	
+	int * shuffleArray;
+
 
 public:
 	//AnimatedLEDStrip();
-	AnimatedLEDStrip( int numLEDs, int pin ) : LEDStrip( numLEDs, pin ) {}
-	~AnimatedLEDStrip() {};
+	AnimatedLEDStrip( int numLEDs, int pin ) : LEDStrip( numLEDs, pin ) {
+
+		shuffleArray = new int[numLEDs];
+
+		for (int i = 0; i < numLEDs; i++) shuffleArray[i] = i;
+
+	}
+	~AnimatedLEDStrip() {}
 
 
 	void
@@ -35,8 +42,9 @@ public:
 		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ), // Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ),	// Overload for multiPixelRun()
 		pixelRun( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to the main color while all other pixels are set to the alternate color - similar to multiPixelRun() but with only one pixel)
-		pixelRunWithTrail( ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Very similar to the sinelon() function in the DemoReel100 example for the FastLED library
-		ripple(int startPixel, ColorContainer colorValues),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
+		pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Very similar to the sinelon() function in the DemoReel100 example for the FastLED library
+		ripple( int startPixel, ColorContainer colorValues ),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
+		sparkleToColor( ColorContainer destinationColor ),
 		wipe( ColorContainer colorValues, direction wipeDirection ),	// Runs a single wipe animation (similar to pixelRun() but the values do not switch to a second color)
 		wipe( int rIn, int gIn, int bIn, direction wipeDirection ),	// Overload for wipe()
 		chase( int, direction, ColorContainer ),	// Deprecated - use multiPixelRun( int, direction, ColorContainer )
@@ -54,6 +62,30 @@ public:
 		smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 );
 
 
+	/** Helper function that shuffles the values in the shuffleArray 
+		Slightly modified code originally from https://ideone.com/qU00S4 */
+
+	void shuffle() {
+
+		if (getPixelCount() > 1) {
+
+			size_t i;
+			srand( time( NULL ) );
+
+			for (i = 0; i < getPixelCount() - 1; i++) {
+
+				size_t j = i + rand() / (RAND_MAX / (getPixelCount() - i) + 1);
+				int t = shuffleArray[j];
+				shuffleArray[j] = shuffleArray[i];
+				shuffleArray[i] = t;
+
+			}
+
+		}
+
+	}
+
 };
+
 
 #endif // !ANIMATED_LED_STRIP

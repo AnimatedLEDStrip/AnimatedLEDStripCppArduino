@@ -79,6 +79,7 @@ Button submitButton1;
 Button submitButton2;
 ButtonBar tabSelection;
 Textfield animationTimeField;
+Textfield animationSpacingField;
 int currentSelectingColor = 1;
 int currentTab = -1;
 int labelColor = color(0, 0, 0);
@@ -189,6 +190,7 @@ void setup() {
 
   animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
+animationSpacingField = cp5.addTextfield("Spacing").setPosition(int(width * 0.35), int(height * 0.1)).setSize(int(width * 0.05), int(height * 0.05)).setFont(mediumFont).setColorLabel(labelColor).setLock(true).setVisible(false).setValue("3");
 }
 
 void draw() {
@@ -196,7 +198,6 @@ void draw() {
 
   if (currentTab == 1) {
     if (currentSelectingColor == 1) {
-
       data.color1 = colorWheel1.getRGB();
     } else if (currentSelectingColor == 2) {
 
@@ -308,9 +309,9 @@ void destroyFadePixelAllTab() {
 
 
 void createMultiPixelRunTab() {
-  
-  
-  
+  animationColorWheelLeft.setLock(false).setVisible(true);
+  animationColorWheelRight.setLock(false).setVisible(true);
+ animationSpacingField.setLock(false).setVisible(true);
 }
 
 void destroyMultiPixelRunTab() {

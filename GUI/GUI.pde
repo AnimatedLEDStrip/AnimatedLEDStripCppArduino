@@ -25,20 +25,16 @@ enum animation {
     //Fade_Strip_Green, 
     //Fade_Strip_Blue, 
     //Fade_Strip_All, 
-    Multi_Pixel_Run, 
-    Pixel_Run, 
-    Pixel_Run_With_Trail, 
+    Multi_Pixel_Run,
+    Pixel_Run,
+    Pixel_Run_With_Trail,
     Smooth_Chase, 
-    Sparkle_To_Color, 
+    Sparkle_To_Color,
     Wipe
 };
 
 class dataValues {
 
-  public int staticColor1;
-  public int staticColor2;
-  public int staticColor3;
-  public int staticColor4;
   public int color1;
   public int color2;
 
@@ -58,15 +54,15 @@ List animations = Arrays.asList(
   //"Fade Strip Blue", 
   //"Fade Strip All", 
   "Multi-Pixel Run", 
-  "Pixel Run", 
-  "Pixel Run with Trail", 
+  "Pixel Run",
+  "Pixel Run with Trail",
   "Smooth Chase", 
-  "Sparkle to Color", 
+  "Sparkle to Color",
   "Wipe");
 
 List colors = Arrays.asList( "Color 1", "Color 2" );
 
-List tabNames = Arrays.asList( "Static Color", "Animation" );
+List tabNames = Arrays.asList( "Solid Color", "Animation" );
 
 
 ControlP5 cp5;
@@ -74,12 +70,11 @@ ControlFont largeFont;
 ControlFont mediumFont;
 dataValues data;
 ScrollableList animationList;
+ScrollableList colorList;
+ColorWheel colorWheel1;
+ColorWheel colorWheel2;
 ColorWheel animationColorWheelLeft;
 ColorWheel animationColorWheelRight;
-ColorWheel staticColorWheelLeft;
-ColorWheel staticColorWheelMiddleLeft;
-ColorWheel staticColorWheelMiddleRight;
-ColorWheel staticColorWheelRight;
 Button submitButton1;
 Button submitButton2;
 ButtonBar tabSelection;
@@ -92,7 +87,7 @@ int labelColor = color(0, 0, 0);
 void settings() {
 
   //String widthIn = JOptionPane.showInputDialog(null, "Enter Width", "1000");
-
+  
   //String heightIn = JOptionPane.showInputDialog(null, "Enter Height", "800");
 
   //size(int(widthIn), int(heightIn));
@@ -102,6 +97,8 @@ void settings() {
 
 
 void setup() {
+
+
 
   data = new dataValues();
 
@@ -119,6 +116,8 @@ void setup() {
     .setColorValueLabel(labelColor)
     .setColorBackground(color(255, 0, 0));
 
+  //createTab1();
+
   animationList = cp5.addScrollableList("animationSelection")
     .setPosition(0, height * 0.1)
     .setSize(int(width * 0.267), int(height * 0.75))
@@ -134,6 +133,22 @@ void setup() {
     .setLock(true)
     .setVisible(false);
 
+
+  colorList = cp5.addScrollableList("colorSelection")
+    .setPosition(width - (width * 0.2), height * 0.1)
+    .setSize(int(width * 0.2), int(height * 0.2))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
+    .addItems(colors)
+    .setFont(largeFont)
+    .setOpen(false)
+    .setColorValueLabel(labelColor)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false)
+    ;
+
   submitButton1 = cp5.addButton("SendAnimation")
     .setPosition(width * 0.5, height * 0.875)
     .setSize(int(width * 0.2), int(height * 0.05))
@@ -142,7 +157,8 @@ void setup() {
     .setColorBackground(color(255, 0, 0))
     .setLabel("Send Animation")
     .setLock(true)
-    .setVisible(false);
+    .setVisible(false)
+    ;
 
   submitButton2 = cp5.addButton("SendColor")
     .setPosition(width * 0.5, height * 0.875)
@@ -151,66 +167,53 @@ void setup() {
     .setColorValueLabel(labelColor)
     .setLabel("Send Color")
     .setLock(true)
-    .setVisible(false);
+    .setVisible(false)
+    ;
 
 
   animationTimeField = cp5.addTextfield("Duration")
     .setPosition(int(width * 0.6), int(height * 0.1))
-    .setSize(int(width * 0.05), int(height * 0.05))
+    .setSize(int(width * 0.075), int(height * 0.075))
     .setFont(mediumFont)
     .setColorLabel(labelColor)
     .setValue("50")
     .setLock(true)
     .setVisible(false);
+    
+    animationTimeField.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP_OUTSIDE).setPaddingX(0);
 
-  animationTimeField.getCaptionLabel()
-    .align(ControlP5.CENTER, ControlP5.TOP_OUTSIDE)
-    .setPaddingX(0);
+  colorWheel1 = cp5.addColorWheel("Choose Color A", int(width * 0.5), int(height * 0.2), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
-  animationColorWheelLeft = cp5.addColorWheel("Choose Main Color", int(width * 0.525), int(height * 0.3), int(width * 0.15))
-    .setFont(largeFont)
-    .setColorLabel(labelColor)
-    .setLock(true)
-    .setVisible(false);
+  colorWheel2 = cp5.addColorWheel("Choose Color", int(width * 0.375), int(height * 0.15), int(width * 0.375)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
-  animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.775), int(height * 0.3), int(width * 0.15))
-    .setFont(largeFont)
-    .setColorLabel(labelColor)
-    .setLock(true)
-    .setVisible(false);
+  animationColorWheelLeft = cp5.addColorWheel("Choose Main Color", int(width * 0.35), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
-  animationSpacingField = cp5.addTextfield("Spacing")
-    .setPosition(int(width * 0.35), int(height * 0.1))
-    .setSize(int(width * 0.05), int(height * 0.05))
-    .setFont(mediumFont)
-    .setColorLabel(labelColor)
-    .setValue("3")
-    .setLock(true)
-    .setVisible(false);
+  animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
-  staticColorWheelRight = cp5.addColorWheel("Choose Color 4", int(width * 0.8), int(height * 0.3), int(width * 0.15)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
-
-  staticColorWheelMiddleRight = cp5.addColorWheel("Choose Color 3", int(width * 0.55), int(height * 0.3), int(width * 0.15)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
-
-  staticColorWheelMiddleLeft = cp5.addColorWheel("Choose Color 2", int(width * 0.3), int(height * 0.3), int(width * 0.15)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
-
-  staticColorWheelLeft = cp5.addColorWheel("Choose Color 1", int(width * 0.05), int(height * 0.3), int(width * 0.15)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
-
-
-  animationSpacingField.getCaptionLabel()
-    .align(ControlP5.CENTER, ControlP5.TOP_OUTSIDE)
-    .setPaddingX(0);
+animationSpacingField = cp5.addTextfield("Spacing").setPosition(int(width * 0.35), int(height * 0.1)).setSize(int(width * 0.05), int(height * 0.05)).setFont(mediumFont).setColorLabel(labelColor).setLock(true).setVisible(false).setValue("3");
 }
 
 void draw() {
   background(255);
 
-  data.staticColor1 = staticColorWheelLeft.getRGB();
-  data.staticColor2 = staticColorWheelMiddleLeft.getRGB();
-  data.staticColor3 = staticColorWheelMiddleRight.getRGB();
-  data.staticColor4 = staticColorWheelRight.getRGB();
-  data.color1 = animationColorWheelLeft.getRGB();
-  data.color2 = animationColorWheelRight.getRGB();
+  if (currentTab == 1) {
+    if (currentSelectingColor == 1) {
+      data.color1 = colorWheel1.getRGB();
+    } else if (currentSelectingColor == 2) {
+
+      data.color2 = colorWheel1.getRGB();
+    }
+  } else if (currentTab == 0) {
+    data.color1 = colorWheel2.getRGB();
+  }
+}
+
+
+void createTab1() {
+  animationList.setLock(false).setVisible(true);
+  //colorList.setLock(false).setVisible(true);
+  submitButton1.setLock(false).setVisible(true);
+  //colorWheel1.setLock(false).setVisible(true);
 }
 
 
@@ -222,118 +225,168 @@ void createAlternateTab() {
 }
 
 void destroyAlternateTab() {
-
-  animationColorWheelLeft.setLock(true).setVisible(false);
+  
+    animationColorWheelLeft.setLock(true).setVisible(false);
   animationColorWheelRight.setLock(true).setVisible(false);
   animationTimeField.setLock(true).setVisible(false);
+  
 }
 
 void createFadePixelRedTab() {
+  
+  
+  
 }
 
 void destroyFadePixelRedTab() {
+  
+  
+  
 }
 
 void createFadePixelGreenTab() {
+  
+  
+  
 }
 
 void destroyFadePixelGreenTab() {
+  
+  
+  
 }
 
 void createFadePixelBlueTab() {
+  
+  
+  
 }
 
 void destroyFadePixelBlueTab() {
+ 
+  
+  
 }
 
 void createFadePixelAllTab() {
+  
+  
+  
 }
 
 void destroyFadePixelAllTab() {
+ 
+  
+  
 }
 
 //void createFadeStripRedTab() {
-
-
-
+  
+  
+  
 //}
 
 
 //void createFadeStripGreenTab() {
-
-
-
+  
+  
+  
 //}
 
 
 //void createFadeStripBlueTab() {
-
-
-
+  
+  
+  
 //}
 
 
 //void createFadeStripAllTab() {
-
-
-
+  
+  
+  
 //}
 
 
 void createMultiPixelRunTab() {
   animationColorWheelLeft.setLock(false).setVisible(true);
   animationColorWheelRight.setLock(false).setVisible(true);
-  animationSpacingField.setLock(false).setVisible(true);
+ animationSpacingField.setLock(false).setVisible(true);
 }
 
 void destroyMultiPixelRunTab() {
+ 
+  
+  
 }
 
 void createSmoothChaseTab() {
+  
+  
+  
 }
 
 void destroySmoothChaseTab() {
+ 
+  
+  
 }
 
 void createSparkleToColorTab() {
+  
+ 
+  
 }
 
 void destroySparkleToColorTab() {
+  
+ 
+  
 }
 
 void createWipeTab() {
+  
+  
+  
 }
 
 void destroyWipeTab() {
+ 
+  
+  
 }
 
-void createAnimationPage() {
-  animationList.setLock(false).setVisible(true);
-  submitButton1.setLock(false).setVisible(true);
-}
 
-void destroyAnimationPage() {
+void destroyTab1() {
+
   animationList.setLock(true).setVisible(false);
+  colorList.setLock(true).setVisible(false);
   submitButton1.setLock(true).setVisible(false);
+  colorWheel1.setLock(true).setVisible(false);
 }
 
-void createStaticColorPage() {
+void createTab0() {
 
-  staticColorWheelRight.setLock(false).setVisible(true);
-  staticColorWheelMiddleRight.setLock(false).setVisible(true);
-  staticColorWheelMiddleLeft.setLock(false).setVisible(true);
-  staticColorWheelLeft.setLock(false).setVisible(true);
+  colorWheel2.setLock(false).setVisible(true);
   submitButton2.setLock(false).setVisible(true);
 }
 
 
-void destroyStaticColorPage() {
+void destroyTab0() {
 
-  staticColorWheelRight.setLock(true).setVisible(false);
-  staticColorWheelMiddleRight.setLock(true).setVisible(false);
-  staticColorWheelMiddleLeft.setLock(true).setVisible(false);
-  staticColorWheelLeft.setLock(true).setVisible(false);
+  colorWheel2.setLock(true).setVisible(false);
   submitButton2.setLock(true).setVisible(false);
+}
+
+void colorSelection (int n) {
+
+  if (n == 0) {
+
+    currentSelectingColor = 1;
+  } else if (n == 1) {
+
+    currentSelectingColor = 2;
+  }
 }
 
 
@@ -343,8 +396,9 @@ void SendAnimation () {
 }
 
 void SendColor () {
-
+ 
   println(hex(data.color1 & 0xFFFFFF));
+  
 }
 
 
@@ -352,18 +406,18 @@ void tabSelectionBar(int n) {
 
   if (n == 0) {
     if (currentTab == 1) {
-      destroyAnimationPage(); 
-      createStaticColorPage();
+      destroyTab1(); 
+      createTab0();
     } else if (currentTab == -1) {
-      createStaticColorPage();
+      createTab0();
     }
     currentTab = 0;
   } else if (n == 1) {
     if (currentTab == 0) {
-      destroyStaticColorPage();
-      createAnimationPage();
+      destroyTab0();
+      createTab1();
     } else if (currentTab == -1) {
-      createAnimationPage();
+      createTab1();
     }
     currentTab = 1;
   }
@@ -375,8 +429,8 @@ void animationSelection(int n) {
   println(animationList.getItem(n).get("name") + " Animation Selected");
 
 
-  if (data.currentAnimation == animation.Alternate) {
-    destroyAlternateTab();
+  if(data.currentAnimation == animation.Alternate) {
+   destroyAlternateTab();
   } else if (data.currentAnimation == animation.Fade_Pixel_Red) {
     destroyFadePixelRedTab();
   } else if (data.currentAnimation == animation.Fade_Pixel_Green) {
@@ -385,14 +439,14 @@ void animationSelection(int n) {
     destroyFadePixelBlueTab();
   } else if (data.currentAnimation == animation.Fade_Pixel_All) {
     destroyFadePixelAllTab();
-    //} else if (data.currentAnimation == animation.Fade_Strip_Red) {
-    //  destroyFadeStripRedTab();
-    //} else if (data.currentAnimation == animation.Fade_Strip_Green) {
-    //  destroyFadeStripGreenTab();
-    //} else if (data.currentAnimation == animation.Fade_Strip_Blue) {
-    //  destroyFadeStripBlueTab();
-    //} else if (data.currentAnimation == animation.Fade_Strip_All) {
-    //  destroyFadeStripAllTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Red) {
+  //  destroyFadeStripRedTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Green) {
+  //  destroyFadeStripGreenTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Blue) {
+  //  destroyFadeStripBlueTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_All) {
+  //  destroyFadeStripAllTab();
   } else if (data.currentAnimation == animation.Multi_Pixel_Run) {
     destroyMultiPixelRunTab();
   } else if (data.currentAnimation == animation.Smooth_Chase) {
@@ -400,6 +454,9 @@ void animationSelection(int n) {
   } else if (data.currentAnimation == animation.Wipe) {
     destroyWipeTab();
   }
+
+
+
 
 
   if (animationList.getItem(n).get("name") == "Alternate") {
@@ -417,14 +474,14 @@ void animationSelection(int n) {
   } else if (animationList.getItem(n).get("name") == "Fade Pixel All") {
     data.currentAnimation = animation.Fade_Pixel_All;
     createFadePixelAllTab();
-    //} else if (animationList.getItem(n).get("name") == "Fade Strip Red") {
-    //  data.currentAnimation = animation.Fade_Strip_Red;
-    //} else if (animationList.getItem(n).get("name") == "Fade Strip Green") {
-    //  data.currentAnimation = animation.Fade_Strip_Green;
-    //} else if (animationList.getItem(n).get("name") == "Fade Strip Blue") {
-    //  data.currentAnimation = animation.Fade_Strip_Blue;
-    //} else if (animationList.getItem(n).get("name") == "Fade Strip All") {
-    //  data.currentAnimation = animation.Fade_Strip_All;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Red") {
+  //  data.currentAnimation = animation.Fade_Strip_Red;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Green") {
+  //  data.currentAnimation = animation.Fade_Strip_Green;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Blue") {
+  //  data.currentAnimation = animation.Fade_Strip_Blue;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip All") {
+  //  data.currentAnimation = animation.Fade_Strip_All;
   } else if (animationList.getItem(n).get("name") == "Multi-Pixel Run") {
     data.currentAnimation = animation.Multi_Pixel_Run;
     createMultiPixelRunTab();

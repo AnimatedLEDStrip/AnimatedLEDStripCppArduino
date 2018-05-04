@@ -461,7 +461,7 @@ void AnimatedLEDStrip::pixelRun( direction movementDirection, int r1In, int g1In
 
 void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {	// TODO: Test
 
-	setStripColor( altColorValues );
+	//setStripColor( altColorValues );
 
 	CRGB altColorCRGB = CRGB( altColorValues.getr(), altColorValues.getg(), altColorValues.getb() );
 
@@ -472,7 +472,7 @@ void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorCont
 
 			for (int i = 0; i < getPixelCount(); i++) {
 
-				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 30 ) );
+				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 60 ) );
 
 			}
 
@@ -490,7 +490,7 @@ void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorCont
 
 			for (int i = 0; i < getPixelCount(); i++) {
 
-				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 30 ) );
+				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 60 ) );
 
 			}
 

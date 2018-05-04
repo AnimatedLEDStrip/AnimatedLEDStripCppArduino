@@ -26,7 +26,7 @@ public:
 		setg( int ),								// Sets the g value of a ColorContainer object
 		setb( int ),								// Sets the b value of a ColorContainer object
 		setrgb( int rIn, int gIn, int bIn ),		// Sets the r, g and b values of a ColorContainer object
-	  setrgb( long hexIn),// Sets the r, g, and b values of ColorContainer objects using hexadecimal input
+		setrgb( long hexIn ),						// Sets the r, g, and b values of ColorContainer objects using hexadecimal input
 		blackout();									// Sets the r, g and b values of a ColorContainer object to 0
 
 	int

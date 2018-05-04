@@ -72,6 +72,11 @@ LEDStrip::LEDStrip( int numLEDs, int pinIn ) {
 
 }
 
+
+/** Copy Constructor for the LEDStrip Class
+	Because of the Arduino's requirement that pin numbers be defined at compile, if-else-if statements are used to permit passing of a pin as a parameter from the .ino file
+	@param stripIn The LEDStrip instance to be copied to the new LEDStrip */
+
 LEDStrip::LEDStrip( const LEDStrip& stripIn ) {
 
 	pixelCount = stripIn.pixelCount;											// Save stripIn.pixelCount to pixelCount
@@ -139,9 +144,19 @@ LEDStrip::LEDStrip( const LEDStrip& stripIn ) {
 
 }
 
+
+/**	Destructor for the LEDStrip Class
+	Deletes ledArray */
+
 LEDStrip::~LEDStrip() {
+	clearData();
 	delete[] ledArray;
 }
+
+
+/** Assignment Operator for the LEDStrip Class
+	Because of the Arduino's requirement that pin numbers be defined at compile, if-else-if statements are used to permit passing of a pin as a parameter from the .ino file
+	@param stripIn The LEDStrip instance to be copied to the invoking LEDStrip instance */
 
 LEDStrip& LEDStrip::operator=( const LEDStrip& stripIn ) {
 
@@ -212,10 +227,12 @@ LEDStrip& LEDStrip::operator=( const LEDStrip& stripIn ) {
 
 }
 
-/**	Set Method for the LEDStrip class
+
+/**	Set Method for the LEDStrip Class
 	Sets the r, g, b values of all pixels in a strip to the color stored in a ColorContainer object
 	@param pixel The index of the pixel to be changed
 	@param colorValues The ColorContainer containing the desired color */
+
 
 void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
@@ -225,7 +242,7 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 }
 
 
-/**	Set Method for the LEDStrip class
+/**	Set Method for the LEDStrip Class
 	Sets the r, g, b values of a single pixel to the specified intensities
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED
@@ -243,7 +260,7 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
 }
 
 
-/** Set Method for the LEDStrip class
+/** Set Method for the LEDStrip Class
 	Sets the red value of a single pixel to the specified intensity
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED */
@@ -255,7 +272,7 @@ void LEDStrip::setPixelRed( int pixel, int rIn ) {
 }
 
 
-/** Set Method for the LEDStrip class
+/** Set Method for the LEDStrip Class
 	Sets the green value of a single pixel to the specified intensity
 	@param pixel The index of the pixel to be changed
 	@param gIn The value for the green LED */
@@ -267,7 +284,7 @@ void LEDStrip::setPixelGreen( int pixel, int gIn ) {
 }
 
 
-/** Set Method for the LEDStrip class
+/** Set Method for the LEDStrip Class
 	Sets the blue value of a single pixel to the specified intensity
 	@param pixel The index of the pixel to be changed
 	@param bIn The value for the blue LED */
@@ -279,7 +296,7 @@ void LEDStrip::setPixelBlue( int pixel, int bIn ) {
 }
 
 
-/**	Set Method for the LEDStrip class
+/**	Set Method for the LEDStrip Class
 	Sets the r, g, b values of all pixels in a strip to the color stored in a ColorContainer object
 	@param colorValues The ColorContainer containing the desired color */
 
@@ -292,11 +309,11 @@ void LEDStrip::setStripColor( ColorContainer colorValues ) {
 }
 
 
-/**	Set Method for the LEDStrip class
+/**	Set Method for the LEDStrip Class
 	Sets the r, g, b values of all pixels in a strip to the specified intensities
-	@param rIn The value for the red LED
-	@param gIn The value for the green LED
-	@param bIn The value for the blue LED */
+	@param rIn The intensity for the red values of the pixels
+	@param gIn The intensity for the green values of the pixels
+	@param bIn The intensity for the blue values of the pixels */
 
 void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
@@ -309,9 +326,9 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 }
 
 
-/** Set Method for the LEDStrip class
+/** Set Method for the LEDStrip Class
 	Sets all red values in a strip to the specified intensity
-	@param rIn The value for the red LEDs */
+	@param rIn The intensity for the red values of the pixels */
 
 void LEDStrip::setStripRed( int rIn ) {
 
@@ -319,9 +336,10 @@ void LEDStrip::setStripRed( int rIn ) {
 	return;
 }
 
-/** Set Method for the LEDStrip class
+
+/** Set Method for the LEDStrip Class
 	Sets all green values in a strip to the specified intensity
-	@param gIn The value for the green LEDs */
+	@param gIn The intensity for the green values of the pixels */
 
 void LEDStrip::setStripGreen( int gIn ) {
 
@@ -329,9 +347,10 @@ void LEDStrip::setStripGreen( int gIn ) {
 	return;
 }
 
-/**     Set Method for the LEDStrip class
-		Sets the color of all blue values in a strip to the color stored in an int
-		@param bIn*/
+
+/**	Set Method for the LEDStrip Class
+	Sets all blue values in a strip to the specified intensity
+	@param bIn The intensity for the blue values of the pixels */
 
 void LEDStrip::setStripBlue( int bIn ) {
 
@@ -339,21 +358,14 @@ void LEDStrip::setStripBlue( int bIn ) {
 	return;
 }
 
-/**	Fills a LED strip with colors from a specified RGB color palette
-	@param palette The RGB palette to be used
+
+/**	Set Method for the LEDStrip Class
+	Main fillLEDsFromPalette method
+	Fills a LED strip with colors from a specified color palette
+	@param palette The palette to be used (can be CRGBPalette16, CRGBPalette32, CRGBPalette256, CHSVPalette16, CHSVPalette32, CHSVPalette256, TProgmemRGBPalette16, TProgmemRGBPalette32, TProgmemHSVPalette16 or TProgmemHSVPalette32)
 	@param startIndex The offset in the color palette (used to make the animation 'move')
-	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
-	@param brightness The brightness of the LEDs (default 255) */
-
-void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	fillLEDsFromPalette<TProgmemRGBPalette16>( palette, startIndex, blend, brightness );
-
-	return;																			// Return
-
-
-}
-
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use
+	@param brightness The brightness of the LEDs */
 
 template<class paletteType>
 void LEDStrip::fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ) {
@@ -369,168 +381,149 @@ void LEDStrip::fillLEDsFromPalette( const paletteType& palette, uint8_t startInd
 
 }
 
-void LEDStrip::fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	fillLEDsFromPalette<CRGBPalette16>( palette, startIndex, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified RGB color palette
+	@param palette The CRGBPalette16 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
 
-	return;																			// Return
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
 
-
-}
-
-void LEDStrip::fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	fillLEDsFromPalette<CRGBPalette32>( palette, startIndex, blend, brightness );
-
-	return;																			// Return
-
-
-}
-
-void LEDStrip::fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	fillLEDsFromPalette<CRGBPalette256>( palette, startIndex, blend, brightness );
+	fillLEDsFromPalette<CRGBPalette16>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-void LEDStrip::fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	fillLEDsFromPalette<CHSVPalette16>( palette, startIndex, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified RGB color palette
+	@param palette The CRGBPalette32 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
+
+	fillLEDsFromPalette<CRGBPalette32>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-void LEDStrip::fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	fillLEDsFromPalette<CHSVPalette32>( palette, startIndex, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified RGB color palette
+	@param palette The CRGBPalette256 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
+
+	fillLEDsFromPalette<CRGBPalette256>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-void LEDStrip::fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	fillLEDsFromPalette<CHSVPalette256>( palette, startIndex, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified HSV color palette
+	@param palette The CHSVPalette16 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
+
+	fillLEDsFromPalette<CHSVPalette16>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-template<class paletteType>
-void LEDStrip::setStripColorFromPalette( const paletteType& palette, TBlendType blend, uint8_t brightness){
 
-	int startIndex = 0;
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified HSV color palette
+	@param palette The CHSVPalette32 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
 
-	for (int i = 0; i < getPixelCount(); i++) {										// Loop through all pixels
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
 
-		ledArray[i] = ColorFromPalette( palette, startIndex, brightness, blend );	// Set pixel to specified colors
-		startIndex += 3;															// Move to next set of colors
-
-	}
-}
-
-void LEDStrip::setStripColorFromPalette( const CRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	setStripColorFromPalette<CRGBPalette16>( palette, blend, brightness );
+	fillLEDsFromPalette<CHSVPalette32>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-void LEDStrip::setStripColorFromPalette( const CRGBPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	setStripColorFromPalette<CRGBPalette32>( palette, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified HSV color palette
+	@param palette The CHSVPalette256 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
+
+void LEDStrip::fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
+
+	fillLEDsFromPalette<CHSVPalette256>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
 	return;																			// Return
 
-
 }
 
-void LEDStrip::setStripColorFromPalette( const CRGBPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
 
-	setStripColorFromPalette<CRGBPalette256>( palette, blend, brightness );
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors from a specified color palette
+	@param palette The TprogmemRGBPalette16/TProgmemRGBPalette32/TProgmemHSVPalette16/TprogmemHSVPalette32 palette to be used
+	@param startIndex The offset in the color palette (used to make the animation 'move')
+	@param blend The blend type (LINEARBLEND or NOBLEND) to use (default LINEARBLEND)
+	@param brightness The brightness of the LEDs (default 255) */
 
-	return;																			// Return
+void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) {
 
+	fillLEDsFromPalette<TProgmemRGBPalette16>( palette, startIndex, blend, brightness );	// Call main fillLEDsFromPalette method
 
-}
-
-void LEDStrip::setStripColorFromPalette( const CHSVPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	setStripColorFromPalette<CHSVPalette16>( palette, blend, brightness );
-
-	return;																			// Return
-
-
-}
-
-void LEDStrip::setStripColorFromPalette( const CHSVPalette32& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	setStripColorFromPalette<CHSVPalette32>( palette, blend, brightness );
-
-	return;																			// Return
-
-
-}
-
-void LEDStrip::setStripColorFromPalette( const CHSVPalette256& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	setStripColorFromPalette<CHSVPalette256>( palette, blend, brightness );
-
-	return;																			// Return
-
-
-}
-
-void LEDStrip::setStripColorFromPalette( const TProgmemRGBPalette16& palette, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ) { //TODO: Add support for other palette sizes
-
-	setStripColorFromPalette<TProgmemRGBPalette16>( palette, blend, brightness );
-
-	return;																			// Return
+	return;																					// Return
 
 
 }
 
 
-
-
-/**	Get Method for the pixelCount variable in the LEDStrip class
+/**	Get Method for the pixelCount variable in the LEDStrip Class
 	Returns the number of pixels in a strip
 	@return pixelCount */
 
 int LEDStrip::getPixelCount() { return pixelCount; }
 
-ColorContainer LEDStrip::getPixelColor( int pixelIn ) {
-	return ColorContainer( ledArray[pixelIn].r, ledArray[pixelIn].g, ledArray[pixelIn].b );
-}
+
+/**	Get Method for the color of a pixel in a LEDStrip instance
+	@param pixelIn The specified pixel
+	@return A ColorContainer containing the color of the specified pixel */
+
+ColorContainer LEDStrip::getPixelColor( int pixelIn ) {	return ColorContainer( ledArray[pixelIn].r, ledArray[pixelIn].g, ledArray[pixelIn].b ); }
 
 
-/**	Get Method for the red value in an Adafruit_NeoPixel pixel
-	Returns the red value of the specified pixel
+/**	Get Method for the red value of a pixel in a LEDStrip instance
 	@param pixelIn The specified pixel
 	@return The red value of the specified pixel */
 
 int LEDStrip::getPixelRed( int pixelIn ) { return ledArray[pixelIn].r; }
 
 
-/**	Get Method for the green value in an Adafruit_NeoPixel pixel
-	Returns the green value of the specified pixel
+/**	Get Method for the green value of a pixel in a LEDStrip instance
 	@param pixelIn The specified pixel
 	@return The green value of the specified pixel */
 
 int LEDStrip::getPixelGreen( int pixelIn ) { return ledArray[pixelIn].g; }
 
 
-/**	Get Method for the blue value in an Adafruit_NeoPixel pixel
-	Returns the blue value of the specified pixel
+/**	Get Method for the blue value of a pixel in a LEDStrip instance
 	@param pixelIn The specified pixel
 	@return The blue value of the specified pixel */
 

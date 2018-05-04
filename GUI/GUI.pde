@@ -1,5 +1,6 @@
 import controlP5.*;
 import java.util.*;
+import javax.swing.*;
 
 
 class colorContainer {
@@ -39,79 +40,276 @@ class dataValues {
   public animation currentAnimation;
 };
 
+List animations = Arrays.asList(
+  "Alternate", 
+  "Fade Pixel Red", 
+  "Fade Pixel Green", 
+  "Fade Pixel Blue", 
+  "Fade Pixel All", 
+  "Fade Strip Red", 
+  "Fade Strip Green", 
+  "Fade Strip Blue", 
+  "Fade Strip All", 
+  "Multi-Pixel Run", 
+  "Smooth Chase", 
+  "Wipe");
+
+List colors = Arrays.asList( "Color 1", "Color 2" );
+
+List tabNames = Arrays.asList( "Solid Color", "Animation" );
 
 
 ControlP5 cp5;
-ControlFont cf1;
+ControlFont largeFont;
+ControlFont mediumFont;
 dataValues data;
+ScrollableList animationList;
+ScrollableList colorList;
+ColorWheel colorWheel1;
+ColorWheel colorWheel2;
+ColorWheel animationColorWheelLeft;
+ColorWheel animationColorWheelRight;
+Button submitButton1;
+Button submitButton2;
+ButtonBar tabSelection;
+Textfield animationTimeField;
 int currentSelectingColor = 1;
+int currentTab = -1;
+int labelColor = color(0, 0, 0);
+
+void settings() {
+
+  //String widthIn = JOptionPane.showInputDialog("Enter Width");
+
+  //String heightIn = JOptionPane.showInputDialog("Enter Height");
+
+  //size(int(widthIn), int(heightIn));
+
+  fullScreen();
+}
+
 
 void setup() {
-  size(3000, 2000);
+
+
 
   data = new dataValues();
 
   cp5 = new ControlP5(this);  
 
-  cf1 = new ControlFont(createFont("Roboto-Regular.ttf", 48, true), 48);
+  largeFont = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.032), true), int(height * 0.032));
 
-  List animations = Arrays.asList(
-    "Alternate", 
-    "Fade Pixel Red", 
-    "Fade Pixel Green", 
-    "Fade Pixel Blue", 
-    "Fade Pixel All", 
-    "Fade Strip Red", 
-    "Fade Strip Green", 
-    "Fade Strip Blue", 
-    "Fade Strip All", 
-    "Multi-Pixel Run", 
-    "Smooth Chase", 
-    "Wipe");
+  mediumFont = new ControlFont(createFont("Roboto-Regular.ttf", int(height * 0.02), true), int(height * 0.02));
 
-  List colors = Arrays.asList( "Color 1", "Color 2" );
+  tabSelection = cp5.addButtonBar("tabSelectionBar")
+    .setPosition(0, 0)
+    .setSize(width, int(height * 0.05))
+    .addItems(tabNames)
+    .setFont(largeFont)
+    .setColorValueLabel(labelColor)
+    .setColorBackground(color(255, 0, 0));
 
-  cp5.addScrollableList("animationSelection")
-    .setPosition(100, 100)
-    .setSize(800, 1500)
-    .setBarHeight(100)
-    .setItemHeight(100)
+  //createTab1();
+
+  animationList = cp5.addScrollableList("animationSelection")
+    .setPosition(0, height * 0.1)
+    .setSize(int(width * 0.267), int(height * 0.75))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
     .addItems(animations)
-    .setFont(cf1)
+    .setFont(largeFont)
     .setOpen(false)
-    .setLabel("Choose Animation");
+    .setLabel("Choose Animation")
+    .setColorValueLabel(labelColor)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false);
 
 
-  cp5.addScrollableList("colorSelection")
-    .setPosition(1000, 100)
-    .setSize(800, 400)
-    .setBarHeight(100)
-    .setItemHeight(100)
+  colorList = cp5.addScrollableList("colorSelection")
+    .setPosition(width - (width * 0.2), height * 0.1)
+    .setSize(int(width * 0.2), int(height * 0.2))
+    .setBarHeight(int(height * 0.05))
+    .setItemHeight(int(height * 0.05))
     .addItems(colors)
-    .setFont(cf1)
+    .setFont(largeFont)
     .setOpen(false)
+    .setColorValueLabel(labelColor)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false)
     ;
 
-  cp5.addButton("Print")
-    .setPosition(1500, 1750)
-    .setSize(400, 100)
-    .setFont(cf1)
+  submitButton1 = cp5.addButton("Print")
+    .setPosition(width * 0.5, height * 0.875)
+    .setSize(int(width * 0.2), int(height * 0.05))
+    .setFont(largeFont)
+    .setColorLabel(labelColor)
+    .setColorBackground(color(255, 0, 0))
+    .setLock(true)
+    .setVisible(false)
+    ;
+
+  submitButton2 = cp5.addButton("PrintSolid")
+    .setPosition(width * 0.5, height * 0.875)
+    .setSize(int(width * 0.2), int(height * 0.05))
+    .setFont(largeFont)
+    .setColorValueLabel(labelColor)
+    .setLock(true)
+    .setVisible(false)
     ;
 
 
-  cp5.addColorWheel("Choose Color", 1500, 400, 800).setFont(cf1);
+  animationTimeField = cp5.addTextfield("Duration")
+    .setPosition(int(width * 0.6), int(height * 0.1))
+    .setSize(int(width * 0.075), int(height * 0.075))
+    .setFont(mediumFont)
+    .setColorLabel(labelColor)
+    .setLock(true)
+    .setVisible(false);
+    
+    animationTimeField.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP_OUTSIDE).setPaddingX(0);
+
+  colorWheel1 = cp5.addColorWheel("Choose Color A", int(width * 0.5), int(height * 0.2), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  colorWheel2 = cp5.addColorWheel("Choose Color", int(width * 0.375), int(height * 0.15), int(width * 0.375)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  animationColorWheelLeft = cp5.addColorWheel("Choose Main Color", int(width * 0.35), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
+  animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
+
 }
 
 void draw() {
-  background(100);
+  background(255);
 
-  if (currentSelectingColor == 1) {
+  if (currentTab == 1) {
+    if (currentSelectingColor == 1) {
+      data.color1 = colorWheel1.getRGB();
+    } else if (currentSelectingColor == 2) {
 
-    data.color1 = cp5.get(ColorWheel.class, "Choose Color").r();
-  } else if (currentSelectingColor == 2) {
-
-    data.color2 = cp5.get(ColorWheel.class, "Choose Color").r();
+      data.color2 = colorWheel1.getRGB();
+    }
+  } else if (currentTab == 0) {
+    data.color1 = colorWheel2.getRGB();
   }
+}
+
+
+void createTab1() {
+  animationList.setLock(false).setVisible(true);
+  //colorList.setLock(false).setVisible(true);
+  submitButton1.setLock(false).setVisible(true);
+  //colorWheel1.setLock(false).setVisible(true);
+}
+
+
+void createAlternateTab() {
+
+  animationColorWheelLeft.setLock(false).setVisible(true);
+  animationColorWheelRight.setLock(false).setVisible(true);
+  animationTimeField.setLock(false).setVisible(true);
+}
+
+
+void createFadePixelRedTab() {
+  
+  
+  
+}
+
+
+void createFadePixelGreenTab() {
+  
+  
+  
+}
+
+
+void createFadePixelBlueTab() {
+  
+  
+  
+}
+
+
+void createFadePixelAllTab() {
+  
+  
+  
+}
+
+
+void createFadeStripRedTab() {
+  
+  
+  
+}
+
+
+void createFadeStripGreenTab() {
+  
+  
+  
+}
+
+
+void createFadeStripBlueTab() {
+  
+  
+  
+}
+
+
+void createFadeStripAllTab() {
+  
+  
+  
+}
+
+
+void createMultiPixelRunTab() {
+  
+ 
+  
+}
+
+
+void createSmoothChaseTab() {
+  
+  
+  
+}
+
+
+void createWipeTab() {
+  
+  
+  
+}
+
+
+void destroyTab1() {
+
+  animationList.setLock(true).setVisible(false);
+  colorList.setLock(true).setVisible(false);
+  submitButton1.setLock(true).setVisible(false);
+  colorWheel1.setLock(true).setVisible(false);
+}
+
+void createTab0() {
+
+  colorWheel2.setLock(false).setVisible(true);
+  submitButton2.setLock(false).setVisible(true);
+}
+
+
+void destroyTab0() {
+
+  colorWheel2.setLock(true).setVisible(false);
+  submitButton2.setLock(true).setVisible(false);
 }
 
 void colorSelection (int n) {
@@ -132,33 +330,56 @@ void Print () {
 }
 
 
+void tabSelectionBar(int n) {
+
+  if (n == 0) {
+    if (currentTab == 1) {
+      destroyTab1(); 
+      createTab0();
+    } else if (currentTab == -1) {
+      createTab0();
+    }
+    currentTab = 0;
+  } else if (n == 1) {
+    if (currentTab == 0) {
+      destroyTab0();
+      createTab1();
+    } else if (currentTab == -1) {
+      createTab1();
+    }
+    currentTab = 1;
+  }
+}
+
+
 void animationSelection(int n) {
 
-  println(cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") + " Animation Selected");
+  println(animationList.getItem(n).get("name") + " Animation Selected");
 
-  if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Alternate") {
+  if (animationList.getItem(n).get("name") == "Alternate") {
     data.currentAnimation = animation.Alternate;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Red") {
+    createAlternateTab();
+  } else if (animationList.getItem(n).get("name") == "Fade Pixel Red") {
     data.currentAnimation = animation.Fade_Pixel_Red;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Green") {
+  } else if (animationList.getItem(n).get("name") == "Fade Pixel Green") {
     data.currentAnimation = animation.Fade_Pixel_Green;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Blue") {
+  } else if (animationList.getItem(n).get("name") == "Fade Pixel Blue") {
     data.currentAnimation = animation.Fade_Pixel_Blue;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel All") {
+  } else if (animationList.getItem(n).get("name") == "Fade Pixel All") {
     data.currentAnimation = animation.Fade_Pixel_All;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Red") {
+  } else if (animationList.getItem(n).get("name") == "Fade Strip Red") {
     data.currentAnimation = animation.Fade_Strip_Red;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Green") {
+  } else if (animationList.getItem(n).get("name") == "Fade Strip Green") {
     data.currentAnimation = animation.Fade_Strip_Green;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel Blue") {
+  } else if (animationList.getItem(n).get("name") == "Fade Strip Blue") {
     data.currentAnimation = animation.Fade_Strip_Blue;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Fade Pixel All") {
+  } else if (animationList.getItem(n).get("name") == "Fade Strip All") {
     data.currentAnimation = animation.Fade_Strip_All;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Multi-Pixel Run") {
+  } else if (animationList.getItem(n).get("name") == "Multi-Pixel Run") {
     data.currentAnimation = animation.Multi_Pixel_Run;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Smooth Chase") {
+  } else if (animationList.getItem(n).get("name") == "Smooth Chase") {
     data.currentAnimation = animation.Smooth_Chase;
-  } else if (cp5.get(ScrollableList.class, "animationSelection").getItem(n).get("name") == "Wipe") {
+  } else if (animationList.getItem(n).get("name") == "Wipe") {
     data.currentAnimation = animation.Wipe;
   }
 }

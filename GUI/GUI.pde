@@ -21,12 +21,15 @@ enum animation {
     Fade_Pixel_Green, 
     Fade_Pixel_Blue, 
     Fade_Pixel_All, 
-    Fade_Strip_Red, 
-    Fade_Strip_Green, 
-    Fade_Strip_Blue, 
-    Fade_Strip_All, 
-    Multi_Pixel_Run, 
+    //Fade_Strip_Red, 
+    //Fade_Strip_Green, 
+    //Fade_Strip_Blue, 
+    //Fade_Strip_All, 
+    Multi_Pixel_Run,
+    Pixel_Run,
+    Pixel_Run_With_Trail,
     Smooth_Chase, 
+    Sparkle_To_Color,
     Wipe
 };
 
@@ -46,12 +49,15 @@ List animations = Arrays.asList(
   "Fade Pixel Green", 
   "Fade Pixel Blue", 
   "Fade Pixel All", 
-  "Fade Strip Red", 
-  "Fade Strip Green", 
-  "Fade Strip Blue", 
-  "Fade Strip All", 
+  //"Fade Strip Red", 
+  //"Fade Strip Green", 
+  //"Fade Strip Blue", 
+  //"Fade Strip All", 
   "Multi-Pixel Run", 
+  "Pixel Run",
+  "Pixel Run with Trail",
   "Smooth Chase", 
+  "Sparkle to Color",
   "Wipe");
 
 List colors = Arrays.asList( "Color 1", "Color 2" );
@@ -79,9 +85,9 @@ int labelColor = color(0, 0, 0);
 
 void settings() {
 
-  //String widthIn = JOptionPane.showInputDialog("Enter Width");
-
-  //String heightIn = JOptionPane.showInputDialog("Enter Height");
+  //String widthIn = JOptionPane.showInputDialog(null, "Enter Width", "1000");
+  
+  //String heightIn = JOptionPane.showInputDialog(null, "Enter Height", "800");
 
   //size(int(widthIn), int(heightIn));
 
@@ -142,21 +148,23 @@ void setup() {
     .setVisible(false)
     ;
 
-  submitButton1 = cp5.addButton("Print")
+  submitButton1 = cp5.addButton("SendAnimation")
     .setPosition(width * 0.5, height * 0.875)
     .setSize(int(width * 0.2), int(height * 0.05))
     .setFont(largeFont)
     .setColorLabel(labelColor)
     .setColorBackground(color(255, 0, 0))
+    .setLabel("Send Animation")
     .setLock(true)
     .setVisible(false)
     ;
 
-  submitButton2 = cp5.addButton("PrintSolid")
+  submitButton2 = cp5.addButton("SendColor")
     .setPosition(width * 0.5, height * 0.875)
     .setSize(int(width * 0.2), int(height * 0.05))
     .setFont(largeFont)
     .setColorValueLabel(labelColor)
+    .setLabel("Send Color")
     .setLock(true)
     .setVisible(false)
     ;
@@ -167,6 +175,7 @@ void setup() {
     .setSize(int(width * 0.075), int(height * 0.075))
     .setFont(mediumFont)
     .setColorLabel(labelColor)
+    .setValue("50")
     .setLock(true)
     .setVisible(false);
     
@@ -214,6 +223,13 @@ void createAlternateTab() {
   animationTimeField.setLock(false).setVisible(true);
 }
 
+void destroyAlternateTab() {
+  
+    animationColorWheelLeft.setLock(true).setVisible(false);
+  animationColorWheelRight.setLock(true).setVisible(false);
+  animationTimeField.setLock(true).setVisible(false);
+  
+}
 
 void createFadePixelRedTab() {
   
@@ -221,6 +237,11 @@ void createFadePixelRedTab() {
   
 }
 
+void destroyFadePixelRedTab() {
+  
+  
+  
+}
 
 void createFadePixelGreenTab() {
   
@@ -228,6 +249,11 @@ void createFadePixelGreenTab() {
   
 }
 
+void destroyFadePixelGreenTab() {
+  
+  
+  
+}
 
 void createFadePixelBlueTab() {
   
@@ -235,6 +261,11 @@ void createFadePixelBlueTab() {
   
 }
 
+void destroyFadePixelBlueTab() {
+ 
+  
+  
+}
 
 void createFadePixelAllTab() {
   
@@ -242,41 +273,51 @@ void createFadePixelAllTab() {
   
 }
 
-
-void createFadeStripRedTab() {
-  
-  
-  
-}
-
-
-void createFadeStripGreenTab() {
-  
+void destroyFadePixelAllTab() {
+ 
   
   
 }
 
+//void createFadeStripRedTab() {
+  
+  
+  
+//}
 
-void createFadeStripBlueTab() {
+
+//void createFadeStripGreenTab() {
   
   
   
-}
+//}
 
 
-void createFadeStripAllTab() {
+//void createFadeStripBlueTab() {
   
   
   
-}
+//}
+
+
+//void createFadeStripAllTab() {
+  
+  
+  
+//}
 
 
 void createMultiPixelRunTab() {
   
- 
+  
   
 }
 
+void destroyMultiPixelRunTab() {
+ 
+  
+  
+}
 
 void createSmoothChaseTab() {
   
@@ -284,9 +325,32 @@ void createSmoothChaseTab() {
   
 }
 
+void destroySmoothChaseTab() {
+ 
+  
+  
+}
+
+void createSparkleToColorTab() {
+  
+ 
+  
+}
+
+void destroySparkleToColorTab() {
+  
+ 
+  
+}
 
 void createWipeTab() {
   
+  
+  
+}
+
+void destroyWipeTab() {
+ 
   
   
 }
@@ -325,9 +389,15 @@ void colorSelection (int n) {
 }
 
 
-void Print () {
+void SendAnimation () {
 
   println(data.currentAnimation + "  " + hex(data.color1 & 0xFFFFFF) + "  " + hex(data.color2 & 0xFFFFFF));
+}
+
+void SendColor () {
+ 
+  println(hex(data.color1 & 0xFFFFFF));
+  
 }
 
 
@@ -357,30 +427,71 @@ void animationSelection(int n) {
 
   println(animationList.getItem(n).get("name") + " Animation Selected");
 
+
+  if(data.currentAnimation == animation.Alternate) {
+   destroyAlternateTab();
+  } else if (data.currentAnimation == animation.Fade_Pixel_Red) {
+    destroyFadePixelRedTab();
+  } else if (data.currentAnimation == animation.Fade_Pixel_Green) {
+    destroyFadePixelGreenTab();
+  } else if (data.currentAnimation == animation.Fade_Pixel_Blue) {
+    destroyFadePixelBlueTab();
+  } else if (data.currentAnimation == animation.Fade_Pixel_All) {
+    destroyFadePixelAllTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Red) {
+  //  destroyFadeStripRedTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Green) {
+  //  destroyFadeStripGreenTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_Blue) {
+  //  destroyFadeStripBlueTab();
+  //} else if (data.currentAnimation == animation.Fade_Strip_All) {
+  //  destroyFadeStripAllTab();
+  } else if (data.currentAnimation == animation.Multi_Pixel_Run) {
+    destroyMultiPixelRunTab();
+  } else if (data.currentAnimation == animation.Smooth_Chase) {
+    destroySmoothChaseTab();
+  } else if (data.currentAnimation == animation.Wipe) {
+    destroyWipeTab();
+  }
+
+
+
+
+
   if (animationList.getItem(n).get("name") == "Alternate") {
     data.currentAnimation = animation.Alternate;
     createAlternateTab();
   } else if (animationList.getItem(n).get("name") == "Fade Pixel Red") {
     data.currentAnimation = animation.Fade_Pixel_Red;
+    createFadePixelRedTab();
   } else if (animationList.getItem(n).get("name") == "Fade Pixel Green") {
     data.currentAnimation = animation.Fade_Pixel_Green;
+    createFadePixelGreenTab();
   } else if (animationList.getItem(n).get("name") == "Fade Pixel Blue") {
     data.currentAnimation = animation.Fade_Pixel_Blue;
+    createFadePixelBlueTab();
   } else if (animationList.getItem(n).get("name") == "Fade Pixel All") {
     data.currentAnimation = animation.Fade_Pixel_All;
-  } else if (animationList.getItem(n).get("name") == "Fade Strip Red") {
-    data.currentAnimation = animation.Fade_Strip_Red;
-  } else if (animationList.getItem(n).get("name") == "Fade Strip Green") {
-    data.currentAnimation = animation.Fade_Strip_Green;
-  } else if (animationList.getItem(n).get("name") == "Fade Strip Blue") {
-    data.currentAnimation = animation.Fade_Strip_Blue;
-  } else if (animationList.getItem(n).get("name") == "Fade Strip All") {
-    data.currentAnimation = animation.Fade_Strip_All;
+    createFadePixelAllTab();
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Red") {
+  //  data.currentAnimation = animation.Fade_Strip_Red;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Green") {
+  //  data.currentAnimation = animation.Fade_Strip_Green;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip Blue") {
+  //  data.currentAnimation = animation.Fade_Strip_Blue;
+  //} else if (animationList.getItem(n).get("name") == "Fade Strip All") {
+  //  data.currentAnimation = animation.Fade_Strip_All;
   } else if (animationList.getItem(n).get("name") == "Multi-Pixel Run") {
     data.currentAnimation = animation.Multi_Pixel_Run;
+    createMultiPixelRunTab();
   } else if (animationList.getItem(n).get("name") == "Smooth Chase") {
     data.currentAnimation = animation.Smooth_Chase;
+    createSmoothChaseTab();
+  } else if (animationList.getItem(n).get("name") == "Sparkle to Color") {
+    data.currentAnimation = animation.Sparkle_To_Color;
+    createSparkleToColorTab();
   } else if (animationList.getItem(n).get("name") == "Wipe") {
     data.currentAnimation = animation.Wipe;
+    createWipeTab();
   }
 }

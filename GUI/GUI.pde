@@ -111,7 +111,6 @@ void draw() {
   } else if (currentSelectingColor == 2) {
 
     data.color2 = cp5.get(ColorWheel.class, "Choose Color").r();
-
   }
 }
 
@@ -128,9 +127,8 @@ void colorSelection (int n) {
 
 
 void Print () {
- 
+
   println(data.currentAnimation + "  " + hex(data.color1 & 0xFFFFFF) + "  " + hex(data.color2 & 0xFFFFFF));
-  
 }
 
 

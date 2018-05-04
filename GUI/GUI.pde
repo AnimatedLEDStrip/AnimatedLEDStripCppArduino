@@ -73,6 +73,7 @@ Button submitButton1;
 Button submitButton2;
 ButtonBar tabSelection;
 Textfield animationTimeField;
+Textfield animationSpacingField;
 int currentSelectingColor = 1;
 int currentTab = -1;
 int labelColor = color(0, 0, 0);
@@ -180,6 +181,7 @@ void setup() {
 
   animationColorWheelRight = cp5.addColorWheel("Choose Alternate Color", int(width * 0.6), int(height * 0.3), int(width * 0.2)).setFont(largeFont).setColorLabel(labelColor).setLock(true).setVisible(false);
 
+animationSpacingField = cp5.addTextfield("Spacing").setPosition(int(width * 0.35), int(height * 0.1)).setSize(int(width * 0.05), int(height * 0.05)).setFont(mediumFont).setColorLabel(labelColor).setLock(true).setVisible(false).setValue("3");
 }
 
 void draw() {
@@ -271,9 +273,9 @@ void createFadeStripAllTab() {
 
 
 void createMultiPixelRunTab() {
-  
- 
-  
+  animationColorWheelLeft.setLock(false).setVisible(true);
+  animationColorWheelRight.setLock(false).setVisible(true);
+ animationSpacingField.setLock(false).setVisible(true);
 }
 
 
@@ -377,6 +379,7 @@ void animationSelection(int n) {
     data.currentAnimation = animation.Fade_Strip_All;
   } else if (animationList.getItem(n).get("name") == "Multi-Pixel Run") {
     data.currentAnimation = animation.Multi_Pixel_Run;
+    createMultiPixelRunTab();
   } else if (animationList.getItem(n).get("name") == "Smooth Chase") {
     data.currentAnimation = animation.Smooth_Chase;
   } else if (animationList.getItem(n).get("name") == "Wipe") {

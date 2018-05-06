@@ -39,7 +39,6 @@ public:
 		fadeStripGreen( int startIntensity, int endIntensity, bool revertAtCompletion = false ),
 		fadeStripBlue( int startIntensity, int endIntensity, bool revertAtCompletion = false ),
 		fadeStripAll( int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ),
-		//flicker(),	// Runs a single flicker animation (strip is at a color/brightness and random LEDs are set to a different color/brightness for a very short time before returning to the strip's color)
 		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ), // Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ),	// Overload for multiPixelRun()
 		pixelRun( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to the main color while all other pixels are set to the alternate color - similar to multiPixelRun() but with only one pixel)
@@ -47,6 +46,7 @@ public:
 		pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Very similar to the sinelon() function in the DemoReel100 example for the FastLED library
 		pixelRunWithTrail( direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0, int b2In = 0 ),	// Overload for pixelRunWithTrail()
 		ripple( int startPixel, ColorContainer colorValues ),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
+		sparkle( ColorContainer flickerColor ),	// Runs a single sparkle animation (random LEDs are set to a different color/brightness for a very short time before returning to the pixel's original color)
 		sparkleToColor( ColorContainer destinationColor ),
 		sparkleToColor( int rIn, int gIn, int bIn ),	// Overload for sparkleToColor()
 		wipe( ColorContainer colorValues, direction wipeDirection ),	// Runs a single wipe animation (similar to pixelRun() but the values do not switch to a second color)

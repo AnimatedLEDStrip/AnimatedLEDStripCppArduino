@@ -19,6 +19,15 @@ void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer co
 }
 
 
+/** Overloaded method to run an Alternate animation
+	@param r1In The red intensity for the first color
+	@param g1In The green intensity for the first color
+	@param b1In The blue intensity for the first color
+	@param r2In The red intensity for the second color
+	@param g2In The green intensity for the second color
+	@param b2In The blue intensity for the second color
+	@param delayTime The time (in milliseconds) that each color is displayed for */
+
 void AnimatedLEDStrip::alternate( int r1In, int g1In, int b1In, int r2In, int g2In, int b2In, int delayTime ) {
 
 	ColorContainer temp1 = ColorContainer( r1In, g1In, b1In );	// Create temporary ColorContainer for colorValues1
@@ -150,7 +159,7 @@ void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endInte
 
 		break;
 
-	case fadeDown:
+	case fadeDown:														// If set to fadeDown:
 		for (int i = startIntensity; i >= endIntensity; i--) {				// Run through each intensity from the start intensity to the end intensity...
 
 			setPixelBlue( pixel, i );										// ...Setting the pixel's blue intensity...
@@ -459,9 +468,7 @@ void AnimatedLEDStrip::pixelRun( direction movementDirection, int r1In, int g1In
 }
 
 
-void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {	// TODO: Test
-
-	//setStripColor( altColorValues );
+void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
 
 	CRGB altColorCRGB = CRGB( altColorValues.getr(), altColorValues.getg(), altColorValues.getb() );
 
@@ -659,6 +666,27 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );	// Call main smoothChase method
 
 	return;																	// Return
+
+}
+
+
+void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {	// TODO: Test
+
+	ColorContainer originalColor;
+
+	shuffle();
+
+	for (int i = 0; i < getPixelCount(); i++) {
+
+		originalColor = getPixelColor( shuffleArray[i] );
+
+		setPixelColor( shuffleArray[i], sparkleColor );
+
+		show();
+
+		setPixelColor( shuffleArray[i], originalColor );
+
+	}
 
 }
 

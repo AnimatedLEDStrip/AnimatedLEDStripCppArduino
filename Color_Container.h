@@ -22,17 +22,18 @@ public:
 
 
 	void
-		setr( int ),								// Sets the r value of a ColorContainer object
-		setg( int ),								// Sets the g value of a ColorContainer object
-		setb( int ),								// Sets the b value of a ColorContainer object
-		setrgb( int rIn, int gIn, int bIn ),		// Sets the r, g and b values of a ColorContainer object
-		setrgb( long hexIn ),						// Sets the r, g, and b values of ColorContainer objects using hexadecimal input
-		blackout();									// Sets the r, g and b values of a ColorContainer object to 0
+		setr( int intensity ),						// Sets the r value of a ColorContainer instance
+		setg( int intensity ),						// Sets the g value of a ColorContainer instance
+		setb( int intensity ),						// Sets the b value of a ColorContainer instance
+		setrgb( int rIn, int gIn, int bIn ),		// Sets the r, g and b values of a ColorContainer instance
+		setrgb( long hexIn ),						// Sets the r, g and b values of a ColorContainer instance using hexadecimal input
+		setrgb( const CRGB & CRGBIn ),				// Sets the r, g and b values of a ColorContainer instance to the r, g and b values in a CRGB instance 
+		blackout();									// Sets the r, g and b values of a ColorContainer instance to 0
 
 	int
-		getr(),										// Returns the r value of a ColorContainer object
-		getg(),										// Returns the g value of a ColorContainer object
-		getb();										// Returns the b value of a ColorContainer object
+		getr(),										// Returns the r value of a ColorContainer instance
+		getg(),										// Returns the g value of a ColorContainer instance
+		getb();										// Returns the b value of a ColorContainer instance
 
 	long
 		getColorHex();								// Returns the r, g and b values as a 6-digit hexadecimal number

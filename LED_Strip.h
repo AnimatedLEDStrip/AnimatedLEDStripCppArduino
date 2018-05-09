@@ -42,7 +42,9 @@ public:
 		setStripColor( int rIn, int gIn, int bIn ),	// Calls setStripColor(ColorContainer) with a ColorContainer created from the inputted rgb values
 		setStripRed( int rIn ),
 		setStripGreen( int gIn ),
-		setStripBlue( int bIn ),
+		setStripBlue( int bIn );
+
+	void
 		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ),	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code -- works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
 		fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
@@ -50,9 +52,8 @@ public:
 		fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 );
-	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 
-	// Also look through the FastLED library to see what else is possible
+	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 
 	int
 		getPixelCount(),	// Returns pixelCount

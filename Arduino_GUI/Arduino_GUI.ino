@@ -28,10 +28,12 @@ void messageReady() {
       callFadePixel();
     } else if (input.checkString("MPR")) {    // A MPR 0x###### 0x###### # [F/B]\n
       callMultiPixelRun();
-    } else if (input.checkString("PXR")) {    // A PXR 0x###### 0x###### # [F/B] [T/N]\n
+    } else if (input.checkString("PXR")) {    // A PXR 0x###### 0x###### [F/B] [T/N]\n
       callPixelRun();
     } else if (input.checkString("SCH")) {    // A SCH [CLC/FTC/HTC/LVC/OCC/PTC/RBC/RSC] # [F/B] [B/N]\n
       callSmoothChase();
+    } else if (input.checkString("SPK")) {    // A SPK 0x######\n
+      callSparkle();
     } else if (input.checkString("STC")) {    // A STC 0x######\n
       callSparkleToColor();
     } else if (input.checkString("WIP")) {    // A WIP 0x###### [F/B]\n
@@ -206,13 +208,82 @@ void callFadePixel() {
 
 void callMultiPixelRun() {
 
+  char colorString1[9];
+  char colorString2[9];
+  int spacing;
+  char movementDirection[2];
+
+  input.copyString(colorString1, 9);
+  input.copyString(colorString2, 9);
+  spacing = input.readInt();
+  input.copyString(movementDirection, 2);
+
+  Serial.print(colorString1 + '\t');
+  Serial.print(colorString2 + '\t' + spacing + '\t');
+  Serial.print(movementDirection + '\n');
+
 }
 
 void callPixelRun() {
 
+  char colorString1[9];
+  char colorString2[9];
+  char movementDirection[2];
+
+  input.copyString(colorString1, 9);
+  input.copyString(colorString2, 9);
+  spacing = input.readInt();
+  input.copyString(movementDirection, 2);
+
+  Serial.print(colorString1 + '\t');
+  Serial.print(colorString2 + '\t' + spacing + '\t');
+  Serial.print(movementDirection + '\t');
+
+  if (input.checkString("T")) {
+    Serial.print("T\n");
+  } else if (input.checkString("N")) {
+    Serial.print("N\n");
+  }
+
 }
 
-void callSmoothChase() {
+void callSmoothChase() {  // A SCH [CLC/FTC/HTC/LVC/OCC/PTC/RBC/RSC] # [F/B] [B/N]\n
+
+  char palette[4];
+  int brightness;
+  char chaseDirection[2];
+  char blendType[2];
+
+  input.copyString(palette, 4);
+  brightness = input.readInt();
+  input.copyString(chaseDirection, 2);
+  input.copyString(blendType, 2);
+
+  if (palette == "CLC") {
+    Serial.print(palette + '\t');
+  } else if (palette == "FTC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "HTC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "LVC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "OCC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "PTC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "RBC") {
+    Serial.print(palette = '\t');
+  } else if (palette == "RSC") {
+    Serial.print(palette = '\t');
+  }
+
+  Serial.print(brightness + '\t');
+  Serial.print(chaseDirection + '\t');
+  Serial.print(blendType + '\n');
+
+}
+
+void callSparkle() {
 
 }
 

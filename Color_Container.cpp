@@ -29,6 +29,10 @@ ColorContainer::ColorContainer( long hexIn ) {
 
 ColorContainer::ColorContainer( int rIn, int gIn, int bIn ) { r = rIn; g = gIn; b = bIn; }
 
+
+/**	Constructor for the ColorContainer class
+	@param CRGBIn A reference to a CRGB instance that will be copied into the ColorContainer */
+
 ColorContainer::ColorContainer( const CRGB & CRGBIn ) {
 
 	r = CRGBIn.r;
@@ -89,20 +93,34 @@ void ColorContainer::setrgb( int rIntensity, int gIntensity, int bIntensity ) {
 
 }
 
+
 /**	Set Method for the r, g and b variables in the ColorContainer class using long hexadecimal input
 	@param hexIn The value containing r, g, and b values */
 
-void ColorContainer::setrgb(long hexIn){
+void ColorContainer::setrgb( long hexIn ) {
 
-  r = (hexIn & 0xFF0000) >> 16;
-  g = (hexIn & 0x00FF00) >> 8;
-  b = (hexIn & 0x0000FF);
+	r = (hexIn & 0xFF0000) >> 16;
+	g = (hexIn & 0x00FF00) >> 8;
+	b = (hexIn & 0x0000FF);
 
-  return;
+	return;
 }
 
 
-/**	Special Set Method for the ColorContainer class; sets r, g, b to 0 */
+/**	Set Method for the r, g and b variables in the ColorContainer class using CRGB input
+	@param CRGBIn A reference to a CRGB instance that will be copied into the ColorContainer */
+
+void ColorContainer::setrgb( const CRGB & CRGBIn ) {
+
+	r = CRGBIn.r;
+	g = CRGBIn.g;
+	b = CRGBIn.b;
+
+}
+
+
+/**	Special Set Method for the ColorContainer class
+	Sets r, g, b to 0 */
 
 void ColorContainer::blackout() { r = 0; g = 0; b = 0; }
 
@@ -124,6 +142,9 @@ int ColorContainer::getg() { return g; }
 
 int ColorContainer::getb() { return b; }
 
+
+/** Get Method for the r, g and b variables in the ColorContainer class
+	@return The r, g and b values, formatted into a 6-digit hexadecimal long integer */
 
 long ColorContainer::getColorHex() {
 

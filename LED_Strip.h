@@ -51,7 +51,10 @@ public:
 		fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CHSVPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CHSVPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
-		fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 );
+		fillLEDsFromPalette( const CHSVPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
+		fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2 ),
+		fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3 ),
+		fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3, ColorContainer colorValues4 );
 
 	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
 

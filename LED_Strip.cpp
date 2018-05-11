@@ -332,7 +332,20 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 void LEDStrip::setStripRed( int rIn ) {
 
-	for (int i = 0; i < getPixelCount(); i++) ledArray[i].red = rIn;
+	for (int i = 0; i < getPixelCount(); i++) {
+	
+		//Serial.print( getPixelCount() );
+		//Serial.print( '\n' );
+		//Serial.print( "ored = " );
+		//Serial.print( ledArray[i].r );
+		//Serial.print( '\n' );
+		setPixelRed( i, rIn );
+		/*Serial.print( "red = " );
+		Serial.print( ledArray[i].red );
+		Serial.print( '\n' );*/
+
+	}
+	show();
 	return;
 }
 
@@ -344,6 +357,7 @@ void LEDStrip::setStripRed( int rIn ) {
 void LEDStrip::setStripGreen( int gIn ) {
 
 	for (int i = 0; i < getPixelCount(); i++) ledArray[i].green = gIn;
+	show();
 	return;
 }
 
@@ -355,6 +369,7 @@ void LEDStrip::setStripGreen( int gIn ) {
 void LEDStrip::setStripBlue( int bIn ) {
 
 	for (int i = 0; i < getPixelCount(); i++) ledArray[i].blue = bIn;
+	show();
 	return;
 }
 
@@ -491,6 +506,33 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 
 	return;																					// Return
 
+
+}
+
+
+void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2 ) {
+
+	fill_gradient_RGB( ledArray, pixelCount, CRGB( colorValues1.getr(), colorValues1.getg(), colorValues1.getb() ), CRGB( colorValues2.getr(), colorValues2.getg(), colorValues2.getb() ) );
+
+	return;
+
+}
+
+
+void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3 ) {
+
+	fill_gradient_RGB( ledArray, pixelCount, CRGB( colorValues1.getr(), colorValues1.getg(), colorValues1.getb() ), CRGB( colorValues2.getr(), colorValues2.getg(), colorValues2.getb() ), CRGB( colorValues3.getr(), colorValues3.getg(), colorValues3.getb() ) );
+
+	return;
+
+}
+
+
+void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3, ColorContainer colorValues4 ) {
+
+	fill_gradient_RGB( ledArray, pixelCount, CRGB( colorValues1.getr(), colorValues1.getg(), colorValues1.getb() ), CRGB( colorValues2.getr(), colorValues2.getg(), colorValues2.getb() ), CRGB( colorValues3.getr(), colorValues3.getg(), colorValues3.getb() ), CRGB( colorValues4.getr(), colorValues4.getg(), colorValues4.getb() ) );
+
+	return;
 
 }
 

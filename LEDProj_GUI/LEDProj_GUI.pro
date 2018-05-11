@@ -17,8 +17,5 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h
 
-FORMS    += mainwindow.ui
-
-include (Qt-Color-Widgets-master/color_widgets.pri)
-
-
+FORMS    += mainwindow.ui \
+    mainwindow_copy.ui

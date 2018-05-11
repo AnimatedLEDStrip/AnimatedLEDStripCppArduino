@@ -6,7 +6,7 @@
 	@param colorValues2 The second color to be displayed
 	@param delayTime The time (in milliseconds) that each color is displayed for */
 
-void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {	// TODO: Test
+void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {
 
 	setStripColor( colorValues1 );	// Set strip to colorValues1
 	delay( delayTime );				// Delay for delayTime milliseconds
@@ -261,71 +261,6 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 	if (revertAtCompletion) setPixelColor( pixel, originalValues );
 
 	return;
-
-}
-
-
-void AnimatedLEDStrip::fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {	// TODO: Test
-
-	fadeDirection fade;
-
-	if (startIntensity > endIntensity) fade = fadeDown;
-	if (startIntensity < endIntensity) fade = fadeUp;
-	if (startIntensity == endIntensity) return;
-
-	AnimatedLEDStrip originalValues = *this;
-
-	switch (fade) {
-	case fadeUp:
-		for (int i = startIntensity; i <= endIntensity; i++) {
-
-			setStripRed( i );
-			Serial.print( "Incrementing " );
-			Serial.print( i );
-			Serial.print( "\n" );
-			show();
-
-		}
-
-		break;
-
-	case fadeDown:
-		for (int i = startIntensity; i >= endIntensity; i--) {
-
-			setStripRed( i );
-			Serial.print( "Incrementing " );
-			Serial.print( i );
-			Serial.print( "\n" );
-			show();
-
-		}
-
-		break;
-
-	}
-
-	if (revertAtCompletion) *this = originalValues;
-
-}
-
-
-void AnimatedLEDStrip::fadeStripGreen( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
-
-
-
-}
-
-
-void AnimatedLEDStrip::fadeStripBlue( int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
-
-
-
-}
-
-
-void AnimatedLEDStrip::fadeStripAll( int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ) {
-
-
 
 }
 
@@ -670,7 +605,7 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 }
 
 
-void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {	// TODO: Test
+void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {
 
 	ColorContainer originalColor;
 
@@ -683,6 +618,8 @@ void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {	// TODO: Test
 		setPixelColor( shuffleArray[i], sparkleColor );
 
 		show();
+
+		delay( 10 );
 
 		setPixelColor( shuffleArray[i], originalColor );
 
@@ -700,6 +637,8 @@ void AnimatedLEDStrip::sparkleToColor( ColorContainer destinationColor ) {
 		setPixelColor( shuffleArray[i], destinationColor );
 
 		show();
+
+		delay( 10 );
 
 	}
 
@@ -724,7 +663,7 @@ void AnimatedLEDStrip::sparkleToColor( int rIn, int gIn, int bIn ) {
 
 void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection ) {
 
-	if (wipeDirection == forward) {
+	if (wipeDirection == backward) {
 
 		for (int i = getPixelCount() - 1; i >= 0; i--) {	// Run through the length of the strip
 
@@ -735,7 +674,7 @@ void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection
 
 	}
 
-	if (wipeDirection == backward) {
+	if (wipeDirection == forward) {
 
 		for (int i = 0; i < getPixelCount(); i++) {		// Run through the length of the strip
 

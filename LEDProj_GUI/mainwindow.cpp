@@ -23,3 +23,8 @@ void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
 {
     ui->lineEdit_2->setText(getColorHex(arg1));
 }
+
+void MainWindow::on_comboBox_4_currentIndexChanged(const QString &arg1)
+{
+    ui->lineEdit_8->setText(getColorHex(arg1));
+}

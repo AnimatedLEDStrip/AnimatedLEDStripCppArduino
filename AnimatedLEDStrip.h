@@ -25,7 +25,7 @@ public:
 		for (int i = 0; i < numLEDs; i++) shuffleArray[i] = i;
 
 	}
-	~AnimatedLEDStrip() {}
+	~AnimatedLEDStrip() { delete[] shuffleArray; }
 
 
 	void
@@ -35,10 +35,6 @@ public:
 		fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade green animation (fades green in a pixel from specified intensity to another specified intensity)
 		fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ),	// Runs a fade blue animation (fades blue in a pixel from specified intensity to another specified intensity)
 		fadePixelAll( int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ),	// Runs a fade all animation (fades all pixels from specified intensities to other specified intensities)
-		fadeStripRed( int startIntensity, int endIntensity, bool revertAtCompletion = false ),
-		fadeStripGreen( int startIntensity, int endIntensity, bool revertAtCompletion = false ),
-		fadeStripBlue( int startIntensity, int endIntensity, bool revertAtCompletion = false ),
-		fadeStripAll( int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ),
 		multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ), // Runs a single multi-pixel run animation (similar to pixelRun() but with multiple LEDs at a specified spacing)
 		multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ),	// Overload for multiPixelRun()
 		pixelRun( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Runs a single pixel run animation (the strip is set to one color and then (in order) each pixel is set to the main color while all other pixels are set to the alternate color - similar to multiPixelRun() but with only one pixel)

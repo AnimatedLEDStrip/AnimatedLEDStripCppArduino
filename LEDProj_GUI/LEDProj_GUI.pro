@@ -17,5 +17,4 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h
 
-FORMS    += mainwindow.ui \
-    mainwindow_copy.ui
+FORMS    += mainwindow.ui

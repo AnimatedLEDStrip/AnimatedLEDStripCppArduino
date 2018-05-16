@@ -84,14 +84,14 @@
      <widget class="QToolBox" name="Alternate_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>10</y>
         <width>851</width>
         <height>601</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Alternate">
        <property name="geometry">
@@ -2229,34 +2229,6 @@
        <attribute name="label">
         <string>Multi Pixel Run</string>
        </attribute>
-       <widget class="QLineEdit" name="lineEdit_6">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>50</y>
-          <width>113</width>
-          <height>32</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_13">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>20</y>
-          <width>62</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Spacing</string>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
@@ -2273,24 +2245,6 @@
         </property>
         <property name="text">
          <string>Direction</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>20</y>
-          <width>62</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>13</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Color</string>
         </property>
        </widget>
        <widget class="QRadioButton" name="radioButton">
@@ -2342,16 +2296,6 @@
          <string>AltColor</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_8">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>50</y>
-          <width>113</width>
-          <height>32</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLineEdit" name="lineEdit_10">
         <property name="geometry">
          <rect>
@@ -2375,765 +2319,813 @@
          <string>Send</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_4">
+       <widget class="QWidget" name="gridLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>290</x>
-          <y>100</y>
-          <width>111</width>
-          <height>30</height>
+          <x>240</x>
+          <y>170</y>
+          <width>160</width>
+          <height>80</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>AliceBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Amethyst</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>AntiqueWhite</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Aqua</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Aquamarine</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Azure</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Beige</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bisque</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Black</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>BlanchedAlmond</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Blue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>BlueViolet</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Brown</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>BurlyWood</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>CadetBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Chartreuse</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Chocolate</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Coral</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>CornflowerBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Cornsilk</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Crimson</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Cyan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkCyan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkGoldenrod</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkGray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Darkkhaki</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkMagenta</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkOliveGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkOrange</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkOrchid</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkRed</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkSalmon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkSeaGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkSlateBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkSlateGray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkSlateGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkTurquoise</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DarkViolet</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DeepPink</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DeepSkyBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DimGray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DimGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>DodgerBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>FairyLight</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>FairyLightNCC</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>FireBrick</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>FloralWhite</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ForestGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Fuchsia</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gainsboro</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>GhostWhite</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gold</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Goldenrod</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Gray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Grey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Green</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>GreenYellow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Honeydew</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>HotPink</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>IndianRed</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Indigo</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Ivory</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Khaki</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Lavender</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LavenderBlush</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LawnGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LemonChiffon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightCoral</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightCyan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightGoldenrodYellow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightPink</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSalmon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSeaGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSkyBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSlateGray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSlateGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightSteelBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LightYellow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Lime</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>LimeGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Linen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Magenta</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Maroon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumAquamarine</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumOrchid</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumPurple</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumSeaGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumSlateBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumSpringGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumTurquoise</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MediumVioletRed</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MidnightBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MintCreawm</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>MistyRose</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Moccasin</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>NavajoWhite</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Navy</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>OldLace</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Olive</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>OliveDrab</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Orange</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>OrangeRed</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Orchide</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PaleGoldenrod</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PaleGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PaleTurquoise</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PaleVioletRed</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PapayaWhip</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PeachPuff</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Peru</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Pink</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Plaid</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Plum</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PowderBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Purple</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Red</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>RosyBrown</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>RoyalBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SaddleBrown</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Salmon</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SandyBrown</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SeaGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Seashell</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sienna</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Silver</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SkyBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SlateBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SlateGray</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SlateGrey</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Snow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SpringGreen</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>SteelBlue</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Tan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Teal</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Thistle</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Tomato</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Turquoise</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Violet</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Wheat</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>White</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>WhiteSmoke</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Yellow</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>YellowGreen</string>
-         </property>
-        </item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="1" column="0">
+          <widget class="QComboBox" name="comboBox_4">
+           <item>
+            <property name="text">
+             <string>AliceBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Amethyst</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>AntiqueWhite</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Aqua</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Aquamarine</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Azure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Beige</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Bisque</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Black</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>BlanchedAlmond</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Blue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>BlueViolet</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Brown</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>BurlyWood</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CadetBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chartreuse</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chocolate</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Coral</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CornflowerBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Cornsilk</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Crimson</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Cyan</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkCyan</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkGoldenrod</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkGray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Darkkhaki</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkMagenta</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkOliveGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkOrange</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkOrchid</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkRed</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkSalmon</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkSeaGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkSlateBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkSlateGray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkSlateGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkTurquoise</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DarkViolet</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DeepPink</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DeepSkyBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DimGray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DimGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>DodgerBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FairyLight</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FairyLightNCC</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FireBrick</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>FloralWhite</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ForestGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Fuchsia</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Gainsboro</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GhostWhite</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Gold</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Goldenrod</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Gray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Grey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Green</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GreenYellow</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Honeydew</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>HotPink</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>IndianRed</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Indigo</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ivory</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Khaki</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Lavender</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LavenderBlush</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LawnGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LemonChiffon</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightCoral</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightCyan</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightGoldenrodYellow</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightPink</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSalmon</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSeaGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSkyBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSlateGray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSlateGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightSteelBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LightYellow</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Lime</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>LimeGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Linen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Magenta</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Maroon</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumAquamarine</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumOrchid</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumPurple</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumSeaGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumSlateBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumSpringGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumTurquoise</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MediumVioletRed</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MidnightBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MintCreawm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MistyRose</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Moccasin</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>NavajoWhite</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Navy</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OldLace</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Olive</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OliveDrab</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Orange</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OrangeRed</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Orchide</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PaleGoldenrod</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PaleGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PaleTurquoise</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PaleVioletRed</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PapayaWhip</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PeachPuff</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Peru</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pink</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Plaid</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Plum</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PowderBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Purple</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Red</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RosyBrown</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RoyalBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SaddleBrown</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Salmon</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SandyBrown</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SeaGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Seashell</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Sienna</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Silver</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SkyBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SlateBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SlateGray</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SlateGrey</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Snow</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SpringGreen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SteelBlue</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tan</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Teal</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Thistle</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tomato</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Turquoise</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Violet</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Wheat</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>White</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>WhiteSmoke</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Yellow</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>YellowGreen</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="formLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>60</y>
+          <width>160</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="font">
+            <font>
+             <pointsize>13</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Spacing</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_6"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="font">
+            <font>
+             <pointsize>13</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Color</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEdit_8"/>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="page_5">

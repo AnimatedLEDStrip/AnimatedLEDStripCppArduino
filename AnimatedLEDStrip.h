@@ -41,7 +41,6 @@ public:
 		pixelRun( direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0, int b2In = 0 ),	// Overload for pixelRun()
 		pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ),	// Very similar to the sinelon() function in the DemoReel100 example for the FastLED library
 		pixelRunWithTrail( direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0, int b2In = 0 ),	// Overload for pixelRunWithTrail()
-		ripple( int startPixel, ColorContainer colorValues ),	// Runs a single ripple animation (similar to chase but in both directions from a starting point and subsequent LEDs are dimmer)
 		sparkle( ColorContainer sparkleColor ),	// Runs a single sparkle animation (random pixels are set to a different color/brightness for a very short time before returning to the pixel's original color)
 		sparkle( int rIn, int gIn, int bIn ),	// Overload for sparkle()
 		sparkleToColor( ColorContainer destinationColor ),	// Runs a single sparkle to color animation (similar to sparkle but the LEDs retain the new color)

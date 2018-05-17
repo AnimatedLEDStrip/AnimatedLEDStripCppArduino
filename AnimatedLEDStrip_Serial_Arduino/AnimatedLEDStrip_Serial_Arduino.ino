@@ -2,18 +2,18 @@
 #include <AnimatedLEDStrip.h>
 
 /*  This code can be used with the AnimatedLEDStrip Library GUI when connected to the computer via a serial (USB) connection.
-    This can also be used with any other device that can send serial communication in the correct format, such as:
-      The Arduino Serial Monitor (if "Carriage Return" or "Both NL & CR" is selected for the line ending)
-      A RoboRIO (using the SerialPort class)
-
-    If implementing your own way of sending serial communication, follow the formats specified for each animation.
-    Signal conventions:
-      <Color> means a hexadecimal value (usually 6 digits) WITHOUT the 0x at the beginning. Leading 0s are not mandatory, thus 000000 and 0 are both valid ways of representing black.
-      (A | B) means that A or B can be used but that one and only one of them must be there.
-      <Brightness>, <Start(r)intensity>, <EndgIntensity> and all others like them are integer values between 0 and 255.
-      <Spacing> is an integer value. For best results, use something in the range of 3-6.
-      \r is a reminder that a carriage return (0x0D or \r) is needed at the end of every message.
-*/
+ *  This can also be used with any other device that can send serial communication in the correct format, such as:
+ *    The Arduino Serial Monitor (if "Carriage Return" or "Both NL & CR" is selected for the line ending)
+ *    A RoboRIO (using the SerialPort class)
+ *    
+ *  If implementing your own way of sending serial communication, follow the formats specified for each animation.
+ *  Signal conventions:
+ *    <Color> means a hexadecimal value (usually 6 digits) WITHOUT the 0x at the beginning. Leading 0s are not mandatory, thus 000000 and 0 are both valid ways of representing black.
+ *    (A | B) means that A or B can be used but that one and only one of them must be there.
+ *    <Brightness>, <Start(r)intensity>, <EndgIntensity> and all others like them are integer values between 0 and 255.
+ *    <Spacing> is an integer value. For best results, use something in the range of 3-6.
+ *    \r is a reminder that a carriage return (0x0D or \r) is needed at the end of every message.
+ */
 
 Messenger input;          // Create a Messenger instance
 

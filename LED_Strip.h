@@ -22,7 +22,7 @@ enum direction {
 class LEDStrip : public CFastLED {
 
 	int pixelCount;									/**< Number of pixels in strip - set in constructor */
-	CRGB * ledArray;									/**< Pointer to the array of structures holding the pixel values */
+	CRGB * ledArray;								/**< Pointer to the array of structures holding the pixel values */
 	int pin;
 
 public:
@@ -34,18 +34,17 @@ public:
 
 	void
 		setPixelColor( int pixel, ColorContainer colorValues ),	// Sets the color of one pixel to the color stored in a ColorContainer object
-		setPixelColor( int pixel, int rIn, int gIn, int bIn ),	// Calls setPixelColor(int, ColorContainer) with a ColorContainer created from the inputted rgb values
-		setPixelRed( int pixel, int rIn ),
-		setPixelGreen( int pixel, int gIn ),
-		setPixelBlue( int pixel, int bIn ),
+		setPixelColor( int pixel, int rIn, int gIn, int bIn ),	// Overload for setPixelColor()
+		setPixelRed( int pixel, int rIn ),	// Sets the red intensity in the specified pixel
+		setPixelGreen( int pixel, int gIn ),	// Sets the green intensity in the specified pixel
+		setPixelBlue( int pixel, int bIn ),	// Sets the blue intensity in the specified pixel
 		setStripColor( ColorContainer colorValues ),	// Sets the color of the whole strip to the color stored in a ColorContainer object
-		setStripColor( int rIn, int gIn, int bIn ),	// Calls setStripColor(ColorContainer) with a ColorContainer created from the inputted rgb values
-		setStripRed( int rIn ),
-		setStripGreen( int gIn ),
-		setStripBlue( int bIn );
+		setStripColor( int rIn, int gIn, int bIn );	// Overload for setStripColor()
+
+	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ); // Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code
 
 	void
-		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ),	// Fills a LED strip with the colors from a FastLED Color Palette -- based on FastLED example code -- works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
+		fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness ),	// Works with TProgmemRGBPalette32, TProgmemHSVPalette16 and TProgmemHSVPalette32 too
 		fillLEDsFromPalette( const CRGBPalette16& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CRGBPalette32& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
 		fillLEDsFromPalette( const CRGBPalette256& palette, uint8_t startIndex, TBlendType blend = LINEARBLEND, uint8_t brightness = 255 ),
@@ -56,8 +55,6 @@ public:
 		fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3 ),
 		fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3, ColorContainer colorValues4 );
 
-	template <class paletteType> void fillLEDsFromPalette( const paletteType& palette, uint8_t startIndex, TBlendType blend, uint8_t brightness );
-
 	int
 		getPixelCount(),	// Returns pixelCount
 		getPixelRed( int pixelIn ),	// Returns intensity of red in the specified pixel
@@ -67,7 +64,7 @@ public:
 	ColorContainer
 		getPixelColor( int pixelIn );	// Returns a ColorContainer with the red, green and blue intensities of the pixel
 
-	CRGB * getLEDArray() { return ledArray; }
+	CRGB * getLEDArray() { return ledArray; }	// Returns a pointer to the first element in ledArray
 
 	CRGB & operator[]( int indexIn ) { return ledArray[indexIn]; }	// Index Operator method
 

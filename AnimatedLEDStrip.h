@@ -17,7 +17,6 @@ class AnimatedLEDStrip : public LEDStrip {
 
 
 public:
-	//AnimatedLEDStrip();
 	AnimatedLEDStrip( int numLEDs, int pin ) : LEDStrip( numLEDs, pin ) {
 
 		shuffleArray = new int[numLEDs];
@@ -62,7 +61,7 @@ public:
 		smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 );
 
 
-	/** Helper Function that shuffles the values in the shuffleArray 
+	/** Helper Function that shuffles the values in the shuffleArray
 		Slightly modified version of code originally from https://ideone.com/qU00S4 */
 
 	void shuffle() {

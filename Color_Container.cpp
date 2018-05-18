@@ -23,9 +23,9 @@ ColorContainer::ColorContainer( long hexIn ) {
 
 
 /**	Constructor for the ColorContainer class
-	@param rIn The value to be set to r
-	@param gIn The value to be set to g
-	@param bIn The value to be set to b */
+	@param rIn The value to be save to r
+	@param gIn The value to be save to g
+	@param bIn The value to be save to b */
 
 ColorContainer::ColorContainer( int rIn, int gIn, int bIn ) { r = rIn; g = gIn; b = bIn; }
 

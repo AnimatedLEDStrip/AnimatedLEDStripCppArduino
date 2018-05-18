@@ -11,8 +11,8 @@ using namespace std;
 
 LEDStrip::LEDStrip( int numLEDs, int pinIn ) {
 
-	pixelCount = numLEDs;															// Save numLEDs to pixelCount
-	ledArray = new CRGB[numLEDs];													// Allocate new array of CRGB (pixels)
+	pixelCount = numLEDs;														// Save numLEDs to pixelCount
+	ledArray = new CRGB[numLEDs];												// Allocate new array of CRGB (pixels)
 	pin = pinIn;
 
 	if (pin == 0)	FastLED.addLeds<NEOPIXEL, PIN0>( ledArray, numLEDs );		// If pin == #, use PIN#
@@ -79,8 +79,8 @@ LEDStrip::LEDStrip( int numLEDs, int pinIn ) {
 
 LEDStrip::LEDStrip( const LEDStrip& stripIn ) {
 
-	pixelCount = stripIn.pixelCount;											// Save stripIn.pixelCount to pixelCount
-	ledArray = new CRGB[pixelCount];											// Allocate new array of CRGB (pixels)
+	pixelCount = stripIn.pixelCount;												// Save stripIn.pixelCount to pixelCount
+	ledArray = new CRGB[pixelCount];												// Allocate new array of CRGB (pixels)
 	pin = stripIn.pin;
 
 	for (int i = 0; i < pixelCount; i++)
@@ -161,8 +161,8 @@ LEDStrip::~LEDStrip() {
 LEDStrip& LEDStrip::operator=( const LEDStrip& stripIn ) {
 
 	delete[] ledArray;
-	pixelCount = stripIn.pixelCount;											// Save numLEDs to pixelCount
-	ledArray = new CRGB[pixelCount];											// Allocate new array of CRGB (pixels)
+	pixelCount = stripIn.pixelCount;												// Save numLEDs to pixelCount
+	ledArray = new CRGB[pixelCount];												// Allocate new array of CRGB (pixels)
 	pin = stripIn.pin;
 
 	for (int i = 0; i < pixelCount; i++)
@@ -233,7 +233,6 @@ LEDStrip& LEDStrip::operator=( const LEDStrip& stripIn ) {
 	@param pixel The index of the pixel to be changed
 	@param colorValues The ColorContainer containing the desired color */
 
-
 void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 
 	ledArray[pixel] = CRGB( colorValues.getr(), colorValues.getg(), colorValues.getb() );
@@ -242,7 +241,7 @@ void LEDStrip::setPixelColor( int pixel, ColorContainer colorValues ) {
 }
 
 
-/**	Set Method for the LEDStrip Class
+/**	Overloaded Set Method for the LEDStrip Class
 	Sets the r, g, b values of a single pixel to the specified intensities
 	@param pixel The index of the pixel to be changed
 	@param rIn The value for the red LED
@@ -268,7 +267,9 @@ void LEDStrip::setPixelColor( int pixel, int rIn, int gIn, int bIn ) {
 void LEDStrip::setPixelRed( int pixel, int rIn ) {
 
 	ledArray[pixel].red = rIn;
+
 	return;
+
 }
 
 
@@ -280,7 +281,9 @@ void LEDStrip::setPixelRed( int pixel, int rIn ) {
 void LEDStrip::setPixelGreen( int pixel, int gIn ) {
 
 	ledArray[pixel].green = gIn;
+
 	return;
+
 }
 
 
@@ -292,7 +295,9 @@ void LEDStrip::setPixelGreen( int pixel, int gIn ) {
 void LEDStrip::setPixelBlue( int pixel, int bIn ) {
 
 	ledArray[pixel].blue = bIn;
+
 	return;
+
 }
 
 
@@ -309,7 +314,7 @@ void LEDStrip::setStripColor( ColorContainer colorValues ) {
 }
 
 
-/**	Set Method for the LEDStrip Class
+/**	Overloaded Set Method for the LEDStrip Class
 	Sets the r, g, b values of all pixels in a strip to the specified intensities
 	@param rIn The intensity for the red values of the pixels
 	@param gIn The intensity for the green values of the pixels
@@ -323,54 +328,6 @@ void LEDStrip::setStripColor( int rIn, int gIn, int bIn ) {
 
 	return;
 
-}
-
-
-/** Set Method for the LEDStrip Class
-	Sets all red values in a strip to the specified intensity
-	@param rIn The intensity for the red values of the pixels */
-
-void LEDStrip::setStripRed( int rIn ) {
-
-	for (int i = 0; i < getPixelCount(); i++) {
-	
-		//Serial.print( getPixelCount() );
-		//Serial.print( '\n' );
-		//Serial.print( "ored = " );
-		//Serial.print( ledArray[i].r );
-		//Serial.print( '\n' );
-		setPixelRed( i, rIn );
-		/*Serial.print( "red = " );
-		Serial.print( ledArray[i].red );
-		Serial.print( '\n' );*/
-
-	}
-	show();
-	return;
-}
-
-
-/** Set Method for the LEDStrip Class
-	Sets all green values in a strip to the specified intensity
-	@param gIn The intensity for the green values of the pixels */
-
-void LEDStrip::setStripGreen( int gIn ) {
-
-	for (int i = 0; i < getPixelCount(); i++) ledArray[i].green = gIn;
-	show();
-	return;
-}
-
-
-/**	Set Method for the LEDStrip Class
-	Sets all blue values in a strip to the specified intensity
-	@param bIn The intensity for the blue values of the pixels */
-
-void LEDStrip::setStripBlue( int bIn ) {
-
-	for (int i = 0; i < getPixelCount(); i++) ledArray[i].blue = bIn;
-	show();
-	return;
 }
 
 
@@ -510,6 +467,11 @@ void LEDStrip::fillLEDsFromPalette( const TProgmemRGBPalette16& palette, uint8_t
 }
 
 
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors that fade from colorValues1 at the beginning of the strip to colorValues2 at the end of the strip
+	@param colorValues1 The color at the beginning of the strip
+	@param colorValues2 The color at the end of the strip */
+
 void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2 ) {
 
 	fill_gradient_RGB( ledArray, pixelCount, CRGB( colorValues1.getr(), colorValues1.getg(), colorValues1.getb() ), CRGB( colorValues2.getr(), colorValues2.getg(), colorValues2.getb() ) );
@@ -519,6 +481,12 @@ void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer
 }
 
 
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors that fade from colorValues1 at the beginning of the strip to colorValues2 at the middle of the strip to colorValues3 at the end of the strip
+	@param colorValues1 The color at the beginning of the strip
+	@param colorValues2 The color at the middle of the strip
+	@param colorValues3 The color at the end of the strip */
+
 void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3 ) {
 
 	fill_gradient_RGB( ledArray, pixelCount, CRGB( colorValues1.getr(), colorValues1.getg(), colorValues1.getb() ), CRGB( colorValues2.getr(), colorValues2.getg(), colorValues2.getb() ), CRGB( colorValues3.getr(), colorValues3.getg(), colorValues3.getb() ) );
@@ -527,6 +495,13 @@ void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer
 
 }
 
+
+/**	Set Method for the LEDStrip Class
+	Fills a LED strip with colors that fade from colorValues1 at the beginning of the strip to colorValues2 at the 1/3 point the strip to colorValues3 at the 2/3 point in the strip to colorValues4 at the end of the strip
+	@param colorValues1 The color at the beginning of the strip
+	@param colorValues2 The color at the 1/3 point in the strip
+	@param colorValues3 The color at the 2/3 point in the strip
+	@param colorValues4 The color at the end of the strip */
 
 void LEDStrip::fillLEDsWithGradient( ColorContainer colorValues1, ColorContainer colorValues2, ColorContainer colorValues3, ColorContainer colorValues4 ) {
 
@@ -548,7 +523,7 @@ int LEDStrip::getPixelCount() { return pixelCount; }
 	@param pixelIn The specified pixel
 	@return A ColorContainer containing the color of the specified pixel */
 
-ColorContainer LEDStrip::getPixelColor( int pixelIn ) {	return ColorContainer( ledArray[pixelIn].r, ledArray[pixelIn].g, ledArray[pixelIn].b ); }
+ColorContainer LEDStrip::getPixelColor( int pixelIn ) { return ColorContainer( ledArray[pixelIn].r, ledArray[pixelIn].g, ledArray[pixelIn].b ); }
 
 
 /**	Get Method for the red value of a pixel in a LEDStrip instance

@@ -331,7 +331,7 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 }
 
 
-/**	Method to run a Multi-Pixel Run animation
+/**	Overloaded method to run a Multi-Pixel Run animation
 	Calls multiPixelRun(int, direction, ColorContainer) with inputted parameters
 	@param spacing The number of LEDs until the next LED to be lit is reached
 	@param chaseDirection Specifies if the animation should run 'forward' or 'backward'
@@ -652,11 +652,27 @@ void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {
 
 		show();
 
-		delay( 10 );
+		delay( 50 );
 
 		setPixelColor( shuffleArray[i], originalColor );
 
 	}
+
+}
+
+
+/**	Overloaded method to run a sparkle animation
+	@param rIn The red intensity for the sparkle color
+	@param gIn The green intensity for the sparkle color
+	@param bIn The blue intensity for the sparkle color */
+
+void AnimatedLEDStrip::sparkle( int rIn, int gIn, int bIn ) {
+
+	ColorContainer temp( rIn, gIn, bIn );
+
+	sparkle( temp );
+
+	return;
 
 }
 
@@ -680,6 +696,11 @@ void AnimatedLEDStrip::sparkleToColor( ColorContainer destinationColor ) {
 
 }
 
+
+/**	Overloaded method to run a sparkle to color animation
+	@param rIn The red intensity for the destination color
+	@param gIn The green intensity for the destination color
+	@param bIn The blue intensity for the destination color */
 
 void AnimatedLEDStrip::sparkleToColor( int rIn, int gIn, int bIn ) {
 
@@ -727,6 +748,12 @@ void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection
 
 }
 
+
+/**	Overloaded method to run a wipe animation
+	@param rIn The red intensity for the destination color
+	@param gIn The green intensity for the destination color
+	@param bIn The blue intensity for the destination color
+	@param wipeDirection Specifies if the animation should run 'forward' or 'backward' */
 
 void AnimatedLEDStrip::wipe( int rIn, int gIn, int bIn, direction wipeDirection ) {
 

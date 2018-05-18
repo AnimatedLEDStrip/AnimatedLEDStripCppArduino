@@ -3,7 +3,7 @@ See AnimatedLEDStrip_Library_User_Manual.pdf for complete descriptions of method
 
 This Arduino library was designed to simplify the usage of animations on LED strips so that an animation can be run with only one function call rather than spending time writing and debugging the logic behind an animation. Though this library only supplies 12 animations, the range of uses of them are endless. The user can also create their own animations, which we would love to hear about and potentially include in future versions of the library.
 
-The base of this library is the FastLED library, which gives the user control over an LED strip. The aspect in which FastLED was lacking was predefined animations. Though they gave examples of potential animations (some of which we modified and used here), the user would still be required to copy the animation code into their program’s code and then modify it to work with their setup.
+The base of this library is the FastLED library, which gives the user control over an LED strip. The aspect in which FastLED was lacking was predefined animations. Though they gave examples of potential animations (some of which we modified and used here), the user would still be required to copy the animation code into their programâ€™s code and then modify it to work with their setup.
 
 Because of time limitations, this library is only configured to work with NeoPixel LEDs, though a user can modify the constructors of the LEDStrip and AnimatedLEDStrip classes to use another LED chipset.
 

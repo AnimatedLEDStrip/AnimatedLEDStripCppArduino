@@ -1,4 +1,5 @@
 #ifndef PIN_DEFS_H
+#define PIN_DEFS_H
 #define PIN0 0
 #define PIN1 1
 #define PIN2 2

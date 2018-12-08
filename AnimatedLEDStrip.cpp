@@ -765,6 +765,10 @@ void AnimatedLEDStrip::wipe( int rIn, int gIn, int bIn, direction wipeDirection 
 
 }
 
+void AnimatedLEDStrip::stack( direction stackDirection, ColorContainer colorValues ) {
+
+}
+
 
 /**	@deprecated Use multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues) instead
 	Method to run a chase animation

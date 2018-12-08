@@ -843,7 +843,7 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
 
     }
 
-    if (stacktDirection == backward) {
+    if (stackDirection == backward) {
 
         for (int q = 0; q < getPixelCount(); q++) {
 

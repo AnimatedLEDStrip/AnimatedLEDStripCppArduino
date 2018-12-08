@@ -6,15 +6,15 @@
 	@param colorValues2 The second color to be displayed
 	@param delayTime The time (in milliseconds) that each color is displayed for */
 
-void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer colorValues2, int delayTime ) {
+void AnimatedLEDStrip::alternate(ColorContainer colorValues1, ColorContainer colorValues2, int delayTime) {
 
-	setStripColor( colorValues1 );	// Set strip to colorValues1
-	delay( delayTime );				// Delay for delayTime milliseconds
+    setStripColor(colorValues1);    // Set strip to colorValues1
+    delay(delayTime);                // Delay for delayTime milliseconds
 
-	setStripColor( colorValues2 );	// Set strip to colorValues2
-	delay( delayTime );				// Delay for delayTime milliseconds
+    setStripColor(colorValues2);    // Set strip to colorValues2
+    delay(delayTime);                // Delay for delayTime milliseconds
 
-	return;							// Return
+    return;                            // Return
 
 }
 
@@ -28,14 +28,14 @@ void AnimatedLEDStrip::alternate( ColorContainer colorValues1, ColorContainer co
 	@param b2In The blue intensity for the second color
 	@param delayTime The time (in milliseconds) that each color is displayed for */
 
-void AnimatedLEDStrip::alternate( int r1In, int g1In, int b1In, int r2In, int g2In, int b2In, int delayTime ) {
+void AnimatedLEDStrip::alternate(int r1In, int g1In, int b1In, int r2In, int g2In, int b2In, int delayTime) {
 
-	ColorContainer temp1 = ColorContainer( r1In, g1In, b1In );	// Create temporary ColorContainer for colorValues1
-	ColorContainer temp2 = ColorContainer( r2In, g2In, b2In );	// Create temporary ColorContainer for colorValues2
+    ColorContainer temp1 = ColorContainer(r1In, g1In, b1In);    // Create temporary ColorContainer for colorValues1
+    ColorContainer temp2 = ColorContainer(r2In, g2In, b2In);    // Create temporary ColorContainer for colorValues2
 
-	alternate( temp1, temp2, delayTime );						// Call main alternate method
+    alternate(temp1, temp2, delayTime);                        // Call main alternate method
 
-	return;														// Return
+    return;                                                        // Return
 
 }
 
@@ -46,42 +46,50 @@ void AnimatedLEDStrip::alternate( int r1In, int g1In, int b1In, int r2In, int g2
 	@param endIntensity The intensity that the pixel will end at
 	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
-void AnimatedLEDStrip::fadePixelRed( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+void AnimatedLEDStrip::fadePixelRed(int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false) {
 
-	fadeDirection fade;													// Initialize fade variable that will specify the direction the fade needs to go
+    fadeDirection fade;                                                    // Initialize fade variable that will specify the direction the fade needs to go
 
-	if (startIntensity > endIntensity) fade = fadeDown;					// If the end intensity is lower than the start intensity, the function needs to fade down
-	if (startIntensity < endIntensity) fade = fadeUp;					// If the end intensity is higher than the start intensity, the function needs to fade up
-	if (startIntensity == endIntensity) return;							// If the start and end intensities are equal, the function has no work to do
+    if (startIntensity > endIntensity)
+        fade = fadeDown;                    // If the end intensity is lower than the start intensity, the function needs to fade down
+    if (startIntensity < endIntensity)
+        fade = fadeUp;                    // If the end intensity is higher than the start intensity, the function needs to fade up
+    if (startIntensity == endIntensity)
+        return;                            // If the start and end intensities are equal, the function has no work to do
 
-	ColorContainer originalValues = getPixelColor( pixel );				// Save original color of the pixel so that the pixel can be reverted at the end if desired
+    ColorContainer originalValues = getPixelColor(
+            pixel);                // Save original color of the pixel so that the pixel can be reverted at the end if desired
 
-	switch (fade) {														// Switching on the fade variable
-	case fadeUp:														// If set to fadeUp:
-		for (int i = startIntensity; i <= endIntensity; i++) {				// Run through each intensity from the start intensity to the end intensity...
+    switch (fade) {                                                        // Switching on the fade variable
+        case fadeUp:                                                        // If set to fadeUp:
+            for (int i = startIntensity; i <=
+                                         endIntensity; i++) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelRed( pixel, i );										// ...Setting the pixel's red intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelRed(pixel, i);                                        // ...Setting the pixel's red intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	case fadeDown:														// If set to fadeDown:
-		for (int i = startIntensity; i >= endIntensity; i--) {				// Run through each intensity from the start intensity to the end intensity...
+        case fadeDown:                                                        // If set to fadeDown:
+            for (int i = startIntensity; i >=
+                                         endIntensity; i--) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelRed( pixel, i );										// ...Setting the pixel's red intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelRed(pixel, i);                                        // ...Setting the pixel's red intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	}
+    }
 
-	if (revertAtCompletion) setPixelColor( pixel, originalValues );		// If the user wants the pixel to revert to its original color, revert it here
+    if (revertAtCompletion)
+        setPixelColor(pixel,
+                      originalValues);        // If the user wants the pixel to revert to its original color, revert it here
 
-	return;																// Return
+    return;                                                                // Return
 
 }
 
@@ -92,42 +100,53 @@ void AnimatedLEDStrip::fadePixelRed( int pixel, int startIntensity, int endInten
 	@param endIntensity The intensity that the pixel will end at
 	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
-void AnimatedLEDStrip::fadePixelGreen( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+void
+AnimatedLEDStrip::fadePixelGreen(int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false) {
 
-	fadeDirection fade;													// Initialize the fade variable that will specify the direction the fade needs to go
+    fadeDirection fade;                                                    // Initialize the fade variable that will specify the direction the fade needs to go
 
-	if (startIntensity > endIntensity) fade = fadeDown;					// If the end intensity is lower than the start intensity, the function needs to fade down
-	if (startIntensity < endIntensity) fade = fadeUp;					// If the end intensity is higher than the start intensity, the function needs to fade up
-	if (startIntensity == endIntensity) return;							// If the start and end intensities are equal, the function has no work to do
+    if (startIntensity > endIntensity)
+        fade = fadeDown;                    // If the end intensity is lower than the start intensity, the function needs to fade down
+    if (startIntensity < endIntensity)
+        fade = fadeUp;                    // If the end intensity is higher than the start intensity, the function needs to fade up
+    if (startIntensity == endIntensity)
+        return;                            // If the start and end intensities are equal, the function has no work to do
 
-	ColorContainer originalValues = getPixelColor( pixel );				// Save original color of the pixel so that the pixel can be reverted at the end if desired
+    ColorContainer originalValues = getPixelColor(
+            pixel);                // Save original color of the pixel so that the pixel can be reverted at the end if desired
 
-	switch (fade) {														// Switching on the fade variable
-	case fadeUp:														// If set to fadeUp:
-		for (int i = startIntensity; i <= endIntensity; i++) {				// Run through each intensity from the start intensity to the end intensity...
+    switch (fade) {                                                        // Switching on the fade variable
+        case fadeUp:                                                        // If set to fadeUp:
+            for (int i = startIntensity; i <=
+                                         endIntensity; i++) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelGreen( pixel, i );										// ...Setting the pixel's green intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelGreen(pixel,
+                              i);                                        // ...Setting the pixel's green intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	case fadeDown:														// If set to fadeDown:
-		for (int i = startIntensity; i >= endIntensity; i--) {				// Run through each intensity from the start intensity to the end intensity...
+        case fadeDown:                                                        // If set to fadeDown:
+            for (int i = startIntensity; i >=
+                                         endIntensity; i--) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelGreen( pixel, i );										// ...Setting the pixel's green intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelGreen(pixel,
+                              i);                                        // ...Setting the pixel's green intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	}
+    }
 
-	if (revertAtCompletion) setPixelColor( pixel, originalValues );		// If the user wants the pixel to revert to its original color, revert it here
+    if (revertAtCompletion)
+        setPixelColor(pixel,
+                      originalValues);        // If the user wants the pixel to revert to its original color, revert it here
 
-	return;																// Return
+    return;                                                                // Return
 
 }
 
@@ -138,42 +157,52 @@ void AnimatedLEDStrip::fadePixelGreen( int pixel, int startIntensity, int endInt
 	@param endIntensity The intensity that the pixel will end at
 	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
-void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false ) {
+void AnimatedLEDStrip::fadePixelBlue(int pixel, int startIntensity, int endIntensity, bool revertAtCompletion = false) {
 
-	fadeDirection fade;													// Initialize the fade variable that will specify the direction the fade needs to go
+    fadeDirection fade;                                                    // Initialize the fade variable that will specify the direction the fade needs to go
 
-	if (startIntensity > endIntensity) fade = fadeDown;					// If the end intensity is lower than the start intensity, the function needs to fade down
-	if (startIntensity < endIntensity) fade = fadeUp;					// If the end intensity is higher than the start intensity, the function needs to fade up
-	if (startIntensity == endIntensity) return;							// If the start and end intensities are equal, the function has no work to do
+    if (startIntensity > endIntensity)
+        fade = fadeDown;                    // If the end intensity is lower than the start intensity, the function needs to fade down
+    if (startIntensity < endIntensity)
+        fade = fadeUp;                    // If the end intensity is higher than the start intensity, the function needs to fade up
+    if (startIntensity == endIntensity)
+        return;                            // If the start and end intensities are equal, the function has no work to do
 
-	ColorContainer originalValues = getPixelColor( pixel );				// Save original color of the pixel so that the pixel can be reverted at the end if desired
+    ColorContainer originalValues = getPixelColor(
+            pixel);                // Save original color of the pixel so that the pixel can be reverted at the end if desired
 
-	switch (fade) {														// Switching on the fade variable
-	case fadeUp:														// If set to fadeUp:
-		for (int i = startIntensity; i <= endIntensity; i++) {				// Run through each intensity from the start intensity to the end intensity...
+    switch (fade) {                                                        // Switching on the fade variable
+        case fadeUp:                                                        // If set to fadeUp:
+            for (int i = startIntensity; i <=
+                                         endIntensity; i++) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelBlue( pixel, i );										// ...Setting the pixel's blue intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelBlue(pixel,
+                             i);                                        // ...Setting the pixel's blue intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	case fadeDown:														// If set to fadeDown:
-		for (int i = startIntensity; i >= endIntensity; i--) {				// Run through each intensity from the start intensity to the end intensity...
+        case fadeDown:                                                        // If set to fadeDown:
+            for (int i = startIntensity; i >=
+                                         endIntensity; i--) {                // Run through each intensity from the start intensity to the end intensity...
 
-			setPixelBlue( pixel, i );										// ...Setting the pixel's blue intensity...
-			show();															// ...And updating the pixel after each change
+                setPixelBlue(pixel,
+                             i);                                        // ...Setting the pixel's blue intensity...
+                show();                                                            // ...And updating the pixel after each change
 
-		}
+            }
 
-		break;
+            break;
 
-	}
+    }
 
-	if (revertAtCompletion) setPixelColor( pixel, originalValues );		// If the user wants the pixel to revert to its original color, revert it here
+    if (revertAtCompletion)
+        setPixelColor(pixel,
+                      originalValues);        // If the user wants the pixel to revert to its original color, revert it here
 
-	return;																// Return
+    return;                                                                // Return
 
 }
 
@@ -188,81 +217,95 @@ void AnimatedLEDStrip::fadePixelBlue( int pixel, int startIntensity, int endInte
 	@param endBlueIntensity The intensity that the pixel's blue value will end at
 	@param revertAtCompletion Specifies if the pixel should revert to the color it had prior to the animation (default false) */
 
-void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity, int endRedIntensity, int endGreenIntensity, int endBlueIntensity, bool revertAtCompletion = false ) {
+void AnimatedLEDStrip::fadePixelAll(int pixel, int startRedIntensity, int startGreenIntensity, int startBlueIntensity,
+                                    int endRedIntensity, int endGreenIntensity, int endBlueIntensity,
+                                    bool revertAtCompletion = false) {
 
-	ColorContainer originalValues = getPixelColor( pixel );				// Save the original color of the pixel so that the pixel can be reverted at the end if desired
+    ColorContainer originalValues = getPixelColor(
+            pixel);                // Save the original color of the pixel so that the pixel can be reverted at the end if desired
 
-	setPixelRed( pixel, startRedIntensity );							// Set pixel's red intensity to startRedIntensity
-	setPixelGreen( pixel, startGreenIntensity );						// Set pixel's green intensity to startGreenIntensity
-	setPixelBlue( pixel, startBlueIntensity );							// Set pixel's blue intensity to startBlueIntensity
+    setPixelRed(pixel, startRedIntensity);                            // Set pixel's red intensity to startRedIntensity
+    setPixelGreen(pixel,
+                  startGreenIntensity);                        // Set pixel's green intensity to startGreenIntensity
+    setPixelBlue(pixel,
+                 startBlueIntensity);                            // Set pixel's blue intensity to startBlueIntensity
 
-	bool redComplete = false;								// Initialize redComplete, which will keep track of if the red intensity has reached endRedIntensity
-	bool greenComplete = false;								// Initialize greenComplete, which will keep track of if the green intensity has reached endGreenIntensity
-	bool blueComplete = false;								// Initialize blueComplete, which will keep track of if the blue intensity has reached endBlueIntensity
+    bool redComplete = false;                                // Initialize redComplete, which will keep track of if the red intensity has reached endRedIntensity
+    bool greenComplete = false;                                // Initialize greenComplete, which will keep track of if the green intensity has reached endGreenIntensity
+    bool blueComplete = false;                                // Initialize blueComplete, which will keep track of if the blue intensity has reached endBlueIntensity
 
-	while (!redComplete || !greenComplete || !blueComplete) {			// While red, green and/or blue have not reached their final intensity, continue loop
+    while (!redComplete || !greenComplete ||
+           !blueComplete) {            // While red, green and/or blue have not reached their final intensity, continue loop
 
-		if (!redComplete) {												// If redComplete is still false
+        if (!redComplete) {                                                // If redComplete is still false
 
-			if (getPixelRed( pixel ) < endRedIntensity) {					// If the red intensity is below endRedIntensity
+            if (getPixelRed(pixel) <
+                endRedIntensity) {                    // If the red intensity is below endRedIntensity
 
-				setPixelRed( pixel, getPixelRed( pixel ) + 1 );					// Increase the red intensity
+                setPixelRed(pixel, getPixelRed(pixel) + 1);                    // Increase the red intensity
 
-			} else if (getPixelRed( pixel ) > endRedIntensity) {			// Or if the red intensity is above endRedIntensity
+            } else if (getPixelRed(pixel) >
+                       endRedIntensity) {            // Or if the red intensity is above endRedIntensity
 
-				setPixelRed( pixel, getPixelRed( pixel ) - 1 );					// Decrease the red intensity
+                setPixelRed(pixel, getPixelRed(pixel) - 1);                    // Decrease the red intensity
 
-			} else {														// Otherwise red must be equal to endRedIntensity
+            } else {                                                        // Otherwise red must be equal to endRedIntensity
 
-				redComplete = true;												// So make redComplete true
+                redComplete = true;                                                // So make redComplete true
 
-			}
+            }
 
-		}
+        }
 
-		if (!greenComplete) {											// If greenComplete is still false
+        if (!greenComplete) {                                            // If greenComplete is still false
 
-			if (getPixelGreen( pixel ) < endGreenIntensity) {				// If the green intensity is below endGreenIntensity
+            if (getPixelGreen(pixel) <
+                endGreenIntensity) {                // If the green intensity is below endGreenIntensity
 
-				setPixelGreen( pixel, getPixelGreen( pixel ) + 1 );				// Increase the green intensity
+                setPixelGreen(pixel, getPixelGreen(pixel) + 1);                // Increase the green intensity
 
-			} else if (getPixelGreen( pixel ) > endGreenIntensity) {		// Or if the green intensity is above endGreenIntensity
+            } else if (getPixelGreen(pixel) >
+                       endGreenIntensity) {        // Or if the green intensity is above endGreenIntensity
 
-				setPixelGreen( pixel, getPixelGreen( pixel ) - 1 );				// Decrease the green intensity
+                setPixelGreen(pixel, getPixelGreen(pixel) - 1);                // Decrease the green intensity
 
-			} else {														// Otherwise green must be equal to endGreenIntensity
+            } else {                                                        // Otherwise green must be equal to endGreenIntensity
 
-				greenComplete = true;											// So make greenComplete true
+                greenComplete = true;                                            // So make greenComplete true
 
-			}
+            }
 
-		}
+        }
 
-		if (!blueComplete) {											// If blueComplete is still false
+        if (!blueComplete) {                                            // If blueComplete is still false
 
-			if (getPixelBlue( pixel ) < endBlueIntensity) {					// If the blue intensity is below endBlueIntensity
+            if (getPixelBlue(pixel) <
+                endBlueIntensity) {                    // If the blue intensity is below endBlueIntensity
 
-				setPixelBlue( pixel, getPixelBlue( pixel ) + 1 );				// Increase the blue intensity
+                setPixelBlue(pixel, getPixelBlue(pixel) + 1);                // Increase the blue intensity
 
-			} else if (getPixelBlue( pixel ) > endRedIntensity) {			// Or if the blue intensity is above endBlueIntensity
+            } else if (getPixelBlue(pixel) >
+                       endRedIntensity) {            // Or if the blue intensity is above endBlueIntensity
 
-				setPixelBlue( pixel, getPixelBlue( pixel ) - 1 );				// Decrease the blue intensity
+                setPixelBlue(pixel, getPixelBlue(pixel) - 1);                // Decrease the blue intensity
 
-			} else {														// Otherwise blue must be equal to endBlueIntensity
+            } else {                                                        // Otherwise blue must be equal to endBlueIntensity
 
-				blueComplete = true;											// So make blueComplete true
+                blueComplete = true;                                            // So make blueComplete true
 
-			}
+            }
 
-		}
+        }
 
-		show();														// Send new color data to pixels	
+        show();                                                        // Send new color data to pixels
 
-	}
+    }
 
-	if (revertAtCompletion) setPixelColor( pixel, originalValues );	// If the user wants the pixel to revert to its original color, revert it here
+    if (revertAtCompletion)
+        setPixelColor(pixel,
+                      originalValues);    // If the user wants the pixel to revert to its original color, revert it here
 
-	return;															// Return
+    return;                                                            // Return
 
 }
 
@@ -274,59 +317,60 @@ void AnimatedLEDStrip::fadePixelAll( int pixel, int startRedIntensity, int start
 	@param colorValues The color of the 'running' pixels
 	@param altColorValues The color of the remaining pixels */
 
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
+void AnimatedLEDStrip::multiPixelRun(int spacing, direction chaseDirection, ColorContainer colorValues,
+                                     ColorContainer altColorValues = CRGB::Black) {
 
-	if (chaseDirection == backward) {
+    if (chaseDirection == backward) {
 
-		for (int q = 0; q < spacing; q++) {
+        for (int q = 0; q < spacing; q++) {
 
-			setStripColor( altColorValues );
+            setStripColor(altColorValues);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), colorValues);
 
-			}
+            }
 
-			show();
-			delay( 50 );
+            show();
+            delay(50);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), altColorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), altColorValues);
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	if (chaseDirection == forward) {
+    if (chaseDirection == forward) {
 
-		for (int q = spacing - 1; q >= 0; q--) {
+        for (int q = spacing - 1; q >= 0; q--) {
 
-			setStripColor( altColorValues );
+            setStripColor(altColorValues);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), colorValues);
 
-			}
+            }
 
-			show();
-			delay( 50 );
+            show();
+            delay(50);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), altColorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), altColorValues);
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	return;
+    return;
 
 }
 
@@ -342,14 +386,15 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, Col
 	@param gIn2 The green value for the remaining pixels (default 0)
 	@param bIn2 The blue value for the remaining pixels (default 0) */
 
-void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0, int gIn2 = 0, int bIn2 = 0 ) {
+void AnimatedLEDStrip::multiPixelRun(int spacing, direction chaseDirection, int rIn1, int gIn1, int bIn1, int rIn2 = 0,
+                                     int gIn2 = 0, int bIn2 = 0) {
 
-	ColorContainer temp1( rIn1, gIn1, bIn1 );					// Create temporary ColorContainer for colorValues
-	ColorContainer temp2( rIn2, gIn2, bIn2 );					// Create temporary ColorContainer for altColorValues
+    ColorContainer temp1(rIn1, gIn1, bIn1);                    // Create temporary ColorContainer for colorValues
+    ColorContainer temp2(rIn2, gIn2, bIn2);                    // Create temporary ColorContainer for altColorValues
 
-	multiPixelRun( spacing, chaseDirection, temp1, temp2 );		// Call main multiPixelRun method
+    multiPixelRun(spacing, chaseDirection, temp1, temp2);        // Call main multiPixelRun method
 
-	return;														// Return
+    return;                                                        // Return
 
 }
 
@@ -359,39 +404,40 @@ void AnimatedLEDStrip::multiPixelRun( int spacing, direction chaseDirection, int
 	@param colorValues The color of the 'running' pixel
 	@param altColorValues The color of the remaining pixels */
 
-void AnimatedLEDStrip::pixelRun( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
+void AnimatedLEDStrip::pixelRun(direction movementDirection, ColorContainer colorValues,
+                                ColorContainer altColorValues = CRGB::Black) {
 
-	setStripColor( altColorValues );
+    setStripColor(altColorValues);
 
-	if (movementDirection == forward) {
+    if (movementDirection == forward) {
 
-		for (int q = 0; q < getPixelCount(); q++) {
+        for (int q = 0; q < getPixelCount(); q++) {
 
-			setPixelColor( q, colorValues );
+            setPixelColor(q, colorValues);
 
-			delay( 50 );
+            delay(50);
 
-			setPixelColor( q, altColorValues );
+            setPixelColor(q, altColorValues);
 
-		}
+        }
 
-	}
+    }
 
-	if (movementDirection == backward) {
+    if (movementDirection == backward) {
 
-		for (int q = getPixelCount() - 1; q >= 0; q--) {
+        for (int q = getPixelCount() - 1; q >= 0; q--) {
 
-			setPixelColor( q, colorValues );
+            setPixelColor(q, colorValues);
 
-			delay( 50 );
+            delay(50);
 
-			setPixelColor( q, altColorValues );
+            setPixelColor(q, altColorValues);
 
-		}
+        }
 
-	}
+    }
 
-	return;
+    return;
 
 }
 
@@ -405,14 +451,15 @@ void AnimatedLEDStrip::pixelRun( direction movementDirection, ColorContainer col
 	@param g2In The green value for the remaining pixels (default 0)
 	@param b2In The blue value for the remaining pixels (default 0) */
 
-void AnimatedLEDStrip::pixelRun( direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0, int b2In = 0 ) {
+void AnimatedLEDStrip::pixelRun(direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0,
+                                int b2In = 0) {
 
-	ColorContainer temp1 = ColorContainer( r1In, g1In, b1In );
-	ColorContainer temp2 = ColorContainer( r2In, g2In, b2In );
+    ColorContainer temp1 = ColorContainer(r1In, g1In, b1In);
+    ColorContainer temp2 = ColorContainer(r2In, g2In, b2In);
 
-	pixelRun( movementDirection, temp1, temp2 );
+    pixelRun(movementDirection, temp1, temp2);
 
-	return;
+    return;
 
 }
 
@@ -423,48 +470,51 @@ void AnimatedLEDStrip::pixelRun( direction movementDirection, int r1In, int g1In
 	@param colorValues The color of the 'running' pixel
 	@param altColorValues The color the remaining pixels will fade to */
 
-void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black ) {
+void AnimatedLEDStrip::pixelRunWithTrail(direction movementDirection, ColorContainer colorValues,
+                                         ColorContainer altColorValues = CRGB::Black) {
 
-	CRGB altColorCRGB = CRGB( altColorValues.getr(), altColorValues.getg(), altColorValues.getb() );
+    CRGB altColorCRGB = CRGB(altColorValues.getr(), altColorValues.getg(), altColorValues.getb());
 
 
-	if (movementDirection == forward) {
+    if (movementDirection == forward) {
 
-		for (int q = 0; q < getPixelCount(); q++) {
+        for (int q = 0; q < getPixelCount(); q++) {
 
-			for (int i = 0; i < getPixelCount(); i++) {
+            for (int i = 0; i < getPixelCount(); i++) {
 
-				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 60 ) );
+                setPixelColor(i, blend(CRGB(getPixelColor(i).getr(), getPixelColor(i).getg(), getPixelColor(i).getb()),
+                                       altColorCRGB, 60));
 
-			}
+            }
 
-			setPixelColor( q, colorValues );
+            setPixelColor(q, colorValues);
 
-			delay( 50 );
+            delay(50);
 
-		}
+        }
 
-	}
+    }
 
-	if (movementDirection == backward) {
+    if (movementDirection == backward) {
 
-		for (int q = getPixelCount() - 1; q >= 0; q--) {
+        for (int q = getPixelCount() - 1; q >= 0; q--) {
 
-			for (int i = 0; i < getPixelCount(); i++) {
+            for (int i = 0; i < getPixelCount(); i++) {
 
-				setPixelColor( i, blend( CRGB( getPixelColor( i ).getr(), getPixelColor( i ).getg(), getPixelColor( i ).getb() ), altColorCRGB, 60 ) );
+                setPixelColor(i, blend(CRGB(getPixelColor(i).getr(), getPixelColor(i).getg(), getPixelColor(i).getb()),
+                                       altColorCRGB, 60));
 
-			}
+            }
 
-			setPixelColor( q, colorValues );
+            setPixelColor(q, colorValues);
 
-			delay( 50 );
+            delay(50);
 
-		}
+        }
 
-	}
+    }
 
-	return;
+    return;
 
 }
 
@@ -478,14 +528,15 @@ void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, ColorCont
 	@param g2In The green value the remaining pixels will fade to (default 0)
 	@param b2In The blue value the remaining pixels will fade to (default 0) */
 
-void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0, int g2In = 0, int b2In = 0 ) {
+void AnimatedLEDStrip::pixelRunWithTrail(direction movementDirection, int r1In, int g1In, int b1In, int r2In = 0,
+                                         int g2In = 0, int b2In = 0) {
 
-	ColorContainer temp1 = ColorContainer( r1In, g1In, b1In );
-	ColorContainer temp2 = ColorContainer( r2In, g2In, b2In );
+    ColorContainer temp1 = ColorContainer(r1In, g1In, b1In);
+    ColorContainer temp2 = ColorContainer(r2In, g2In, b2In);
 
-	pixelRunWithTrail( movementDirection, temp1, temp2 );
+    pixelRunWithTrail(movementDirection, temp1, temp2);
 
-	return;
+    return;
 
 }
 
@@ -497,35 +548,37 @@ void AnimatedLEDStrip::pixelRunWithTrail( direction movementDirection, int r1In,
 	@param brightness The brightness of the LEDs (default 255) */
 
 template<class paletteType>
-void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movementDirection, uint8_t brightness ) {
+void AnimatedLEDStrip::smoothChase(const paletteType &palette, direction movementDirection, uint8_t brightness) {
 
-	if (movementDirection == forward) {
+    if (movementDirection == forward) {
 
-		for (uint8_t startIndex = 255; startIndex > 0; startIndex--) {				// Run through one cycle
+        for (uint8_t startIndex = 255; startIndex > 0; startIndex--) {                // Run through one cycle
 
-			fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+            fillLEDsFromPalette(palette, startIndex, LINEARBLEND,
+                                brightness);    // Fill in colors from the specified palette
 
-			delay( 10 );
+            delay(10);
 
-			show();																	// Send color data to LEDs
+            show();                                                                    // Send color data to LEDs
 
-		}
+        }
 
-	} else if (movementDirection == backward) {
+    } else if (movementDirection == backward) {
 
-		for (uint8_t startIndex = 0; startIndex < 255; startIndex++) {				// Run through one cycle
+        for (uint8_t startIndex = 0; startIndex < 255; startIndex++) {                // Run through one cycle
 
-			fillLEDsFromPalette( palette, startIndex, LINEARBLEND, brightness );	// Fill in colors from the specified palette
+            fillLEDsFromPalette(palette, startIndex, LINEARBLEND,
+                                brightness);    // Fill in colors from the specified palette
 
-			delay( 10 );
+            delay(10);
 
-			show();																	// Send color data to LEDs
+            show();                                                                    // Send color data to LEDs
 
-		}
+        }
 
-	}
+    }
 
-	return;																		// Return
+    return;                                                                        // Return
 
 }
 
@@ -536,11 +589,12 @@ void AnimatedLEDStrip::smoothChase( const paletteType & palette, direction movem
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, direction movementDirection, uint8_t brightness = 255 ) {
+void AnimatedLEDStrip::smoothChase(const TProgmemRGBPalette16 &palette, direction movementDirection,
+                                   uint8_t brightness = 255) {
 
-	smoothChase<TProgmemRGBPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<TProgmemRGBPalette16>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																			// Return
+    return;                                                                            // Return
 
 }
 
@@ -551,11 +605,12 @@ void AnimatedLEDStrip::smoothChase( const TProgmemRGBPalette16& palette, directi
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CRGBPalette16 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CRGBPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CRGBPalette16>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -566,11 +621,12 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette16 & palette, direction mov
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CRGBPalette32 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CRGBPalette32>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CRGBPalette32>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -581,11 +637,12 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette32 & palette, direction mov
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CRGBPalette256 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CRGBPalette256>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CRGBPalette256>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -596,11 +653,12 @@ void AnimatedLEDStrip::smoothChase( const CRGBPalette256 & palette, direction mo
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CHSVPalette16 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CHSVPalette16>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CHSVPalette16>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -611,11 +669,12 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette16 & palette, direction mov
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CHSVPalette32 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CHSVPalette32>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CHSVPalette32>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -626,11 +685,12 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette32 & palette, direction mov
 	@param movementDirection Specifies if the animation should run 'forward' or 'backward'
 	@param brightness The brightness of the LEDs (default 255) */
 
-void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction movementDirection, uint8_t brightness = 255 ) {
+void
+AnimatedLEDStrip::smoothChase(const CHSVPalette256 &palette, direction movementDirection, uint8_t brightness = 255) {
 
-	smoothChase<CHSVPalette256>( palette, movementDirection, brightness );	// Call main smoothChase method
+    smoothChase<CHSVPalette256>(palette, movementDirection, brightness);    // Call main smoothChase method
 
-	return;																	// Return
+    return;                                                                    // Return
 
 }
 
@@ -638,25 +698,25 @@ void AnimatedLEDStrip::smoothChase( const CHSVPalette256 & palette, direction mo
 /**	Method to run a Sparkle animation
 	@param sparkleColor The color that LEDs will be set to for a brief moment */
 
-void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {
+void AnimatedLEDStrip::sparkle(ColorContainer sparkleColor) {
 
-	ColorContainer originalColor;
+    ColorContainer originalColor;
 
-	shuffle();
+    shuffle();
 
-	for (int i = 0; i < getPixelCount(); i++) {
+    for (int i = 0; i < getPixelCount(); i++) {
 
-		originalColor = getPixelColor( shuffleArray[i] );
+        originalColor = getPixelColor(shuffleArray[i]);
 
-		setPixelColor( shuffleArray[i], sparkleColor );
+        setPixelColor(shuffleArray[i], sparkleColor);
 
-		show();
+        show();
 
-		delay( 50 );
+        delay(50);
 
-		setPixelColor( shuffleArray[i], originalColor );
+        setPixelColor(shuffleArray[i], originalColor);
 
-	}
+    }
 
 }
 
@@ -666,13 +726,13 @@ void AnimatedLEDStrip::sparkle( ColorContainer sparkleColor ) {
 	@param gIn The green intensity for the sparkle color
 	@param bIn The blue intensity for the sparkle color */
 
-void AnimatedLEDStrip::sparkle( int rIn, int gIn, int bIn ) {
+void AnimatedLEDStrip::sparkle(int rIn, int gIn, int bIn) {
 
-	ColorContainer temp( rIn, gIn, bIn );
+    ColorContainer temp(rIn, gIn, bIn);
 
-	sparkle( temp );
+    sparkle(temp);
 
-	return;
+    return;
 
 }
 
@@ -680,19 +740,19 @@ void AnimatedLEDStrip::sparkle( int rIn, int gIn, int bIn ) {
 /** Method to run a Sparkle to Color animation
 	@param destinationColor The color all pixels will be set to by the end of the animation */
 
-void AnimatedLEDStrip::sparkleToColor( ColorContainer destinationColor ) {
+void AnimatedLEDStrip::sparkleToColor(ColorContainer destinationColor) {
 
-	shuffle();
+    shuffle();
 
-	for (int i = 0; i < getPixelCount(); i++) {
+    for (int i = 0; i < getPixelCount(); i++) {
 
-		setPixelColor( shuffleArray[i], destinationColor );
+        setPixelColor(shuffleArray[i], destinationColor);
 
-		show();
+        show();
 
-		delay( 10 );
+        delay(10);
 
-	}
+    }
 
 }
 
@@ -702,13 +762,13 @@ void AnimatedLEDStrip::sparkleToColor( ColorContainer destinationColor ) {
 	@param gIn The green intensity for the destination color
 	@param bIn The blue intensity for the destination color */
 
-void AnimatedLEDStrip::sparkleToColor( int rIn, int gIn, int bIn ) {
+void AnimatedLEDStrip::sparkleToColor(int rIn, int gIn, int bIn) {
 
-	ColorContainer temp = ColorContainer( rIn, gIn, bIn );
+    ColorContainer temp = ColorContainer(rIn, gIn, bIn);
 
-	sparkleToColor( temp );
+    sparkleToColor(temp);
 
-	return;
+    return;
 
 }
 
@@ -718,33 +778,33 @@ void AnimatedLEDStrip::sparkleToColor( int rIn, int gIn, int bIn ) {
 	@param colorValues The color that the strip will be at the end of the animation
 	@param wipeDirection Specifies if the animation should run 'forward' or 'backward' */
 
-void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection ) {
+void AnimatedLEDStrip::wipe(ColorContainer colorValues, direction wipeDirection) {
 
-	if (wipeDirection == backward) {
+    if (wipeDirection == backward) {
 
-		for (int i = getPixelCount() - 1; i >= 0; i--) {	// Run through the length of the strip
+        for (int i = getPixelCount() - 1; i >= 0; i--) {    // Run through the length of the strip
 
-			setPixelColor( i, colorValues );				// Set pixel color to colorValues
-			show();											// Send color data to LEDs
+            setPixelColor(i, colorValues);                // Set pixel color to colorValues
+            show();                                            // Send color data to LEDs
 
-			delay( 10 );
+            delay(10);
 
-		}
+        }
 
-	}
+    }
 
-	if (wipeDirection == forward) {
+    if (wipeDirection == forward) {
 
-		for (int i = 0; i < getPixelCount(); i++) {		// Run through the length of the strip
+        for (int i = 0; i < getPixelCount(); i++) {        // Run through the length of the strip
 
-			setPixelColor( i, colorValues );			// Set pixel color to colorValues
-			show();										// Sendc color data to LEDs
+            setPixelColor(i, colorValues);            // Set pixel color to colorValues
+            show();                                        // Sendc color data to LEDs
 
-			delay( 10 );
+            delay(10);
 
-		}
+        }
 
-	}
+    }
 
 }
 
@@ -755,17 +815,51 @@ void AnimatedLEDStrip::wipe( ColorContainer colorValues, direction wipeDirection
 	@param bIn The blue intensity for the destination color
 	@param wipeDirection Specifies if the animation should run 'forward' or 'backward' */
 
-void AnimatedLEDStrip::wipe( int rIn, int gIn, int bIn, direction wipeDirection ) {
+void AnimatedLEDStrip::wipe(int rIn, int gIn, int bIn, direction wipeDirection) {
 
-	ColorContainer temp = ColorContainer( rIn, gIn, bIn );
+    ColorContainer temp = ColorContainer(rIn, gIn, bIn);
 
-	wipe( temp, wipeDirection );
+    wipe(temp, wipeDirection);
 
-	return;
+    return;
 
 }
 
-void AnimatedLEDStrip::stack( direction stackDirection, ColorContainer colorValues ) {
+void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValues) {
+
+    if (movementDirection == forward) {
+
+        for (int q = getPixelCount() - 1; q >= 0; q--) {
+
+            for (int i = 0; i < q; i++) {
+                setPixelColor(q, colorValues);
+                delay(50);
+                setPixelColor(q, altColorValues);
+            }
+
+            setPixelColor(q, colorValues)
+
+        }
+
+    }
+
+    if (movementDirection == backward) {
+
+        for (int q = 0; q < getPixelCount(); q++) {
+
+            for (int i = getPixelCount() - 1; i > q; i--) {
+                setPixelColor(i, colorValues);
+                delay(50);
+                setPixelColor(i, altColorValues);
+            }
+
+            setPixelColor(q, colorValues)
+
+        }
+
+    }
+
+    return;
 
 }
 
@@ -776,57 +870,57 @@ void AnimatedLEDStrip::stack( direction stackDirection, ColorContainer colorValu
 	@param chaseDirection Specifies if the animation should run 'forward' or 'backward'
 	@param colorValues A ColorContainer containing the desired color */
 
-void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, ColorContainer colorValues ) {
+void AnimatedLEDStrip::chase(int spacing, direction chaseDirection, ColorContainer colorValues) {
 
-	ColorContainer Black;
+    ColorContainer Black;
 
-	if (chaseDirection == forward) {
+    if (chaseDirection == forward) {
 
-		for (int q = 0; q < spacing; q++) {
+        for (int q = 0; q < spacing; q++) {
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), colorValues);
 
-			}
+            }
 
-			show();
-			delay( 50 );
+            show();
+            delay(50);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
+                setPixelColor(i + (-(q - (spacing - 1))), Black);
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	if (chaseDirection == backward) {
+    if (chaseDirection == backward) {
 
-		for (int q = spacing - 1; q >= 0; q--) {
+        for (int q = spacing - 1; q >= 0; q--) {
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), colorValues );
+                setPixelColor(i + (-(q - (spacing - 1))), colorValues);
 
-			}
+            }
 
-			show();
-			delay( 50 );
+            show();
+            delay(50);
 
-			for (int i = 0; i < getPixelCount(); i += spacing) {
+            for (int i = 0; i < getPixelCount(); i += spacing) {
 
-				setPixelColor( i + (-(q - (spacing - 1))), Black );
+                setPixelColor(i + (-(q - (spacing - 1))), Black);
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	return;
+    return;
 
 }
 
@@ -840,12 +934,12 @@ void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, ColorContai
 	@param gIn The value for the green LED
 	@param bIn The value for the blue LED */
 
-void AnimatedLEDStrip::chase( int spacing, direction chaseDirection, int rIn, int gIn, int bIn ) {
+void AnimatedLEDStrip::chase(int spacing, direction chaseDirection, int rIn, int gIn, int bIn) {
 
-	ColorContainer temp( rIn, gIn, bIn );
+    ColorContainer temp(rIn, gIn, bIn);
 
-	chase( spacing, chaseDirection, temp );
+    chase(spacing, chaseDirection, temp);
 
-	return;
+    return;
 
 }

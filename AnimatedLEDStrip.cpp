@@ -827,17 +827,22 @@ void AnimatedLEDStrip::wipe(int rIn, int gIn, int bIn, direction wipeDirection) 
 
 void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black) {
 
+    setStripColor(altColorValues);
+
     if (stackDirection == forward) {
 
         for (int q = getPixelCount() - 1; q >= 0; q--) {
 
             for (int i = 0; i < q; i++) {
                 setPixelColor(q, colorValues);
+                show()
                 delay(50);
                 setPixelColor(q, altColorValues);
+                show()
             }
 
             setPixelColor(q, colorValues);
+            show()
 
         }
 
@@ -849,11 +854,14 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
 
             for (int i = getPixelCount() - 1; i > q; i--) {
                 setPixelColor(i, colorValues);
+                show()
                 delay(50);
                 setPixelColor(i, altColorValues);
+                show()
             }
 
             setPixelColor(q, colorValues);
+            show()
 
         }
 

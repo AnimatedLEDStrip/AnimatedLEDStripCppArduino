@@ -835,14 +835,13 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
 
             for (int i = 0; i < q; i++) {
                 setPixelColor(q, colorValues);
-                show()
+                show();
                 delay(50);
                 setPixelColor(q, altColorValues);
-                show()
             }
 
             setPixelColor(q, colorValues);
-            show()
+            show();
 
         }
 
@@ -854,14 +853,13 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
 
             for (int i = getPixelCount() - 1; i > q; i--) {
                 setPixelColor(i, colorValues);
-                show()
+                show();
                 delay(50);
                 setPixelColor(i, altColorValues);
-                show()
             }
 
             setPixelColor(q, colorValues);
-            show()
+            show();
 
         }
 

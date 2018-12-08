@@ -837,7 +837,7 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
                 setPixelColor(q, altColorValues);
             }
 
-            setPixelColor(q, colorValues)
+            setPixelColor(q, colorValues);
 
         }
 
@@ -853,7 +853,7 @@ void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValue
                 setPixelColor(i, altColorValues);
             }
 
-            setPixelColor(q, colorValues)
+            setPixelColor(q, colorValues);
 
         }
 

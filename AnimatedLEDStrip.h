@@ -63,7 +63,7 @@ public:
             wipe(ColorContainer colorValues,
                  direction wipeDirection),    // Runs a single wipe animation (similar to pixelRun() but the values do not switch to a second color)
             wipe(int rIn, int gIn, int bIn, direction wipeDirection),    // Overload for wipe()
-            stack(direction stackDirection, ColorContainer colorValues),
+            stack(direction stackDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black),
             chase(int, direction,
                   ColorContainer),    // Deprecated - use multiPixelRun( int, direction, ColorContainer )
             chase(int, direction, int, int, int);    // Deprecated - use multiPixelRun( int, direction, int, int, int )

@@ -825,7 +825,7 @@ void AnimatedLEDStrip::wipe(int rIn, int gIn, int bIn, direction wipeDirection) 
 
 }
 
-void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValues) {
+void AnimatedLEDStrip::stack(direction stackDirection, ColorContainer colorValues, ColorContainer altColorValues = CRGB::Black) {
 
     if (movementDirection == forward) {
 

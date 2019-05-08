@@ -107,7 +107,7 @@ FastLED2
 ## Full release of the library
 
 ## Release Candidate 6
-* Rename library, offically, to FastLED, move to github 
+* Rename library, officially, to FastLED, move to github 
 * Update keywords with all the new stuffs
 
 ## Release Candidate 5

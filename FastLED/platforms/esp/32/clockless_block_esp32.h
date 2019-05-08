@@ -56,7 +56,7 @@ public:
     }
 
     virtual void init() {
-	// Only supportd on pins 12-15
+	// Only supported on pins 12-15
         // SZG: This probably won't work (check pins definitions in fastpin_esp32)
 	initPin<12>();
 	initPin<13>();

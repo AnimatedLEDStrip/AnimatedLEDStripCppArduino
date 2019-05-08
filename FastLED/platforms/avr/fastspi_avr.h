@@ -322,7 +322,7 @@ public:
 //
 // Hardware SPI support using SPDR registers and friends
 //
-// Technically speaking, this uses the AVR SPI registers.  This will work on the Teensy 3.0 because Paul made a set of compatability
+// Technically speaking, this uses the AVR SPI registers.  This will work on the Teensy 3.0 because Paul made a set of compatibility
 // classes that map the AVR SPI registers to ARM's, however this caps the performance of output.
 //
 // TODO: implement ARMHardwareSPIOutput

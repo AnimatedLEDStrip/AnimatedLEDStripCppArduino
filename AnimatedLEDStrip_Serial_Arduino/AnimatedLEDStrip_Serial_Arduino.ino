@@ -163,7 +163,7 @@ void setup() {
 
   Serial.begin(9600);                 // Start serial communication
 
-  input.attach(messageReady);         // Attach callback function to Messenger proccesses
+  input.attach(messageReady);         // Attach callback function to Messenger processes
 
 
   // Set all variables to NULL at beginning

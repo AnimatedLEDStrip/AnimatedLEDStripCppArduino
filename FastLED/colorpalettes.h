@@ -18,7 +18,7 @@ FASTLED_NAMESPACE_BEGIN
 
 ///@{
 
-/// Cloudy color pallete
+/// Cloudy color palette
 extern const TProgmemRGBPalette16 CloudColors_p FL_PROGMEM;
 /// Lava colors
 extern const TProgmemRGBPalette16 LavaColors_p FL_PROGMEM;

@@ -1551,7 +1551,7 @@ CHSV ColorFromPalette( const CHSVPalette32& pal,
                       TBlendType blendType=LINEARBLEND);
 
 
-// Fill a range of LEDs with a sequece of entryies from a palette
+// Fill a range of LEDs with a sequence of entryies from a palette
 template <typename PALETTE>
 void fill_palette(CRGB* L, uint16_t N, uint8_t startIndex, uint8_t incIndex,
                   const PALETTE& pal, uint8_t brightness, TBlendType blendType)

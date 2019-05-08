@@ -260,7 +260,7 @@ LIB8STATIC_ALWAYS_INLINE int16_t avg15( int16_t i, int16_t j)
 
 
 ///       Calculate the remainder of one unsigned 8-bit
-///       value divided by anoter, aka A % M.
+///       value divided by another, aka A % M.
 ///       Implemented by repeated subtraction, which is
 ///       very compact, and very fast if A is 'probably'
 ///       less than M.  If A is a large multiple of M,

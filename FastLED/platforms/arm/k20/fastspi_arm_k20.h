@@ -353,7 +353,7 @@ public:
 	template <uint8_t BIT> inline static void writeBit(uint8_t b) {
 		uint32_t ctar1_save = SPIX.CTAR1;
 
-		// Clear out the FMSZ bits, reset them for 1 bit transferd for the start bit
+		// Clear out the FMSZ bits, reset them for 1 bit transferred for the start bit
 		uint32_t ctar1 = (ctar1_save & (~SPI_CTAR_FMSZ(15))) | SPI_CTAR_FMSZ(0);
 		update_ctar1(ctar1);
 
@@ -439,7 +439,7 @@ public:
 		} else if(FLAGS & FLAG_START_BIT) {
 			uint32_t ctar1_save = SPIX.CTAR1;
 
-			// Clear out the FMSZ bits, reset them for 9 bits transferd for the start bit
+			// Clear out the FMSZ bits, reset them for 9 bits transferred for the start bit
 			uint32_t ctar1 = (ctar1_save & (~SPI_CTAR_FMSZ(15))) | SPI_CTAR_FMSZ(8);
 			update_ctar1(ctar1);
 

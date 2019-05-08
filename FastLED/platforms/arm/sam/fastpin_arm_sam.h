@@ -21,7 +21,7 @@ public:
 	typedef uint32_t port_t;
 
 	inline static void setOutput() { pinMode(PIN, OUTPUT); } // TODO: perform MUX config { _PDDR::r() |= _MASK; }
-	inline static void setInput() { pinMode(PIN, INPUT); } // TODO: preform MUX config { _PDDR::r() &= ~_MASK; }
+	inline static void setInput() { pinMode(PIN, INPUT); } // TODO: perform MUX config { _PDDR::r() &= ~_MASK; }
 
 	inline static void hi() __attribute__ ((always_inline)) { _PSOR::r() = _MASK; }
 	inline static void lo() __attribute__ ((always_inline)) { _PCOR::r() = _MASK; }
@@ -52,7 +52,7 @@ public:
 	typedef uint32_t port_t;
 
 	inline static void setOutput() { pinMode(PIN, OUTPUT); } // TODO: perform MUX config { _PDDR::r() |= _MASK; }
-	inline static void setInput() { pinMode(PIN, INPUT); } // TODO: preform MUX config { _PDDR::r() &= ~_MASK; }
+	inline static void setInput() { pinMode(PIN, INPUT); } // TODO: perform MUX config { _PDDR::r() &= ~_MASK; }
 
 	inline static void hi() __attribute__ ((always_inline)) { *_PDOR::template rx<_BIT>() = 1; }
 	inline static void lo() __attribute__ ((always_inline)) { *_PDOR::template rx<_BIT>() = 0; }

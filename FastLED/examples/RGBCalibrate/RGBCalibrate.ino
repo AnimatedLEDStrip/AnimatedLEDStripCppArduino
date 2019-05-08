@@ -33,7 +33,7 @@
 CRGB leds[NUM_LEDS];
 
 void setup() {
-	// sanity check delay - allows reprogramming if accidently blowing power w/leds
+	// sanity check delay - allows reprogramming if accidentally blowing power w/leds
    	delay(2000);
 
       // Uncomment one of the following lines for your leds arrangement.

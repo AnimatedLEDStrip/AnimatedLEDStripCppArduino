@@ -89,7 +89,7 @@ void hsv2rgb_raw_C (const struct CHSV & hsv, struct CRGB & rgb)
     uint8_t color_amplitude = value - brightness_floor;
 
     // Figure out which section of the hue wheel we're in,
-    // and how far offset we are withing that section
+    // and how far offset we are within that section
     uint8_t section = hsv.hue / HSV_SECTION_3; // 0..2
     uint8_t offset = hsv.hue % HSV_SECTION_3;  // 0..63
 

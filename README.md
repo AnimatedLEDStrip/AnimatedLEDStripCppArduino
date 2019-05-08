@@ -16,4 +16,4 @@ This library was also created with FIRST Robotics Competition teams in mind. Dur
 
 The FastLED library is included in this library ([Link to the FastLED documentation](http://fastled.io/docs/3.1/index.html)). If using the serial communication, the Messenger library needs to be installed in the Arduino IDE.
 
-Contributers: Max Narvaez, Will Roberts, Katie Richter, Ziqi Wei, Chan Jin Park
+Contributors: Max Narvaez, Will Roberts, Katie Richter, Ziqi Wei, Chan Jin Park

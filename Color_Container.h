@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "FastLED\FastLED.h"
+#include <FastLED.h>
 
 /** ColorContainer class - holds three color values (r,g,b) used for a LED strip LED */
 

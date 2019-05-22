@@ -28,11 +28,11 @@ public:
       _CRH::r() = (_CRH::r() & (0xF << ((_BIT-8)*4))) | (0x1 << ((_BIT-8)*4));
     }
   }
-  inline static void setInput() { /* TODO */ } // TODO: preform MUX config { _PDDR::r() &= ~_MASK; }
+  inline static void setInput() { /* TODO */ } // TODO: perform MUX config { _PDDR::r() &= ~_MASK; }
   #endif
 
   inline static void setOutput() { pinMode(PIN, OUTPUT); } // TODO: perform MUX config { _PDDR::r() |= _MASK; }
-  inline static void setInput() { pinMode(PIN, INPUT); } // TODO: preform MUX config { _PDDR::r() &= ~_MASK; }
+  inline static void setInput() { pinMode(PIN, INPUT); } // TODO: perform MUX config { _PDDR::r() &= ~_MASK; }
 
   inline static void hi() __attribute__ ((always_inline)) { PORT->Group[_GRP].OUTSET.reg = _MASK; }
   inline static void lo() __attribute__ ((always_inline)) { PORT->Group[_GRP].OUTCLR.reg = _MASK; }

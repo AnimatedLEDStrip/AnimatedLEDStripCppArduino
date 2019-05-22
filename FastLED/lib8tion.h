@@ -4,7 +4,7 @@
 #include "FastLED.h"
 
 #ifndef __INC_LED_SYSDEFS_H
-#error WTH?  led_sysdefs needs to be included first
+#error WITH?  led_sysdefs needs to be included first
 #endif
 
 FASTLED_NAMESPACE_BEGIN
@@ -105,7 +105,7 @@ FASTLED_NAMESPACE_BEGIN
      ease8InOutQuad(x) == quadratic (vs cubic) easing
 
  - Cubic, Quadratic, and Triangle wave functions.
-   Input is a uint8_t representing phase withing the wave,
+   Input is a uint8_t representing phase within the wave,
      similar to how sin8 takes an angle 'theta'.
    Output is a uint8_t representing the amplitude of
      the wave at that point.
@@ -549,7 +549,7 @@ LIB8STATIC int16_t lerp15by16( int16_t a, int16_t b, fract16 frac)
 ///
 ///          hue = map8( sin8( myValue), HUE_BLUE, HUE_RED);
 ///
-/// Mathematically simiar to lerp8by8, but arguments are more
+/// Mathematically similar to lerp8by8, but arguments are more
 /// like Arduino's "map"; this function is similar to
 ///
 ///          map( in, 0, 255, rangeStart, rangeEnd)
@@ -626,7 +626,7 @@ LIB8STATIC fract8 ease8InOutCubic( fract8 i)
     uint16_t r1 = (3 * (uint16_t)(ii)) - ( 2 * (uint16_t)(iii));
 
     /* the code generated for the above *'s automatically
-       cleans up R1, so there's no need to explicitily call
+       cleans up R1, so there's no need to explicitly call
        cleanup_R1(); */
 
     uint8_t result = r1;
@@ -781,7 +781,7 @@ LIB8STATIC uint8_t squarewave8( uint8_t in, uint8_t pulsewidth=128)
 
 
 
-/// Template class for represneting fractional ints.
+/// Template class for representing fractional ints.
 template<class T, int F, int I> class q {
   T i:I;
   T f:F;

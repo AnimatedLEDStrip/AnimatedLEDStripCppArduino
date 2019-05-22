@@ -510,7 +510,7 @@ S7xK	CLOCK_ON
 
 /////////////////////////////////
 //
-// Force page allignment for speed
+// Force page alignment for speed
 // for leds array and Rainbow table
 //
 		.dsb 256-(* & $FF),0

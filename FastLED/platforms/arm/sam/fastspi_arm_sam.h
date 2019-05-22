@@ -115,7 +115,7 @@ public:
 	// write a single bit out, which bit from the passed in byte is determined by template parameter
 	// not the most efficient mechanism in the world - but should be enough for sm16716 and friends
 	template <uint8_t BIT> inline void writeBit(uint8_t b) {
-		// need to wait for all exisiting data to go out the door, first
+		// need to wait for all existing data to go out the door, first
 		waitFully();
 		disableSPI();
 		if(b & (1 << BIT)) {

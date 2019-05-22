@@ -203,7 +203,7 @@ public:
 
 	static void writeBytesValueRaw(uint8_t value, int len) {
 #ifdef FAST_SPI_INTERRUPTS_WRITE_PINS
-		// TODO: Weird things may happen if software bitbanging SPI output and other pins on the output reigsters are being twiddled.  Need
+		// TODO: Weird things may happen if software bitbanging SPI output and other pins on the output registers are being twiddled.  Need
 		// to allow specifying whether or not exclusive i/o access is allowed during this process, and if i/o access is not allowed fall
 		// back to the degenerative code below
 		while(len--) {

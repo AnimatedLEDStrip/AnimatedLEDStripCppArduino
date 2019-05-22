@@ -55,7 +55,7 @@ uint16_t speed = 20; // speed is set dynamically once we've started up
 
 // Scale determines how far apart the pixels in our noise matrix are.  Try
 // changing these values around to see how it affects the motion of the display.  The
-// higher the value of scale, the more "zoomed out" the noise iwll be.  A value
+// higher the value of scale, the more "zoomed out" the noise will be.  A value
 // of 1 will be so zoomed in, you'll mostly see solid colors.
 uint16_t scale = 30; // scale is set dynamically once we've started up
 
@@ -80,7 +80,7 @@ void setup() {
 
 // Fill the x/y array of 8-bit noise values using the inoise8 function.
 void fillnoise8() {
-  // If we're runing at a low "speed", some 8-bit artifacts become visible
+  // If we're running at a low "speed", some 8-bit artifacts become visible
   // from frame-to-frame.  In order to reduce this, we can do some fast data-smoothing.
   // The amount of data smoothing we're doing depends on "speed".
   uint8_t dataSmoothing = 0;

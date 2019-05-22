@@ -17,7 +17,7 @@ class ColorContainer {
 public:
     ColorContainer();                                // Default Constructor for ColorContainer (sets r, g, b to 0)
     ColorContainer(
-            long hexIn);                    // Constructor for ColorContainer (sets r, g, b based on number recieved (usually 6-digit hexadecimal))
+            long hexIn);                    // Constructor for ColorContainer (sets r, g, b based on number received (usually 6-digit hexadecimal))
     ColorContainer(int rIn, int gIn,
                    int bIn);    // Constructor for ColorContainer (sets r, g, b to parameters received)
     ColorContainer(
